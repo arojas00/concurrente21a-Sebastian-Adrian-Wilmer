@@ -17,7 +17,7 @@ const char* const usage =
     DEFAULT_PORT "\n"
   "  max_connections  Maximum number of allowed client connections\n";
 
-// TODO(you) Make WebServer a singleton class. See the Log class
+// TODO(Wil) Make WebServer a singleton class. See the Log class
 WebServer::WebServer() {
 }
 
@@ -27,7 +27,7 @@ WebServer::~WebServer() {
 int WebServer::start(int argc, char* argv[]) {
   try {
     if (this->analyzeArguments(argc, argv)) {
-      // TODO(you) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
+      // TODO(Wil) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
       // Signal handler should call WebServer::stopListening(), send stop
       // conditions and wait for all secondary threads that it created
       this->listenForConnections(this->port);
@@ -81,11 +81,11 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
     return this->serveHomepage(httpRequest, httpResponse);
   }
 
-  // TODO(you): URI can be a multi-value list, e.g: 100,2784,-53,200771728
-  // TODO(you): change for sendGoldbachSums() if you prefer it
+  // TODO(Sebas): URI can be a multi-value list, e.g: 100,2784,-53,200771728
+  // TODO(Sebas): change for sendGoldbachSums() if you prefer it
   std::smatch matches;
 
-  // TODO(you): Numbers given by user may be larger than int64_t, reject them
+  // TODO(Sebas): Numbers given by user may be larger than int64_t, reject them
 
   // If a number was asked in the form "/goldbach/1223"
   // or "/goldbach?number=1223"
@@ -100,13 +100,13 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
   return this->serveNotFound(httpRequest, httpResponse);
 }
 
-// TODO(you): Fix code redundancy in the following methods
+// TODO(Ardi): Fix code redundancy in the following methods
 
 bool WebServer::serveHomepage(HttpRequest& httpRequest
   , HttpResponse& httpResponse) {
   (void)httpRequest;
 
-  // TODO(you) Move form to your view class, e.g GoldbachWebApp
+  // TODO(Ardi) Move form to your view class, e.g GoldbachWebApp
 
   // Set HTTP response metadata (headers)
   httpResponse.setHeader("Server", "AttoServer v1.0");
