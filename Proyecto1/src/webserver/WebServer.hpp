@@ -34,6 +34,8 @@ class WebServer : public HttpServer {
   /// Route, that provide an answer according to the URI value
   /// For example, home page is handled different than a number
   bool route(HttpRequest& httpRequest, HttpResponse& httpResponse);
+  /// sets the headers for the server response
+  void setHeaders(HttpResponse& httpResponse, std::string title);
   /// Sends the homepage as HTTP response
   bool serveHomepage(HttpRequest& httpRequest, HttpResponse& httpResponse);
   /// Sends a page for a non found resouce in this server

@@ -101,24 +101,26 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
 }
 
 // TODO(Ardi): Fix code redundancy in the following methods
+void WebServer::setHeaders(HttpResponse& httpResponse, std::string title) {
+  // Set HTTP response metadata (headers)
+  httpResponse.setHeader("Server", "AttoServer v1.0");
+  httpResponse.setHeader("Content-type", "text/html; charset=ascii");
+  httpResponse.body() << "<!DOCTYPE html>\n"
+    << "<html lang=\"en\">\n"
+    << "  <meta charset=\"ascii\"/>\n"
+    << "  <title>" << title << "</title>\n";
+}
 
 bool WebServer::serveHomepage(HttpRequest& httpRequest
   , HttpResponse& httpResponse) {
   (void)httpRequest;
-
-  // TODO(Ardi) Move form to your view class, e.g GoldbachWebApp
-
-  // Set HTTP response metadata (headers)
-  httpResponse.setHeader("Server", "AttoServer v1.0");
-  httpResponse.setHeader("Content-type", "text/html; charset=ascii");
+  // TODO(you) Move form to your view class, e.g GoldbachWebApp
 
   // Build the body of the response
   std::string title = "Goldbach sums";
-  httpResponse.body() << "<!DOCTYPE html>\n"
-    << "<html lang=\"en\">\n"
-    << "  <meta charset=\"ascii\"/>\n"
-    << "  <title>" << title << "</title>\n"
-    << "  <style>body {font-family: monospace}</style>\n"
+  setHeaders(httpResponse, title);
+
+  httpResponse.body() << "  <style>body {font-family: monospace}</style>\n"
     << "  <h1>" << title << "</h1>\n"
     << "  <form method=\"get\" action=\"/goldbach\">\n"
     << "    <label for=\"number\">Number</label>\n"
@@ -137,16 +139,11 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
 
   // Set HTTP response metadata (headers)
   httpResponse.setStatusCode(404);
-  httpResponse.setHeader("Server", "AttoServer v1.0");
-  httpResponse.setHeader("Content-type", "text/html; charset=ascii");
 
   // Build the body of the response
   std::string title = "Not found";
-  httpResponse.body() << "<!DOCTYPE html>\n"
-    << "<html lang=\"en\">\n"
-    << "  <meta charset=\"ascii\"/>\n"
-    << "  <title>" << title << "</title>\n"
-    << "  <style>body {font-family: monospace} h1 {color: red}</style>\n"
+  setHeaders(httpResponse, title);
+  httpResponse.body() << "  <style>body {font-family: monospace} h1 {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n"
     << "  <p>The requested resouce was not found in this server.</p>\n"
     << "  <hr><p><a href=\"/\">Homepage</a></p>\n"
@@ -162,27 +159,24 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number) {
   (void)httpRequest;
 
-  // Set HTTP response metadata (headers)
-  httpResponse.setHeader("Server", "AttoServer v1.0");
-  httpResponse.setHeader("Content-type", "text/html; charset=ascii");
-
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
-  httpResponse.body() << "<!DOCTYPE html>\n"
-    << "<html lang=\"en\">\n"
-    << "  <meta charset=\"ascii\"/>\n"
-    << "  <title>" << title << "</title>\n"
-    << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
+  // Set HTTP response metadata (headers)
+  setHeaders(httpResponse,title);
+
+  httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n"
-    << "  <h2>25</h2>\n"
-    << "  <p>25: 5 sums</p>\n"
-    << "  <h2 class=\"err\">-3</h2>\n"
-    << "  <p>-3: NA</p>\n"
-    << "  <h2>-13</h2>\n"
-    << "  <p>-13: 2 sums</p>\n"
+    << "  <h2>number</h2>\n"
+    << "  <p>number: count sums</p>\n"
+    << "  <h2>"<< number <<"</h2>\n"
+    << "  <p>"<< number <<": count sums</p>\n"
+    << "  <h2 class=\"err\">invalid</h2>\n"
+    << "  <p>invalid: NA</p>\n"
+    << "  <h2>negative</h2>\n"
+    << "  <p>negative: count sums</p>\n"
     << "  <ol>\n"
-    << "    <li>3 + 3 + 7</li>\n"
-    << "    <li>3 + 5 + 5</li>\n"
+    << "    <li>sum</li>\n"
+    << "    <li>sum</li>\n"
     << "  </ol>\n"
     << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
