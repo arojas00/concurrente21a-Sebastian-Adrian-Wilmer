@@ -4,8 +4,7 @@
 
 #include "HttpConnectionHandler.hpp"
 #include "WebServer.hpp"
-#include "HttpRequest.hpp"
-#include "HttpResponse.hpp"
+#include "Log.hpp"
 
 HttpConnectionHandler::HttpConnectionHandler() {
 }
@@ -15,7 +14,7 @@ int HttpConnectionHandler::run() {
   this->consumeForever();
 
   // If the forever loop finished, no more sockets will arrive
-  
+  Log::append(Log::INFO, "Consumer", "ended");
   return EXIT_SUCCESS;
 }
 

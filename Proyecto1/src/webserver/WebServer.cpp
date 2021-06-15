@@ -167,18 +167,26 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n"
     << "  <h2>number</h2>\n"
-    << "  <p>number: count sums</p>\n"
-    << "  <h2>"<< number <<"</h2>\n"
-    << "  <p>"<< number <<": count sums</p>\n"
-    << "  <h2 class=\"err\">invalid</h2>\n"
-    << "  <p>invalid: NA</p>\n"
-    << "  <h2>negative</h2>\n"
-    << "  <p>negative: count sums</p>\n"
-    << "  <ol>\n"
-    << "    <li>sum</li>\n"
-    << "    <li>sum</li>\n"
-    << "  </ol>\n"
-    << "  <hr><p><a href=\"/\">Back</a></p>\n"
+    << "  <p>number: count sums</p>\n";
+  if(number>=-5 && number<=5) {
+    httpResponse.body() << "  <h2 class=\"err\">"<< number <<"</h2>\n"
+      << "  <p>"<< number <<": NA</p>\n";
+  }
+  else{
+    if(number>5) {
+      httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
+        << "  <p>"<< number <<": count sums</p>\n";
+    }
+    else{
+      httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
+        << "  <p>"<< number <<": count sums</p>\n"
+        << "  <ol>\n"
+        << "    <li>sum</li>\n"
+        << "    <li>sum</li>\n"
+        << "  </ol>\n";
+    }
+  }
+  httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
 
   // Send the response to the client (user agent)

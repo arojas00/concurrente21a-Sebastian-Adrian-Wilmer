@@ -11,6 +11,8 @@
 #include "Thread.hpp"
 #include "Socket.hpp"
 #include "Consumer.hpp"
+#include "HttpRequest.hpp"
+#include "HttpResponse.hpp"
 
 /**
  * @brief A consumer class to handle http connections
