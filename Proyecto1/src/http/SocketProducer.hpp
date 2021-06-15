@@ -17,19 +17,20 @@ class SocketProducer : public Producer<Socket> {
 
  protected:
   /// Number of packages to be produced
-  size_t packageCount = 0;
+  size_t max_connections = 0;
   /// Delay of producer to create a package, negative for max random
-  int productorDelay = 0;
-  /// Number of consumer threads
   size_t consumerCount = 0;
+
+ private:
+   Queue<Socket>* consumingQueue;
 
  public:
   /// Constructor
-  SocketProducer(size_t packageCount, int productorDelay, size_t consumerCount);
+  SocketProducer();
   /// Do the message production in its own execution thread
   int run() override;
   /// Creates a simulation message to be sent by the network
-  int createMessage(size_t index) const;
+  void setProducerQueue();
 };
 
 #endif  // SOCKETPRODUCER_HPP

@@ -90,6 +90,7 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
 
   // If a number was asked in the form "/goldbach/1223"
   // or "/goldbach?number=1223"
+  std::cout<<httpRequest.getURI()<< "Saludos antes de empezar" << std::endl;
   std::regex inQuery("^/goldbach(/|\\?number=)(\\d+)$");
   if (std::regex_search(httpRequest.getURI(), matches, inQuery)) {
     assert(matches.length() >= 3);
@@ -99,15 +100,19 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
 
   std::regex inPath("^/(-?\\d+)$");
   if (std::regex_search(httpRequest.getURI(), matches, inPath)) {
-    assert(matches.length() >= 3);
+    //assert(matches.length() >= 3);
     const int64_t number = std::stoll(matches[1]);
     return this->serveGoldbachSums(httpRequest, httpResponse, number);
   }
 
   std::regex multiPath("^/(-?\\d+)((,-?\\d+)*)$");
   if (std::regex_search(httpRequest.getURI(), matches, multiPath)) {
-    assert(matches.length() >= 3);
+    // assert(matches.length() >= 3);
     const int64_t number = std::stoll(matches[1]);
+    std::string s = matches.suffix();
+    std::cout<< s << " suffix" << std::endl;
+    s = matches.prefix();
+    std::cout<< s << " prefix" << std::endl;
     return this->serveGoldbachSums(httpRequest, httpResponse, number);
   }
   // Unrecognized request
@@ -182,6 +187,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   // TODO webApp(number) -> goldbachCalculator -> return respuesta (webApp) -> httpResponse.body
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
+  ////////Llama al WebApp
   httpResponse.body() << "<!DOCTYPE html>\n"
     << "<html lang=\"en\">\n"
     << "  <meta charset=\"ascii\"/>\n"

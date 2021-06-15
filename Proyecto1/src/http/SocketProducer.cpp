@@ -6,11 +6,8 @@
 #include "Log.hpp"
 #include "UtilityTest.hpp"
 
-SocketProducer::SocketProducer(size_t packageCount, int productorDelay
-  , size_t consumerCount)
-  : packageCount(packageCount)
-  , productorDelay(productorDelay)
-  , consumerCount(consumerCount) {
+SocketProducer::SocketProducer() {
+  setProducerQueue();
 }
 
 int SocketProducer::run() {
@@ -18,7 +15,7 @@ int SocketProducer::run() {
   return EXIT_SUCCESS;
 }
 
-int SocketProducer::createMessage(size_t index) const {
-
-  return 0;
+void SocketProducer::setProducerQueue() {
+  consumingQueue = new Queue<Socket>();
+  this->setProducingQueue(consumingQueue);
 }
