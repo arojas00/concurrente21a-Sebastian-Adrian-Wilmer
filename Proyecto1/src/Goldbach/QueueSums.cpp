@@ -1,10 +1,10 @@
-// Copyright 2021 Jeisson Hidalgo-Cespedes <jeisson.hidalgo@ucr.ac.cr> CC-BY-4
+// Copyright 2021 Wilmer Araya Rivas <wilmer.araya@ucr.ac.cr> CC-BY-4
 // Implements a thread-safe queue
 
 #include <assert.h>
 #include <stdlib.h>
 
-#include "queue.hpp"
+#include "QueueSums.hpp"
 
 void queue_remove_first_unsafe(queue_t* queue);
 bool queue_is_empty_unsafe(const queue_t* queue);

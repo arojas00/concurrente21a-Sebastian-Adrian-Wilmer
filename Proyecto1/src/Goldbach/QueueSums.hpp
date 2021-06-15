@@ -1,8 +1,7 @@
-// Copyright 2021 Jeisson Hidalgo-Cespedes <jeisson.hidalgo@ucr.ac.cr> CC-BY-4
-// Simulates a producer and a consumer that share a bounded buffer
+// Copyright 2021 Wilmer Araya Rivas <wilmer.araya@ucr.ac.cr> CC-BY-4
 
-#ifndef QUEUE_HPP
-#define QUEUE_HPP
+#ifndef QUEUESUMS_HPP
+#define QUEUESUMS_HPP
 
 #include <pthread.h>
 #include <stdbool.h>
@@ -31,4 +30,4 @@ int queue_enqueue(queue_t* queue, const int64_t data);
 int queue_dequeue(queue_t* queue, int64_t* data);
 void queue_clear(queue_t* queue);
 
-#endif  // QUEUE_HPP
+#endif  // QUEUESUMS_HPP

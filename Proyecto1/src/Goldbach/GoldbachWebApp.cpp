@@ -1,9 +1,12 @@
 // Copyright 2021 Wilmer Araya <wilmer.araya@ucr.ac.cr> CC-BY-4
 
 #include <stdint.h>
+#include <queue>
 
 #include "GoldbachWebApp.hpp"
-#include "queue.hpp"
+#include "QueueSums.hpp"
+#include <sstream>
+#include <string>
 
 typedef struct values{
   int64_t value; // valor
@@ -20,11 +23,23 @@ GoldbachWebApp ::~GoldbachWebApp() {
   goldbach_destroy(this->calculator);
 }
 
-values_t* GoldbachWebApp:: calculate_sums(int64_t* array, int64_t array_size) {
-  valores = goldbach_run(calculator, array, array_size);
-  //int num = valores[0].value;
-  //int64_t x = 0;
-  //queue_dequeue(valores[0].cola_sumas, &x);
-  //std::cout << x;
+values_t* GoldbachWebApp:: calculate_sums(string texto) {
+  std::queue<int64_t> cola;
+  string valor = "";
+  stringstream input_stringstream(texto);
+  std::string::size_type sz;
+  int64_t num = 0;
+  
+  input_stringstream.get();
+  while(getline(input_stringstream, valor, ',')) {
+    num = std::stol(valor, &sz);
+    cola.push(num);
+  }
+  
+  valores = goldbach_run(calculator, cola);
+  /*int64_t x = 0;
+  queue_dequeue(valores[6].cola_sumas, &x);
+  //x = valores[6].value;
+  std::cout << x << endl;*/
   return valores;
 }

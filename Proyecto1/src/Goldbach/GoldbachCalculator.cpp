@@ -1,15 +1,15 @@
 // Copyright 2021 Wilmer Araya <wilmer.araya@ucr.ac.cr> CC-BY-4
 #include <assert.h>
-#include <stdbool.h>
 #include <errno.h>
 #include <pthread.h>
+#include <queue>
 #include <semaphore.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "queue.hpp"
+#include "QueueSums.hpp"
 
 typedef struct values{
   int64_t value; // valor
@@ -20,7 +20,7 @@ typedef struct values{
 
 typedef struct goldbach {
   size_t thread_count; // numero de hilos
-  size_t data_count; // numero de datos en total
+  int64_t data_count; // numero de datos en total
   sem_t* can_print; // semaforo para controlar la concurrencia
   queue_t* cola_valores; // cola para almacenar los datos
   values_t* nums; 
@@ -115,7 +115,7 @@ void goldbach_destroy(goldbach_t* goldbach) {
   free(goldbach); // Se libera la memoria del registro goldbach
 }
 
-values_t* goldbach_run(goldbach_t* goldbach, int64_t* array_values, int64_t values_count) {
+values_t* goldbach_run(goldbach_t* goldbach, std::queue<int64_t> queue_values) {
   assert(goldbach);
   int error = EXIT_SUCCESS;
 
@@ -134,13 +134,14 @@ values_t* goldbach_run(goldbach_t* goldbach, int64_t* array_values, int64_t valu
   queue_init(goldbach->cola_valores); // Se inicializa el arreglo de sumas
   assert(goldbach->cola_valores);
 
-  goldbach->data_count = values_count;
-  for (int i = 0; i < values_count; i++) { // Lee los numeros de un archivo o entrada std
-    value = array_values[i];
+  goldbach->data_count = queue_values.size();
+  for (int i = 0; i < goldbach->data_count; i++) { 
+    value = queue_values.front();
+    queue_values.pop();
     queue_enqueue(goldbach->cola_valores, value);
   }
   
-  goldbach->nums = new values_t[values_count];
+  goldbach->nums = new values_t[goldbach->data_count];
 
   if (error == EXIT_SUCCESS) {
     goldbach->can_print = (sem_t*) calloc(goldbach->thread_count

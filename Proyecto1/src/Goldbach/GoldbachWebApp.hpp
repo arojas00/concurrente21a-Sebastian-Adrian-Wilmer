@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include "GoldbachCalculator.hpp"
 #include <iostream>
+#include <string>
+using namespace std;
 
 class GoldbachWebApp {
   
@@ -13,21 +15,25 @@ class GoldbachWebApp {
     values_t* valores;
     
   public:
+    /// Constructor 
     GoldbachWebApp();
+    /// Destructor
     ~GoldbachWebApp();
     
-    values_t* calculate_sums(int64_t* array, int64_t array_size);
+    /// Calculates sums
+    values_t* calculate_sums(string texto);
   
 };
 
-/*
+
 int main() {
   
-  int64_t array[2];
-  array[0] = -32;
-  array[1] = 12; 
+  //nt64_t array[2];
+  //array[0] = -32;
+  //array[1] = 12; 
+  string texto = "/8,5,1,55,6,55,-44";
   GoldbachWebApp* webApp = new GoldbachWebApp();
-  webApp->calculate_sums(array, 2);
+  webApp->calculate_sums(texto);
 }
-*/
+
 #endif // GOLDBACHCALCULATOR_HPP
