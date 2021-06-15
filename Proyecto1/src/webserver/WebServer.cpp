@@ -82,7 +82,7 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
   }
 
   // TODO(Sebas): URI can be a multi-value list, e.g: 100,2784,-53,200771728
-  //  Hi test
+  
   // TODO(Sebas): change for sendGoldbachSums() if you prefer it
   std::smatch matches;
 
@@ -97,6 +97,19 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
     return this->serveGoldbachSums(httpRequest, httpResponse, number);
   }
 
+  std::regex inPath("^/(-?\\d+)$");
+  if (std::regex_search(httpRequest.getURI(), matches, inPath)) {
+    assert(matches.length() >= 3);
+    const int64_t number = std::stoll(matches[1]);
+    return this->serveGoldbachSums(httpRequest, httpResponse, number);
+  }
+
+  std::regex multiPath("^/(-?\\d+)((,-?\\d+)*)$");
+  if (std::regex_search(httpRequest.getURI(), matches, multiPath)) {
+    assert(matches.length() >= 3);
+    const int64_t number = std::stoll(matches[1]);
+    return this->serveGoldbachSums(httpRequest, httpResponse, number);
+  }
   // Unrecognized request
   return this->serveNotFound(httpRequest, httpResponse);
 }
@@ -166,7 +179,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   // Set HTTP response metadata (headers)
   httpResponse.setHeader("Server", "AttoServer v1.0");
   httpResponse.setHeader("Content-type", "text/html; charset=ascii");
-
+  // TODO webApp(number) -> goldbachCalculator -> return respuesta (webApp) -> httpResponse.body
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
   httpResponse.body() << "<!DOCTYPE html>\n"
