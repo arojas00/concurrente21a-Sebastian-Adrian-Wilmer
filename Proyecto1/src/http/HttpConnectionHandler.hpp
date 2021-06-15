@@ -9,79 +9,28 @@
 
 #include "Queue.hpp"
 #include "Thread.hpp"
+#include "Socket.hpp"
+#include "Consumer.hpp"
 
-template <typename DataType>
-class Consumer : public virtual Thread {
-  /// Objects of this class cannot be copied
-  DISABLE_COPY(Consumer);
+/**
+ * @brief A consumer class to handle http connections
+ */
+class HttpConnectionHandler : public Consumer<Socket> {
+  DISABLE_COPY(HttpConnectionHandler);
 
  protected:
-  /// This thread will consume from its queue
-  Queue<DataType>* consumingQueue;
-  /// This data will be used to represent that the Consumer must stop the
-  /// consumption, and finish its work. It is used for cleaning purposes.
-  const DataType stopCondition;
-  /// True if this consumer owns the queue and it must be deleted in destructor
-  bool ownsQueue;
+  /// Delay of consumer to consume a package, negative for max random
+  int consumerDelay = 0;
+  /// Number of messages received
+  size_t receivedMessages = 0;
 
  public:
-  /// Creates a consumer that uses an existing queue or creates its own
-  /// @see stopCondition
-  explicit Consumer(Queue<DataType>* consumingQueue = nullptr
-    , const DataType& stopCondition = DataType()
-    , bool createOwnQueue = false)
-    : consumingQueue(consumingQueue)
-    , stopCondition(stopCondition)
-    , ownsQueue(createOwnQueue) {
-    // Error if asked to create own queue and provided an existing one to use
-    assert(!(createOwnQueue && consumingQueue));
-    if (createOwnQueue) {
-      this->createOwnQueue();
-    }
-  }
-
-  /// Destructor
-  virtual ~Consumer() {
-    if (this->ownsQueue) {
-      delete this->consumingQueue;
-    }
-  }
-
-  /// Get access to the queue where this thread will consume
-  inline Queue<DataType>* getConsumingQueue() {
-    return this->consumingQueue;
-  }
-
-  /// Set the queue where this thread will consume elements
-  inline void setConsumingQueue(Queue<DataType>* consumingQueue) {
-    this->consumingQueue = consumingQueue;
-  }
-
-  /// Creates a new empty queue owned by this consumer
-  void createOwnQueue() {
-    assert(this->consumingQueue == nullptr);
-    this->consumingQueue = new Queue<DataType>();
-    this->ownsQueue = true;
-  }
-
-  /// Consumes from its queue, util the stop condition is popped
-  /// For each data consumed, the @a consume method will be called
-  virtual void consumeForever() {
-    assert(this->consumingQueue);
-    while (true) {
-      // Get the next data to consume, or block while queue is empty
-      const DataType& data = this->consumingQueue->pop();
-      // If data is the stop condition, stop the loop
-      if ( data == this->stopCondition ) {
-        break;
-      }
-      // Process this data
-      this->consume(data);
-    }
-  }
-
+  /// Constructor
+  explicit HttpConnectionHandler(int consumerDelay);
+  /// Consume the messages in its own execution thread
+  int run() override;
   /// Override this method to process any data extracted from the queue
-  virtual void consume(const DataType& data) = 0;
+  void consume(const Socket& data) override;
 };
 
 #endif  // HTTPCONNECTIONHANDLER_HPP
