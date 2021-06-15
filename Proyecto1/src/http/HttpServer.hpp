@@ -6,6 +6,9 @@
 #include "TcpServer.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
+#include "SocketProducer.hpp"
+
+class SocketProducer;
 
 class HttpServer : public TcpServer {
   DISABLE_COPY(HttpServer);
@@ -23,6 +26,10 @@ class HttpServer : public TcpServer {
   /// For each accepted connection request, the virtual onConnectionAccepted()
   /// will be called. Inherited classes must override that method
   void listenForever(const char* port);
+
+ private:
+  /// Producer of the simulated network messages
+  SocketProducer* producer;
 
  protected:
   /// This method is called each time a client connection request is accepted.

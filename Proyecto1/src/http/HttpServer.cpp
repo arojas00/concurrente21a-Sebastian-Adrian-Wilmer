@@ -8,6 +8,8 @@
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
 #include "Socket.hpp"
+#include "SocketProducer.hpp"
+#include "Queue.hpp"
 
 HttpServer::HttpServer() {
 }
@@ -20,6 +22,9 @@ void HttpServer::listenForever(const char* port) {
 }
 
 void HttpServer::handleClientConnection(Socket& client) {
+  Queue<Socket>* consumingQueue;
+  consumingQueue = new Queue<Socket>();
+  producer->setProducingQueue(consumingQueue);
   // TODO(you): Make this method concurrent. Store client connections (sockets)
   // into a collection (e.g thread-safe queue) and stop
 
