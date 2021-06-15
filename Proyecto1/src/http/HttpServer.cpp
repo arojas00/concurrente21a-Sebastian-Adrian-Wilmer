@@ -3,11 +3,14 @@
 #include <cassert>
 #include <stdexcept>
 #include <string>
+#include <iostream>
 
 #include "HttpServer.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
 #include "Socket.hpp"
+#include "SocketProducer.hpp"
+#include "Queue.hpp"
 
 HttpServer::HttpServer() {
 }
@@ -20,15 +23,17 @@ void HttpServer::listenForever(const char* port) {
 }
 
 void HttpServer::handleClientConnection(Socket& client) {
+  producer = new SocketProducer();
+  producer->produce(client);
   // TODO(you): Make this method concurrent. Store client connections (sockets)
   // into a collection (e.g thread-safe queue) and stop
-
-  // TODO(Ardi) Move the following loop to a consumer thread class
+  //Socket& socketRef = socketReceived;
+  //producer->produce(socketReceived);
+  // TODO(you) Move the following loop to a consumer thread class
   // While the same client asks for HTTP requests in the same connection
   while (true) {
-    // Create an object that parses the HTTP request from the socket
+   // Create an object that parses the HTTP request from the socket
     HttpRequest httpRequest(client);
-
     // If the request is not valid or an error happened
     if (!httpRequest.parse()) {
       // Non-valid requests are normal after a previous valid request. Do not
@@ -40,7 +45,6 @@ void HttpServer::handleClientConnection(Socket& client) {
     // A complete HTTP client request was received. Create an object for the
     // server responds to that client's ccrequest
     HttpResponse httpResponse(client);
-
     // Give subclass a chance to respond the HTTP request
     const bool handled = this->handleHttpRequest(httpRequest, httpResponse);
 
