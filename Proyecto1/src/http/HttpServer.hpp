@@ -28,8 +28,7 @@ class HttpServer : public TcpServer {
   void listenForever(const char* port);
 
  private:
-  /// Producer of the simulated network messages
-  SocketProducer* producer;
+   SocketProducer* producer;
 
  protected:
   /// This method is called each time a client connection request is accepted.

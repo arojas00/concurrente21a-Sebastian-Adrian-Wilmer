@@ -25,7 +25,7 @@ class GoldbachWebApp {
   
 };
 
-
+/*
 int main() {
   
   //nt64_t array[2];
@@ -35,5 +35,6 @@ int main() {
   GoldbachWebApp* webApp = new GoldbachWebApp();
   webApp->calculate_sums(texto);
 }
+*/
 
 #endif // GOLDBACHCALCULATOR_HPP
