@@ -6,8 +6,15 @@
 #include "WebServer.hpp"
 #include "Log.hpp"
 
-HttpConnectionHandler::HttpConnectionHandler() {
-}
+Queue<Socket>* consumingQueue = new Queue<Socket>();
+
+/*HttpConnectionHandler::HttpConnectionHandler(Queue<Socket>* consumingQueue = nullptr
+    , const Socket& stopCondition = Socket()
+    , bool createOwnQueue = false)
+    : consumingQueue(consumingQueue)
+    , stopCondition(stopCondition)
+    , ownsQueue(createOwnQueue){
+}*/
 
 int HttpConnectionHandler::run() {
   // Start the forever loop to consume all the Sockets that arrive
@@ -18,7 +25,7 @@ int HttpConnectionHandler::run() {
   return EXIT_SUCCESS;
 }
 
-void HttpConnectionHandler::consume(Socket& client) {
+void HttpConnectionHandler::consume(Socket client) {
   // TODO(Ardi) Move the following loop to a consumer thread class
   // While the same client asks for HTTP requests in the same connection
   while (true) {
