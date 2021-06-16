@@ -24,8 +24,8 @@ int HttpConnectionHandler::run() {
   Log::append(Log::INFO, "Consumer", "ended");
   return EXIT_SUCCESS;
 }
-
-void HttpConnectionHandler::consume(Socket client) {
+void HttpConnectionHandler::consume(const Socket& client) {
+  Socket socketRef = client;
   // TODO(Ardi) Move the following loop to a consumer thread class
   // While the same client asks for HTTP requests in the same connection
   while (true) {
@@ -45,12 +45,13 @@ void HttpConnectionHandler::consume(Socket client) {
     HttpResponse httpResponse(client);
 
     // Give subclass a chance to respond the HTTP request
-    const bool handled = this->handleHttpRequest(httpRequest, httpResponse);
+    //bool handled = handleHttpRequest(httpRequest, httpResponse);
+    const bool handled = WebServer::getInstance().handleHttpRequest(httpRequest, httpResponse);
 
     // If subclass did not handle the request or the client used HTTP/1.0
     if (!handled || httpRequest.getHttpVersion() == "HTTP/1.0") {
       // The socket will not be more used, close the connection
-      client.close();
+      socketRef.close();
       break;
     }
 

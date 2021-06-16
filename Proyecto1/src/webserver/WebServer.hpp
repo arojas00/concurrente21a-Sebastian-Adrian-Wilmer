@@ -13,16 +13,20 @@ class WebServer : public HttpServer {
  private:
   /// TCP port where this web server will listen for connections
   const char* port = DEFAULT_PORT;
-
  public:
   /// Constructor
   WebServer();
   /// Destructor
   ~WebServer();
+
+ //public:
+  
   /// Start the simulation
   int start(int argc, char* argv[]);
+  /// Get access to the unique instance of this Singleton class
+  static WebServer& getInstance();
 
- protected:
+ //protected:
   /// Analyze the command line arguments
   /// @return true if program can continue execution, false otherwise
   bool analyzeArguments(int argc, char* argv[]);

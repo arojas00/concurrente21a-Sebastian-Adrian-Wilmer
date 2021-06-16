@@ -18,6 +18,7 @@
  * @brief A consumer class to handle http connections
  */
 //template <typename DataType>
+
 class HttpConnectionHandler : public Consumer<Socket> {
   /// Objects of this class cannot be copied
   DISABLE_COPY(HttpConnectionHandler);
@@ -34,7 +35,7 @@ class HttpConnectionHandler : public Consumer<Socket> {
  public:
   /// Creates a HttpConnectionHandler that uses an existing queue or creates its own
   /// @see stopCondition
-  explicit HttpConnectionHandler(Queue<Socket>* consumingQueue = nullptr
+  HttpConnectionHandler(Queue<Socket>* consumingQueue = nullptr
     , const Socket& stopCondition = Socket()
     , bool createOwnQueue = false)
     : consumingQueue(consumingQueue)
@@ -48,7 +49,7 @@ class HttpConnectionHandler : public Consumer<Socket> {
   }
 
   /// Destructor
-  virtual ~HttpConnectionHandler() {
+  ~HttpConnectionHandler() {
     if (this->ownsQueue) {
       delete this->consumingQueue;
     }
@@ -72,7 +73,7 @@ class HttpConnectionHandler : public Consumer<Socket> {
   }
   /// Consumes from its queue, util the stop condition is popped
   /// For each data consumed, the @a consume method will be called
-  virtual void consumeForever() {
+  void consumeForever() {
     assert(this->consumingQueue);
     while (true) {
       // Get the next data to consume, or block while queue is empty
@@ -88,9 +89,7 @@ class HttpConnectionHandler : public Consumer<Socket> {
   /// Consume the socket in its own execution thread
   int run() override;
   /// Override this method to process any data extracted from the queue
-  void consume(Socket data);
-  virtual bool handleHttpRequest(HttpRequest& httpRequest,
-    HttpResponse& httpResponse) = 0;
+  void consume(const Socket& client);
 };
 
 #endif  // HTTPCONNECTIONHANDLER_HPP

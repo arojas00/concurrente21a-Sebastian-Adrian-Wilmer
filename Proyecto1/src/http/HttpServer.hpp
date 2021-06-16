@@ -7,6 +7,7 @@
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
 #include "SocketProducer.hpp"
+#include "HttpConnectionHandler.hpp"
 
 class SocketProducer;
 
