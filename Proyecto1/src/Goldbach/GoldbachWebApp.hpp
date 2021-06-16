@@ -6,6 +6,7 @@
 #include "GoldbachCalculator.hpp"
 #include <iostream>
 #include <string>
+#include <stdint.h>
 using namespace std;
 
 class GoldbachWebApp {
@@ -13,7 +14,8 @@ class GoldbachWebApp {
   private:
     goldbach_t* calculator;
     values_t* valores;
-    
+    int64_t numberCount;
+
   public:
     /// Constructor 
     GoldbachWebApp();
@@ -22,6 +24,8 @@ class GoldbachWebApp {
     
     /// Calculates sums
     values_t* calculate_sums(string texto);
+
+    int64_t getNumberCount();
   
 };
 

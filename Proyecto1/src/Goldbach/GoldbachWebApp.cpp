@@ -17,6 +17,7 @@ typedef struct values{
 
 GoldbachWebApp ::GoldbachWebApp() {
   this->calculator = goldbach_create();
+  this->numberCount = 0;
 }
 
 GoldbachWebApp ::~GoldbachWebApp() {
@@ -35,11 +36,11 @@ values_t* GoldbachWebApp:: calculate_sums(string texto) {
     num = std::stol(valor, &sz);
     cola.push(num);
   }
-  
+  numberCount = cola.size();
   valores = goldbach_run(calculator, cola);
-  /*int64_t x = 0;
-  queue_dequeue(valores[6].cola_sumas, &x);
-  //x = valores[6].value;
-  std::cout << x << endl;*/
+
   return valores;
+}
+int64_t GoldbachWebApp ::getNumberCount(){
+  return this->numberCount;
 }

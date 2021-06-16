@@ -190,48 +190,59 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
 // e.g GoldbachWebApp, and a model class e.g GoldbachCalculator
 bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number, bool inQuery) {
-
   (void)httpRequest;
 
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
   // Set HTTP response metadata (headers)
   setHeaders(httpResponse,title);
+  GoldbachWebApp* webApp;
+  webApp = new GoldbachWebApp();
+  values_t* values;
 
-  httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
-    << "  <h1>" << title << "</h1>\n";
-  if(number>=-5 && number<=5) {
-    httpResponse.body() << "  <h2 class=\"err\">"<< number <<"</h2>\n"
-      << "  <p>"<< number <<": NA</p>\n";
+  if(inQuery){
+    std::string queryNumber = std::to_string(number);
+    values = webApp->calculate_sums("/"+queryNumber);
   }
   else{
-
-    GoldbachWebApp* webApp;
-    webApp = new GoldbachWebApp();
-    std::cout<<httpRequest.getURI()<< " calculator" << std::endl;
-    values_t* values;
-    if(inQuery){
-      std::string queryNumber = std::to_string(number);
-      values = webApp->calculate_sums("/"+queryNumber);
+    values = webApp->calculate_sums(httpRequest.getURI());
+  }    
+  httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
+    << "  <h1>" << title << "</h1>\n";
+  for(int i = 0; i < webApp->getNumberCount(); i++){
+    if(values[i].value>=-5 && values[i].value<=5) {
+      httpResponse.body() << "  <h2 class=\"err\">"<< values[i].value <<"</h2>\n"
+        << "  <p>"<< values[i].value <<": NA</p>\n";
     }
     else{
-      values = webApp->calculate_sums(httpRequest.getURI());
-    }
-    int64_t count = values[0].cant_sumas;
-    int64_t sums = 0;
-    queue_dequeue(values[0].cola_sumas,&sums);
-
-    if(number>5) {
-      httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
-        << "  <p>"<< number <<": "<< count <<" sums</p>\n";
-    }
-    else{
-      httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
-        << "  <p>"<< number <<": "<< count <<" sums</p>\n"
-        << "  <ol>\n"
-        << "    <li>"<< sums <<"</li>\n"
-        << "    <li>sum</li>\n"
-        << "  </ol>\n";
+      if(values[i].value>5) {
+        httpResponse.body() << "  <h2>"<< values[i].value <<"</h2>\n"
+        << "  <p>"<< values[i].value <<": "<< values[i].cant_sumas <<" sums</p>\n";
+      }
+      else{
+        int64_t sumandoUno,sumandoDos,sumandoTres = 0;
+        httpResponse.body() << "  <h2>"<< values[i].value <<"</h2>\n"
+          << "  <p>"<< values[i].value <<": "<< values[i].cant_sumas <<" sums</p>\n"
+          << "  <ol>\n";
+        if((values[i].value%2)==0){
+          for(int j = 0; j < values[i].cant_sumas; j++){
+            queue_dequeue(values[i].cola_sumas,&sumandoUno);
+            queue_dequeue(values[i].cola_sumas,&sumandoDos);
+            httpResponse.body() << "    <li>"<< sumandoUno <<" + "<< sumandoDos <<"</li>\n";
+          }
+          httpResponse.body()<< "  </ol>\n";
+        }
+        else{
+          for(int j = 0; j < values[i].cant_sumas; j++){
+            queue_dequeue(values[i].cola_sumas,&sumandoUno);
+            queue_dequeue(values[i].cola_sumas,&sumandoDos);
+            queue_dequeue(values[i].cola_sumas,&sumandoTres);
+            httpResponse.body() << "    <li>"<< sumandoUno <<
+            " + "<< sumandoDos <<" + "<< sumandoTres <<"</li>\n";
+          }
+          httpResponse.body()<< "  </ol>\n";
+        }
+      }
     }
   }
   httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
