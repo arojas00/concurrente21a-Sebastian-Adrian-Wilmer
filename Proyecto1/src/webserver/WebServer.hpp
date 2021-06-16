@@ -43,7 +43,7 @@ class WebServer : public HttpServer {
   /// Calculate the prime factorization of a number asked by the client, and
   /// sends the response in HTML format as HTTP response
   bool serveGoldbachSums(HttpRequest& httpRequest
-    , HttpResponse& httpResponse, int64_t number);
+    , HttpResponse& httpResponse, int64_t number, bool inQuery);
 };
 
 #endif  // WEBSERVER_H

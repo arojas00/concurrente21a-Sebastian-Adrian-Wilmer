@@ -5,10 +5,13 @@
 #include <regex>
 #include <stdexcept>
 #include <string>
+#include <stdint.h>
 
 #include "NetworkAddress.hpp"
 #include "Socket.hpp"
 #include "WebServer.hpp"
+#include "GoldbachWebApp.hpp"
+#include "QueueSums.hpp"
 
 const char* const usage =
   "Usage: webserv [port] [max_connections]\n"
@@ -16,6 +19,14 @@ const char* const usage =
   "  port             Network port to listen incoming HTTP requests, default "
     DEFAULT_PORT "\n"
   "  max_connections  Maximum number of allowed client connections\n";
+
+typedef struct values{
+  int64_t value; // valor
+  queue_t* cola_sumas; // cola para guardar las sumas de cada valor
+  bool signo; // Para guardar el signo del numero
+  int cant_sumas; // La cantidad de sumas
+} values_t;
+
 
 // TODO(Wil) Make WebServer a singleton class. See the Log class
 WebServer::WebServer() {
@@ -85,24 +96,27 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
   
   // TODO(Sebas): change for sendGoldbachSums() if you prefer it
   std::smatch matches;
+  bool flag = false;
 
   // TODO(Sebas): Numbers given by user may be larger than int64_t, reject them
 
   // If a number was asked in the form "/goldbach/1223"
   // or "/goldbach?number=1223"
-  std::cout<<httpRequest.getURI()<< "Saludos antes de empezar" << std::endl;
-  std::regex inQuery("^/goldbach(/|\\?number=)(\\d+)$");
+  std::cout<<httpRequest.getURI()<< " URI" << std::endl;
+  std::regex inQuery("^/goldbach(/|\\?number=)(-?\\d+)$");
+  //std::regex inQuery("^/goldbach\\?number=(-?\\d+)$");
   if (std::regex_search(httpRequest.getURI(), matches, inQuery)) {
+    flag = true;
     assert(matches.length() >= 3);
     const int64_t number = std::stoll(matches[2]);
-    return this->serveGoldbachSums(httpRequest, httpResponse, number);
+    return this->serveGoldbachSums(httpRequest, httpResponse, number,flag);
   }
 
   std::regex inPath("^/(-?\\d+)$");
   if (std::regex_search(httpRequest.getURI(), matches, inPath)) {
     //assert(matches.length() >= 3);
     const int64_t number = std::stoll(matches[1]);
-    return this->serveGoldbachSums(httpRequest, httpResponse, number);
+    return this->serveGoldbachSums(httpRequest, httpResponse, number,flag);
   }
 
   std::regex multiPath("^/(-?\\d+)((,-?\\d+)*)$");
@@ -110,10 +124,10 @@ bool WebServer::route(HttpRequest& httpRequest, HttpResponse& httpResponse) {
     // assert(matches.length() >= 3);
     const int64_t number = std::stoll(matches[1]);
     std::string s = matches.suffix();
-    std::cout<< s << " suffix" << std::endl;
-    s = matches.prefix();
-    std::cout<< s << " prefix" << std::endl;
-    return this->serveGoldbachSums(httpRequest, httpResponse, number);
+    //std::cout<< s << " suffix" << std::endl;
+    //s = matches.prefix();
+    //std::cout<< s << " prefix" << std::endl;
+    return this->serveGoldbachSums(httpRequest, httpResponse, number,flag);
   }
   // Unrecognized request
   return this->serveNotFound(httpRequest, httpResponse);
@@ -162,7 +176,7 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
   // Build the body of the response
   std::string title = "Not found";
   setHeaders(httpResponse, title);
-  httpResponse.body() << "  <style>body {font-family: monospace} h1 {color: red}</style>\n"
+  httpResponse.body() << "  <style>body {font-family: monospace} h1 {color: green}</style>\n"
     << "  <h1>" << title << "</h1>\n"
     << "  <p>The requested resouce was not found in this server.</p>\n"
     << "  <hr><p><a href=\"/\">Homepage</a></p>\n"
@@ -175,7 +189,8 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
 // TODO(you) Move domain-logic from WebServer controller to a view class
 // e.g GoldbachWebApp, and a model class e.g GoldbachCalculator
 bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
-    , HttpResponse& httpResponse, int64_t number) {
+    , HttpResponse& httpResponse, int64_t number, bool inQuery) {
+
   (void)httpRequest;
 
   // Build the body of the response
@@ -184,23 +199,37 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   setHeaders(httpResponse,title);
 
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
-    << "  <h1>" << title << "</h1>\n"
-    << "  <h2>number</h2>\n"
-    << "  <p>number: count sums</p>\n";
+    << "  <h1>" << title << "</h1>\n";
   if(number>=-5 && number<=5) {
     httpResponse.body() << "  <h2 class=\"err\">"<< number <<"</h2>\n"
       << "  <p>"<< number <<": NA</p>\n";
   }
   else{
+
+    GoldbachWebApp* webApp;
+    webApp = new GoldbachWebApp();
+    std::cout<<httpRequest.getURI()<< " calculator" << std::endl;
+    values_t* values;
+    if(inQuery){
+      std::string queryNumber = std::to_string(number);
+      values = webApp->calculate_sums("/"+queryNumber);
+    }
+    else{
+      values = webApp->calculate_sums(httpRequest.getURI());
+    }
+    int64_t count = values[0].cant_sumas;
+    int64_t sums = 0;
+    queue_dequeue(values[0].cola_sumas,&sums);
+
     if(number>5) {
       httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
-        << "  <p>"<< number <<": count sums</p>\n";
+        << "  <p>"<< number <<": "<< count <<" sums</p>\n";
     }
     else{
       httpResponse.body() << "  <h2>"<< number <<"</h2>\n"
-        << "  <p>"<< number <<": count sums</p>\n"
+        << "  <p>"<< number <<": "<< count <<" sums</p>\n"
         << "  <ol>\n"
-        << "    <li>sum</li>\n"
+        << "    <li>"<< sums <<"</li>\n"
         << "    <li>sum</li>\n"
         << "  </ol>\n";
     }
