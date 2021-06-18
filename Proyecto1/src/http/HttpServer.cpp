@@ -10,9 +10,9 @@
 #include "HttpResponse.hpp"
 #include "Socket.hpp"
 #include "SocketProducer.hpp"
-#include "Queue.hpp"
 
 HttpServer::HttpServer() {
+  this->clientQueue = new Queue<Socket>;
 }
 
 HttpServer::~HttpServer() {
@@ -23,14 +23,21 @@ void HttpServer::listenForever(const char* port) {
 }
 
 void HttpServer::handleClientConnection(Socket& client) {
-  producer = new SocketProducer();
-  producer->produce(client);
-  HttpConnectionHandler* consumer;
-  consumer = new HttpConnectionHandler();
-  consumer->setConsumingQueue(producer->getProducingQueue());
   // TODO(you): Make this method concurrent. Store client connections (sockets)
   // into a collection (e.g thread-safe queue) and stop
-  //Socket& socketRef = socketReceived;
-  //producer->produce(socketReceived);
-  
+  clientQueue->push(client);
+  //crear httpConnectionHandler
+  //this->consumers.resize(this->clientConnections);
+  //for ( size_t index = 0; index < this->clientConnections; ++index ) {
+  this->consumers = new HttpConnectionHandler();
+    //assert(this->consumers[index]);
+    //this->consumers[index]->createOwnQueue();
+  //}
+  consumers->setConsumingQueue(clientQueue);
+  for ( size_t index = 0; index < this->clientConnections; ++index ) {
+    this->consumers->startThread();
+  }
+  for ( size_t index = 0; index < this->clientConnections; ++index ) {
+    this->consumers->waitToFinish();
+  }
 }

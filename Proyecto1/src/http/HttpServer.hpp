@@ -8,8 +8,10 @@
 #include "HttpResponse.hpp"
 #include "SocketProducer.hpp"
 #include "HttpConnectionHandler.hpp"
+#include "Queue.hpp"
 
 class SocketProducer;
+class HttpConnectionHandler;
 
 class HttpServer : public TcpServer {
   DISABLE_COPY(HttpServer);
@@ -29,7 +31,12 @@ class HttpServer : public TcpServer {
   void listenForever(const char* port);
 
  private:
-   SocketProducer* producer;
+   /// Consumers of the simulated network messages
+  HttpConnectionHandler* consumers;
+  /// Socket queue for the clients
+  Queue<Socket>* clientQueue;
+  /// Number of consumer threads
+  size_t clientConnections = 0;
 
  protected:
   /// This method is called each time a client connection request is accepted.

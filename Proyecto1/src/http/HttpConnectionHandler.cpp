@@ -8,13 +8,8 @@
 
 Queue<Socket>* consumingQueue = new Queue<Socket>();
 
-/*HttpConnectionHandler::HttpConnectionHandler(Queue<Socket>* consumingQueue = nullptr
-    , const Socket& stopCondition = Socket()
-    , bool createOwnQueue = false)
-    : consumingQueue(consumingQueue)
-    , stopCondition(stopCondition)
-    , ownsQueue(createOwnQueue){
-}*/
+HttpConnectionHandler::HttpConnectionHandler(){
+}
 
 int HttpConnectionHandler::run() {
   // Start the forever loop to consume all the Sockets that arrive

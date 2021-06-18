@@ -4,8 +4,11 @@
 #define WEBSERVER_H
 
 #include "HttpServer.hpp"
+#include "HttpConnectionHandler.hpp"
 
 #define DEFAULT_PORT "8080"
+
+class HttpConnectionHandler;
 
 class WebServer : public HttpServer {
   DISABLE_COPY(WebServer);

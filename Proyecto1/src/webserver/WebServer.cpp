@@ -12,6 +12,7 @@
 #include "WebServer.hpp"
 #include "GoldbachWebApp.hpp"
 #include "QueueSums.hpp"
+#include "Queue.hpp"
 
 const char* const usage =
   "Usage: webserv [port] [max_connections]\n"
@@ -41,6 +42,9 @@ WebServer& WebServer::getInstance() {
 }
 
 int WebServer::start(int argc, char* argv[]) {
+  //crear queue
+  //crear httpConnectionHandler
+
   try {
     if (this->analyzeArguments(argc, argv)) {
       // TODO(Wil) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
