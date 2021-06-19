@@ -16,6 +16,8 @@ class WebServer : public HttpServer {
  private:
   /// TCP port where this web server will listen for connections
   const char* port = DEFAULT_PORT;
+  /// Consumers of the simulated network messages
+  //HttpConnectionHandler* consumers;
  public:
   /// Constructor
   WebServer();

@@ -12,7 +12,6 @@ HttpConnectionHandler::HttpConnectionHandler(){
 int HttpConnectionHandler::run() {
   // Start the forever loop to consume all the Sockets that arrive
   this->consumeForever();
-  std::cout << "jfkadljslkañ" << std::endl;
 
   // If the forever loop finished, no more sockets will arrive
   Log::append(Log::INFO, "Consumer", "ended");
@@ -20,12 +19,10 @@ int HttpConnectionHandler::run() {
 }
 void HttpConnectionHandler::consume(const Socket& client) {
   Socket socketRef = client;
-  std::cout << "consume " << std::endl;
 
   // TODO(Ardi) Move the following loop to a consumer thread class
   // While the same client asks for HTTP requests in the same connection
   while (true) {
-  std::cout << "consume while" << std::endl;
 
     // Create an object that parses the HTTP request from the socket
     HttpRequest httpRequest(client);
@@ -54,8 +51,7 @@ void HttpConnectionHandler::consume(const Socket& client) {
     }
 
     // This version handles just one client request per connection
-    // TODO(you): Remove this break after parallelizing this method
+    // TODO(Ardi): Remove this break after parallelizing this method
     break;
   }
-  std::cout << "consume finish" << std::endl;
 }

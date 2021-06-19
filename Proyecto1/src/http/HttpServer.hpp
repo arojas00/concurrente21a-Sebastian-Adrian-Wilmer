@@ -29,14 +29,11 @@ class HttpServer : public TcpServer {
   /// For each accepted connection request, the virtual onConnectionAccepted()
   /// will be called. Inherited classes must override that method
   void listenForever(const char* port);
+  
 
  private:
-   /// Consumers of the simulated network messages
+  /// Consumers of the simulated network messages
   HttpConnectionHandler* consumers;
-  /// Socket queue for the clients
-  Queue<Socket>* clientQueue;
-  /// Number of consumer threads
-  size_t clientConnections = 0;
 
  protected:
   /// This method is called each time a client connection request is accepted.
@@ -49,6 +46,9 @@ class HttpServer : public TcpServer {
   /// this client (e.g: HTTP/1.0)
   virtual bool handleHttpRequest(HttpRequest& httpRequest,
     HttpResponse& httpResponse) = 0;
+  /// Socket queue for the clients
+  Queue<Socket>* clientQueue;
+  void waitConsumers();
 };
 
 #endif  // HTTPSERVER_H

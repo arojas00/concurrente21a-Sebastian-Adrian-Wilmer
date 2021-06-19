@@ -44,7 +44,9 @@ WebServer& WebServer::getInstance() {
 int WebServer::start(int argc, char* argv[]) {
   //crear queue
   //crear httpConnectionHandler
-
+  //std::cout<<"1"<<std::endl;
+  //this->consumers = new HttpConnectionHandler();
+  //std::cout<<"2"<<std::endl;
   try {
     if (this->analyzeArguments(argc, argv)) {
       // TODO(Wil) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
@@ -54,11 +56,18 @@ int WebServer::start(int argc, char* argv[]) {
       const NetworkAddress& address = this->getNetworkAddress();
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
+      //std::cout<<"3"<<std::endl;
       this->acceptAllConnections();
+      this->waitConsumers();
     }
   } catch (const std::runtime_error& error) {
     std::cerr << "error: " << error.what() << std::endl;
   }
+  //this->consumers->setConsumingQueue(clientQueue);
+  //this->consumers->startThread();
+  //cout<<"antes de wait"<<endl;
+  //this->consumers->waitToFinish();
+  //cout<<"antes de wait"<<endl;
 
   return EXIT_SUCCESS;
 }
