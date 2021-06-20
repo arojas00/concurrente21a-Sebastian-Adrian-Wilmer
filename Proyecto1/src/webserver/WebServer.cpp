@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <string>
 #include <stdint.h>
+#include <signal.h>
 
 #include "NetworkAddress.hpp"
 #include "Socket.hpp"
@@ -40,7 +41,19 @@ WebServer& WebServer::getInstance() {
   static WebServer webServer;
   return webServer;
 }
-
+// void WebServer::signalHandler(int signum){
+//   this->consumers->waitToFinish();
+// }
+namespace {
+  volatile sig_atomic_t quitok = false;
+  void handle_break(int a) {
+    if (a == SIGINT){
+      quitok = true;
+      std::cout << "wait to finish " << std::endl;
+      // this->consumers->waitToFinish();
+    }
+  }
+}
 int WebServer::start(int argc, char* argv[]) {
   //crear queue
   //crear httpConnectionHandler
@@ -52,13 +65,25 @@ int WebServer::start(int argc, char* argv[]) {
       // TODO(Wil) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
       // Signal handler should call WebServer::stopListening(), send stop
       // conditions and wait for all secondary threads that it created
+      // void (*prev_handler)(int);
+      // prev_handler = signal (SIGINT, signalHandler);
+
+      struct sigaction sigbreak;
+      sigbreak.sa_handler = &handle_break;
+      sigemptyset(&sigbreak.sa_mask);
+      sigbreak.sa_flags = 0;
+      if (sigaction(SIGINT, &sigbreak, NULL) != 0){
+        std::perror("sigaction");
+      }
+
       this->listenForConnections(this->port);
       const NetworkAddress& address = this->getNetworkAddress();
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
       //std::cout<<"3"<<std::endl;
       this->acceptAllConnections();
-      this->waitConsumers();
+      //this->waitConsumers();
+
     }
   } catch (const std::runtime_error& error) {
     std::cerr << "error: " << error.what() << std::endl;

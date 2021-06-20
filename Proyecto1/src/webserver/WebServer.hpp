@@ -53,6 +53,7 @@ class WebServer : public HttpServer {
   /// sends the response in HTML format as HTTP response
   bool serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number, bool inQuery);
+  void signalHandler(int signum);
 };
 
 #endif  // WEBSERVER_H
