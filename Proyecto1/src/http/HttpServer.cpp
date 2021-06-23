@@ -28,10 +28,16 @@ void HttpServer::handleClientConnection(Socket& client) {
   // into a collection (e.g thread-safe queue) and stop
   Socket socketRef = client;
   clientQueue->push(socketRef);
+}
+void HttpServer::waitConsumers() {
+  this->consumers->waitToFinish();
+}
+void HttpServer::start(int maxConnections){
+  //crear lista de consumers
   this->consumers = new HttpConnectionHandler();
   this->consumers->setConsumingQueue(clientQueue);
   this->consumers->startThread();
 }
-void HttpServer::waitConsumers() {
-  this->consumers->waitToFinish();
+void HttpServer::stop(int maxConnections){
+  //sockets vacios
 }

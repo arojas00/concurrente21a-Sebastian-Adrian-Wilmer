@@ -22,6 +22,7 @@
 class HttpConnectionHandler : public Consumer<Socket> {
   /// Objects of this class cannot be copied
   DISABLE_COPY(HttpConnectionHandler);
+  //stopCondition = Socket(NULL);
 
  public:
   /// Constructor

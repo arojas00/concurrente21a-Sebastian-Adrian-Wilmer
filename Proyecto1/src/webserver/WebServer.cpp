@@ -50,9 +50,11 @@ namespace {
     if (a == SIGINT){
       quitok = true;
       std::cout << "wait to finish " << std::endl;
-      // this->consumers->waitToFinish();
     }
   }
+}
+void WebServer::signalHandler(int signum){
+
 }
 int WebServer::start(int argc, char* argv[]) {
   //crear queue

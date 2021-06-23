@@ -47,6 +47,8 @@ class HttpServer : public TcpServer {
   void waitConsumers();
   /// Consumers of the simulated network messages
   HttpConnectionHandler* consumers;
+  void start(int maxConnections);
+  void stop(int maxConnections);
 };
 
 #endif  // HTTPSERVER_H
