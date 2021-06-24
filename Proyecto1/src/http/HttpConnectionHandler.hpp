@@ -23,14 +23,17 @@ class HttpConnectionHandler : public Consumer<Socket> {
   /// Objects of this class cannot be copied
   DISABLE_COPY(HttpConnectionHandler);
   //stopCondition = Socket(NULL);
+ private:
+  HttpServer* httpServer;
 
  public:
   /// Constructor
-  explicit HttpConnectionHandler();
+  explicit HttpConnectionHandler(HttpServer* thisHttpServer);
   /// Consume the socket in its own execution thread
   int run() override;
   /// Override this method to process any data extracted from the queue
   void consume(const Socket& client);
+
 };
 
 #endif  // HTTPCONNECTIONHANDLER_HPP

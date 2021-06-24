@@ -29,15 +29,20 @@ void HttpServer::handleClientConnection(Socket& client) {
   Socket socketRef = client;
   clientQueue->push(socketRef);
 }
-void HttpServer::waitConsumers() {
-  this->consumers->waitToFinish();
-}
-void HttpServer::start(int maxConnections){
+void HttpServer::startHttpServer(){
   //crear lista de consumers
-  this->consumers = new HttpConnectionHandler();
-  this->consumers->setConsumingQueue(clientQueue);
-  this->consumers->startThread();
+  for(size_t i = 0; i < max_connections; i++){
+    consumer[i] = new HttpConnectionHandler(this);
+    consumer[i]->setConsumingQueue(clientQueue);
+    consumer[i]->startThread();
+  }
 }
-void HttpServer::stop(int maxConnections){
-  //sockets vacios
+void HttpServer::stopHttpServer(){
+  //push empty sockets in consumingQueue
+  Socket emptySocket;
+  for(size_t i = 0; i < max_connections; i++){
+    consumer[i]->getConsumingQueue()->push(emptySocket);
+  }
+  //for max_connection
+  //clientQueue->push(emptySocket)
 }

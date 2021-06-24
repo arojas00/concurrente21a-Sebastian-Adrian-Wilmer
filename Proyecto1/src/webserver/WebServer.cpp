@@ -41,27 +41,19 @@ WebServer& WebServer::getInstance() {
   static WebServer webServer;
   return webServer;
 }
-// void WebServer::signalHandler(int signum){
-//   this->consumers->waitToFinish();
+// namespace {
+//   volatile sig_atomic_t quitok = false;
+//   void handle_break(int a) {
+//     if (a == SIGINT){
+//       quitok = true;
+//       std::cout << "wait to finish " << std::endl;
+//     }
+//   }
 // }
-namespace {
-  volatile sig_atomic_t quitok = false;
-  void handle_break(int a) {
-    if (a == SIGINT){
-      quitok = true;
-      std::cout << "wait to finish " << std::endl;
-    }
-  }
-}
 void WebServer::signalHandler(int signum){
-
+  stopHttpServer();
 }
 int WebServer::start(int argc, char* argv[]) {
-  //crear queue
-  //crear httpConnectionHandler
-  //std::cout<<"1"<<std::endl;
-  //this->consumers = new HttpConnectionHandler();
-  //std::cout<<"2"<<std::endl;
   try {
     if (this->analyzeArguments(argc, argv)) {
       // TODO(Wil) Handle signal 2 (SIGINT) and 15 (SIGTERM), see man signal
@@ -70,32 +62,24 @@ int WebServer::start(int argc, char* argv[]) {
       // void (*prev_handler)(int);
       // prev_handler = signal (SIGINT, signalHandler);
 
-      struct sigaction sigbreak;
-      sigbreak.sa_handler = &handle_break;
-      sigemptyset(&sigbreak.sa_mask);
-      sigbreak.sa_flags = 0;
-      if (sigaction(SIGINT, &sigbreak, NULL) != 0){
-        std::perror("sigaction");
-      }
-
+      // struct sigaction sigbreak;
+      // sigbreak.sa_handler = &handle_break;
+      // sigemptyset(&sigbreak.sa_mask);
+      // sigbreak.sa_flags = 0;
+      // if (sigaction(SIGINT, &sigbreak, NULL) != 0){
+      //   std::perror("sigaction");
+      // }
+      std::cout << "maxConnections: " << this->max_connections << std::endl;
       this->listenForConnections(this->port);
       const NetworkAddress& address = this->getNetworkAddress();
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
-      //std::cout<<"3"<<std::endl;
       this->acceptAllConnections();
-      //this->waitConsumers();
-
+      startHttpServer();
     }
   } catch (const std::runtime_error& error) {
     std::cerr << "error: " << error.what() << std::endl;
   }
-  //this->consumers->setConsumingQueue(clientQueue);
-  //this->consumers->startThread();
-  //cout<<"antes de wait"<<endl;
-  //this->consumers->waitToFinish();
-  //cout<<"antes de wait"<<endl;
-
   return EXIT_SUCCESS;
 }
 
@@ -110,7 +94,11 @@ bool WebServer::analyzeArguments(int argc, char* argv[]) {
   }
 
   if (argc >= 2) {
+    // arg 1 must be port number (8080)
     this->port = argv[1];
+    if (sscanf(argv[2], "%zu", &max_connections) != 1 || errno) {
+      fprintf(stderr, "error: invalid thread count\n");
+    }
   }
 
   return true;
