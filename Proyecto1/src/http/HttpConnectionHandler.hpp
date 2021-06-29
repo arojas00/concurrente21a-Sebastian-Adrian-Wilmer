@@ -13,6 +13,7 @@
 #include "Consumer.hpp"
 #include "HttpRequest.hpp"
 #include "HttpResponse.hpp"
+#include "HttpServer.hpp"
 
 /**
  * @brief A consumer class to handle http connections
