@@ -14,6 +14,8 @@ class Bosque{
   
  private:
  int filas,columnas,noches;
+
+ public:
  char** matriz_bosque;
 
  private:

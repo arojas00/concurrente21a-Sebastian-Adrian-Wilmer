@@ -2,6 +2,7 @@
 /// @author Sebastian-Adrian-Wilmer
 
 #include "Bosque.hpp"
+#include "matrix.hpp"
 
 /*
 /Funciones seriales del bosque:
@@ -14,9 +15,10 @@
 */
 
 Bosque::Bosque(int filas,int columnas,int noches) {
-    this->columnas = columnas;
-    this->filas = filas;
-    this->noches = noches;
+  this->columnas = columnas;
+  this->filas = filas;
+  this->noches = noches;
+  this->matriz_bosque = create_matrix(filas, columnas);
 }
 
 Bosque::~Bosque() {
