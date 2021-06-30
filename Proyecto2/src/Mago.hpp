@@ -15,7 +15,7 @@ class Mago{
  protected:
   
  private:
- Bosque* bosqueDelMago = new Bosque(1,2,3);
+ Bosque* bosqueDelMago;
 
  public:
  Mago();

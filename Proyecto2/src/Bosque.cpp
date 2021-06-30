@@ -22,7 +22,7 @@ Bosque::Bosque(int filas,int columnas,int noches) {
 Bosque::~Bosque() {
 }
 
-void changeForest(int numero_filas, int numero_columnas, char **matrix, char **newMatrix) {
+void Bosque::changeForest(int numero_filas, int numero_columnas, char **matrix, char **newMatrix) {
   for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
       if (matrix[i][j] == 'a') {
@@ -52,7 +52,7 @@ void changeForest(int numero_filas, int numero_columnas, char **matrix, char **n
     }
   }
 }
-bool checkInundation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkInundation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int lakes = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -67,7 +67,7 @@ bool checkInundation(int fila, int columna, char **matrix, int numero_filas, int
   else
     return false;
 }
-bool checkOvercrowding(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkOvercrowding(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int trees = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -82,7 +82,7 @@ bool checkOvercrowding(int fila, int columna, char **matrix, int numero_filas, i
   else
     return false;
 }
-bool checkDrought(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkDrought(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int lakes = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -98,7 +98,7 @@ bool checkDrought(int fila, int columna, char **matrix, int numero_filas, int nu
   else
     return false;
 }
-bool checkReforestation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkReforestation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int trees = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -113,7 +113,7 @@ bool checkReforestation(int fila, int columna, char **matrix, int numero_filas, 
   else
     return false;
 }
-bool checkCell(int fila, int columna, int numero_filas, int numero_columnas) {
+bool Bosque::checkCell(int fila, int columna, int numero_filas, int numero_columnas) {
   if (fila < numero_filas && 0 <= fila && columna < numero_columnas && 0 <= columna)
     return true;
   else

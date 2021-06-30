@@ -17,7 +17,6 @@ class Bosque{
  char** matriz_bosque;
 
  private:
- void changeForest(int fila, int columna, char **matriz_bosque, char **new_matriz_bosque);
  bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
  bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
  bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
@@ -27,6 +26,8 @@ class Bosque{
  public:
   Bosque(int filas,int columnas,int noches);
   ~Bosque();
+ void changeForest(int fila, int columna, char **matriz_bosque, char **new_matriz_bosque);
+
 };
 
 #endif  // BOSQUE_HPP

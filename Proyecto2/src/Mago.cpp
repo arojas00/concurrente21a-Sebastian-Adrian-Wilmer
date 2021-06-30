@@ -2,7 +2,9 @@
 /// @author Sebastian-Adrian-Wilmer
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "Mago.hpp"
+#include "matrix.hpp"
 
 /*
 /Funciones seriales del mago:
@@ -39,5 +41,37 @@ Mago::~Mago() {
 }
 
 int Mago::start(int argc, char* argv[]) {
-
+  int rows, cols, nights, num = 0;
+  scanf("%i %i %i\n", &rows, &cols, &nights);
+  bosqueDelMago = new Bosque(rows,cols,nights);
+  char **forest = create_matrix(rows, cols);
+  fillMatrix(rows, cols, forest);
+  char **newForest = create_matrix(rows, cols);
+  copyMatrix(rows, cols, forest, newForest);
+  if (0 < nights)
+  {
+    for (int i = 0; i <= nights; i++)
+    {
+      printf("%i:\n", i);
+      printMatrix(rows, cols, forest);
+      bosqueDelMago->changeForest(rows, cols, forest, newForest);
+      copyMatrix(rows, cols, newForest, forest);
+      printf("\n");
+    }
+  }
+  else
+  {
+    num = 0;
+    printf("%i:\n", num);
+    printMatrix(rows, cols, forest);
+    for (int i = 0; i > nights; i--)
+    {
+      bosqueDelMago->changeForest(rows, cols, forest, newForest);
+      copyMatrix(rows, cols, newForest, forest);
+      num++;
+    }
+    printf("\n%i:\n", num);
+    printMatrix(rows, cols, forest);
+  }
+  return EXIT_SUCCESS;
 }
