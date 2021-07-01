@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string>
 #include "Mago.hpp"
 #include "matrix.hpp"
 
@@ -41,6 +42,8 @@ Mago::~Mago() {
 
 int Mago::start(int argc, char* argv[]) {
   int rows, cols, nights, num = 0;
+  std::string filename = "Bosques/bosque_";
+  std::string forest_number;
   scanf("%i %i %i\n", &rows, &cols, &nights);
   bosqueDelMago = new Bosque(rows,cols,nights);
   fillMatrix(rows, cols, bosqueDelMago->matriz_bosque);
@@ -48,8 +51,11 @@ int Mago::start(int argc, char* argv[]) {
   copyMatrix(rows, cols, bosqueDelMago->matriz_bosque, newForest);
   if (0 < nights) {
     for (int i = 0; i <= nights; i++) {
+      forest_number = std::to_string(i);
+      filename = "Bosques/bosque_" + forest_number + ".txt";
       printf("%i:\n", i);
       printMatrix(rows, cols, bosqueDelMago->matriz_bosque);
+      //createTextFile(rows,cols,bosqueDelMago->matriz_bosque,filename);
       bosqueDelMago->changeForest(rows, cols, bosqueDelMago->matriz_bosque, newForest);
       copyMatrix(rows, cols, newForest, bosqueDelMago->matriz_bosque);
       printf("\n");
@@ -57,14 +63,17 @@ int Mago::start(int argc, char* argv[]) {
   }
   else {
     num = 0;
+    filename = "Bosques/bosque_-1.txt";
     printf("%i:\n", num);
     printMatrix(rows, cols, bosqueDelMago->matriz_bosque);
+    //createTextFile(rows,cols,bosqueDelMago->matriz_bosque,filename);
     for (int i = 0; i > nights; i--) {
       bosqueDelMago->changeForest(rows, cols, bosqueDelMago->matriz_bosque, newForest);
       copyMatrix(rows, cols, newForest, bosqueDelMago->matriz_bosque);
       num++;
     }
     printf("\n%i:\n", num);
+    createTextFile(rows,cols,bosqueDelMago->matriz_bosque,filename);
     printMatrix(rows, cols, bosqueDelMago->matriz_bosque);
   }
   return EXIT_SUCCESS;
