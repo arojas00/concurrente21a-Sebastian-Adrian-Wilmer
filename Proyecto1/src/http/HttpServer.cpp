@@ -44,6 +44,7 @@ void HttpServer::stopHttpServer(){
 //   //push empty sockets in consumingQueue
 //   Socket emptySocket;
 //   for(size_t i = 0; i < max_connections; i++){
+//***
 //     consumer[i]->getConsumingQueue()->push(emptySocket);
 //   }
 //   //for max_connection

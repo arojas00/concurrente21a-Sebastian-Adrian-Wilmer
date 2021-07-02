@@ -75,7 +75,7 @@ int WebServer::start(int argc, char* argv[]) {
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
       this->acceptAllConnections();
-      startHttpServer();
+      //startHttpServer();
     }
   } catch (const std::runtime_error& error) {
     std::cerr << "error: " << error.what() << std::endl;
