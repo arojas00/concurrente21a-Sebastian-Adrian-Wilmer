@@ -1,8 +1,7 @@
 /// @copyright 2021 ECCI, Universidad de Costa Rica. All rights reserved
 /// @author Sebastian-Adrian-Wilmer
 
-#include <stdlib.h>
-#include <stdio.h>
+#include <errno.h>
 #include "Mago.hpp"
 #include "matrix.hpp"
 
@@ -34,13 +33,19 @@ typedef struct
 } private_data_t;
 
 Mago::Mago() {
+<<<<<<< HEAD
+=======
+  
+>>>>>>> wilmer
 }
 
 Mago::~Mago() {
 }
 
 int Mago::start(int argc, char* argv[]) {
+
   int rows, cols, nights, num = 0;
+<<<<<<< HEAD
   scanf("%i %i %i\n", &rows, &cols, &nights);
   bosqueDelMago = new Bosque(rows,cols,nights);
   fillMatrix(rows, cols, bosqueDelMago->matriz_bosque);
@@ -66,6 +71,82 @@ int Mago::start(int argc, char* argv[]) {
     }
     printf("\n%i:\n", num);
     printMatrix(rows, cols, bosqueDelMago->matriz_bosque);
+=======
+
+
+  
+  FILE* job = stdin;
+
+  std::vector<std::string> maps_array;
+  std::vector<int> nights_array;
+
+  readJob(job, maps_array, nights_array);
+
+  for (long unsigned int i = 0; i < nights_array.size(); i++) {
+
+    std::cout << maps_array[i] << std::endl;
+    std::string map_name = "Tests/test_set_1/input/" + maps_array[i];
+    FILE* input = fopen(map_name.c_str(),"r+");
+
+    //FILE* input = stdin;
+    nights = nights_array[i];
+    
+    fscanf(input, "%d", &rows);
+    fscanf(input, "%d", &cols);
+
+    fscanf(input, "\n");
+
+    bosqueDelMago = new Bosque(rows,cols,nights);
+    char **forest = create_matrix(rows, cols);
+    fillMatrix(input, rows, cols, forest);
+    char **newForest = create_matrix(rows, cols);
+    copyMatrix(rows, cols, forest, newForest);
+    if (0 < nights)
+    {
+      for (int i = 0; i <= nights; i++)
+      {
+        printf("%i:\n", i);
+        printMatrix(rows, cols, forest);
+        bosqueDelMago->changeForest(rows, cols, forest, newForest);
+        copyMatrix(rows, cols, newForest, forest);
+        printf("\n");
+      }
+    }
+    else
+    {
+      num = 0;
+      printf("%i:\n", num);
+      printMatrix(rows, cols, forest);
+      for (int i = 0; i > nights; i--)
+      {
+        bosqueDelMago->changeForest(rows, cols, forest, newForest);
+        copyMatrix(rows, cols, newForest, forest);
+        num++;
+      }
+      printf("\n%i:\n", num);
+      printMatrix(rows, cols, forest);
+    }
+    fclose(input);
+>>>>>>> wilmer
   }
   return EXIT_SUCCESS;
+}
+
+void Mago::readJob(FILE* job, std::vector<std::string> &maps_array, std::vector<int> &nights_array) {
+
+  //std::string map_str;
+
+  char map[64];
+  int night = 0;
+
+  while ( ! feof (job) ) {
+    fscanf(job, "%s", &map);
+    std::string map_str(map);
+    maps_array.push_back(map_str);
+    fscanf(job, "%d", &night);
+    nights_array.push_back(night);
+    fscanf(job, "\n");
+  }
+  fclose (job);
+
 }
