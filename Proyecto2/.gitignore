@@ -32,8 +32,9 @@
 *.app
 html
 latex
-tests/
+Tests/
 doc/
 .vscode/
 bin/
 build/
+bosques/

@@ -216,7 +216,7 @@ bool checkReforestation(int row, int col, char **matrix, int rows, int cols)
 }
 bool checkCell(int row, int col, int rows, int cols)
 {
-  if ((unsigned int)row < (unsigned int)rows && (unsigned int)col < (unsigned int)cols)
+  if (row < rows && 0 <= row && col < cols && 0 <= col)
     return true;
   else
     return false;

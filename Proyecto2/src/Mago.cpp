@@ -43,24 +43,27 @@ int Mago::start(int argc, char* argv[]) {
 
   int rows, cols, nights, num = 0;
 
+  std::string job_name = argv[1];
+  std::string path = argv[2];
+  std::string job_dir = path + job_name;
 
-  
-  FILE* job = stdin;
+  //FILE* job = stdin;
+  FILE* job_file = fopen(job_dir.c_str(),"r+");
 
   std::vector<std::string> maps_array;
   std::vector<int> nights_array;
 
-  readJob(job, maps_array, nights_array);
+  readJob(job_file, maps_array, nights_array);
 
   for (long unsigned int i = 0; i < nights_array.size(); i++) {
 
     std::cout << maps_array[i] << std::endl;
-    std::string map_name = "Tests/test_set_1/input/" + maps_array[i];
+    std::string map_name = "tests/test_set_1/input/" + maps_array[i];
     FILE* input = fopen(map_name.c_str(),"r+");
 
     //FILE* input = stdin;
     nights = nights_array[i];
-    
+
     fscanf(input, "%d", &rows);
     fscanf(input, "%d", &cols);
 
@@ -71,30 +74,36 @@ int Mago::start(int argc, char* argv[]) {
     fillMatrix(input, rows, cols, forest);
     char **newForest = create_matrix(rows, cols);
     copyMatrix(rows, cols, forest, newForest);
-    if (0 < nights)
-    {
-      for (int i = 0; i <= nights; i++)
+
+    std::string night_number;
+    std::string forest_name;
+    if (nights > 0) {
+      for (int j = 0; j <= nights; j++)
       {
-        printf("%i:\n", i);
-        printMatrix(rows, cols, forest);
+        //printf("%i:\n", i);
+        //printMatrix(rows, cols, forest);
+        night_number = std::to_string(j);
+        forest_name = "bosques/" + maps_array[i] + "-" + night_number;
+        createTextFile(rows, cols, forest, forest_name);
         bosqueDelMago->changeForest(rows, cols, forest, newForest);
         copyMatrix(rows, cols, newForest, forest);
-        printf("\n");
+        //printf("\n");
       }
-    }
-    else
-    {
+    } else {
       num = 0;
-      printf("%i:\n", num);
-      printMatrix(rows, cols, forest);
+      forest_name = "bosques/" + maps_array[i] + std::to_string(0);
+      //printf("%i:\n", num);
+      //printMatrix(rows, cols, forest);
+      createTextFile(rows, cols, forest, forest_name);
       for (int i = 0; i > nights; i--)
       {
         bosqueDelMago->changeForest(rows, cols, forest, newForest);
         copyMatrix(rows, cols, newForest, forest);
         num++;
       }
-      printf("\n%i:\n", num);
-      printMatrix(rows, cols, forest);
+     // printf("\n%i:\n", num);
+      forest_name = "bosques/" + maps_array[i] + std::to_string(nights);
+      createTextFile(rows, cols, forest, forest_name);
     }
     fclose(input);
   }

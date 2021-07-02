@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <fstream>
+#include <iostream>
 #include "matrix.hpp"
 
 char **create_matrix(int rows, int cols)
@@ -42,4 +44,23 @@ void printMatrix(int rows, int cols, char **matrix)
     }
     printf("\n");
   }
+}
+
+void createTextFile(int rows, int cols, char **matrix, std::string filename)
+{
+  std::ofstream fw(filename, std::ofstream::out);
+   //check if file was successfully opened for writing
+    if (fw.is_open())
+    {
+      //store array contents to text file
+      for(int x = 0; x < rows; x++){
+        for (int y = 0; y < cols; y++) {
+        fw << matrix[x][y];
+        }
+         fw << "\n";
+      }
+      fw.close();
+    }
+    else std::cout << "Problem with opening file";
+
 }
