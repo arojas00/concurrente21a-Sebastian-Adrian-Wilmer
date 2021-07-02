@@ -30,9 +30,6 @@
 *.exe
 *.out
 *.app
-html
-latex
-tests/
 doc/
 .vscode/
 bin/
