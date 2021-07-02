@@ -4,6 +4,12 @@
 #ifndef MAGO_HPP
 #define MAGO_HPP
 
+#include <iostream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string>
+#include <vector>
+
 #include "Bosque.hpp"
 
 
@@ -21,6 +27,7 @@ class Mago{
  Mago();
  ~Mago();
  int start(int argc, char* argv[]);
+ void readJob(FILE* job, std::vector<std::string> &maps_array, std::vector<int> &nights_array);
 
 
 };

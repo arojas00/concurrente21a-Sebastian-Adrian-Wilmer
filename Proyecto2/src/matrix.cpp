@@ -9,17 +9,17 @@ char **create_matrix(int rows, int cols)
     matrix[row] = (char *)calloc(cols, sizeof(char));
   return matrix;
 }
-void fillMatrix(int rows, int cols, char **matrix)
+void fillMatrix(FILE* file, int rows, int cols, char **matrix)
 {
   char cell;
   for (int i = 0; i < rows; i++)
   {
     for (int j = 0; j < cols; j++)
     {
-      scanf("%c", &cell);
+      fscanf(file, "%c", &cell);
       matrix[i][j] = cell;
     }
-    scanf("\n");
+    fscanf(file, "\n");
   }
 }
 void copyMatrix(int rows, int cols, char **matrix, char **newMatrix)
