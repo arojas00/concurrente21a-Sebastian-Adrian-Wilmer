@@ -20,7 +20,12 @@ Integrantes:
 - Adrián Rojas Arias - B96789
 
 ### Manual de usuario para compilar y correr
+- Comandos para correr
+- make all
+- bin/Proyecto1 port max_connections
 
-## Ejemplo
+### Diseno
+<br/>
+![design](Proyecto1/design/Design.jpg)
 
 ### Notas Importantes
