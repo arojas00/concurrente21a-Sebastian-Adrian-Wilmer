@@ -50,7 +50,7 @@ WebServer& WebServer::getInstance() {
 //     }
 //   }
 // }
-void WebServer::signalHandler(int signum){
+void WebServer::signalHandler(){
   stopHttpServer();
 }
 int WebServer::start(int argc, char* argv[]) {

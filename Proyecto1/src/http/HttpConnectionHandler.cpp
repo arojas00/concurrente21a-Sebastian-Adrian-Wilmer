@@ -6,8 +6,8 @@
 #include "WebServer.hpp"
 #include "Log.hpp"
 
-HttpConnectionHandler::HttpConnectionHandler(HttpServer* thisHttpServer){
-  httpServer = thisHttpServer;
+HttpConnectionHandler::HttpConnectionHandler(){
+  //httpServer = thisHttpServer;
 }
 
 int HttpConnectionHandler::run() {
@@ -42,7 +42,7 @@ void HttpConnectionHandler::consume(const Socket& client) {
 
     // Give subclass a chance to respond the HTTP request
     //bool handled = handleHttpRequest(httpRequest, httpResponse);
-    const bool handled = httpServer->handleHttpRequest(httpRequest, httpResponse);
+    const bool handled = WebServer::getInstance().handleHttpRequest(httpRequest, httpResponse);
 
     // If subclass did not handle the request or the client used HTTP/1.0
     if (!handled || httpRequest.getHttpVersion() == "HTTP/1.0") {
