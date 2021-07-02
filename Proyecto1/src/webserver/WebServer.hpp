@@ -4,8 +4,11 @@
 #define WEBSERVER_H
 
 #include "HttpServer.hpp"
+#include "HttpConnectionHandler.hpp"
 
 #define DEFAULT_PORT "8080"
+
+class HttpConnectionHandler;
 
 class WebServer : public HttpServer {
   DISABLE_COPY(WebServer);
@@ -13,16 +16,22 @@ class WebServer : public HttpServer {
  private:
   /// TCP port where this web server will listen for connections
   const char* port = DEFAULT_PORT;
-
+  /// Consumers of the simulated network messages
+  //HttpConnectionHandler* consumers;
  public:
   /// Constructor
   WebServer();
   /// Destructor
   ~WebServer();
+
+ //public:
+  
   /// Start the simulation
   int start(int argc, char* argv[]);
+  /// Get access to the unique instance of this Singleton class
+  static WebServer& getInstance();
 
- protected:
+ //protected:
   /// Analyze the command line arguments
   /// @return true if program can continue execution, false otherwise
   bool analyzeArguments(int argc, char* argv[]);
@@ -44,6 +53,7 @@ class WebServer : public HttpServer {
   /// sends the response in HTML format as HTTP response
   bool serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number, bool inQuery);
+  void signalHandler();
 };
 
 #endif  // WEBSERVER_H
