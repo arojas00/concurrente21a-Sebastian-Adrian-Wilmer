@@ -10,28 +10,86 @@
 class Map {
 
   private:
+    /// Cantidad de filas
     int rows;
+    /// Cantidad de columnas
     int cols;
+    /// Matriz para el mapa
     char** map_matrix;
 
   public:
+    /**
+     * @brief
+     */
     Map(int rows, int cols);
+
+    /**
+     * @brief
+     */
     ~Map();
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     char **create_matrix();
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     void fillMatrix(FILE* file);
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     void printMatrix();
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     void copyMatrix(char **newMatrix);
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     void createTextFile(std::string filename);
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     char** getMatrix();
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     int getRows();
+
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
     int getCols();
 };
-
-/*
-char **create_matrix(int height, int width);
-void fillMatrix(FILE* file, int rows, int cols, char **matrix);
-void printMatrix(int rows, int cols, char **matrix);
-void copyMatrix(int rows, int cols, char **matrix, char **newMatrix);
-void createTextFile(int rows, int cols, char **matrix, std::string filename);
-*/
 #endif  // MAP_HPP

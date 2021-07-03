@@ -13,38 +13,46 @@ Mago::~Mago() {
 }
 
 int Mago::start(int argc, char* argv[]) {
+  int error = EXIT_SUCCESS;
 
-  std::string job_name = argv[1];
-  this->path = argv[2];
-  std::string job_dir = path + job_name;
+  if (argc >= 2) {
+    std::string job_name = argv[1];
+    this->path = argv[2];
+    std::string job_dir = path + job_name;
+    FILE* job_file = fopen(job_dir.c_str(),"r+");
+    readJob(job_file);
 
-  FILE* job_file = fopen(job_dir.c_str(),"r+");
+  } else {
+    error = EXIT_FAILURE;
+  }
 
-  readJob(job_file);
-  return EXIT_SUCCESS;
+  return error;
 }
 
 void Mago :: run_job() {
   int rows, cols = 0;
+
+  /// Por cada mapa del job
   for (long unsigned int i = 0; i < nights_array.size(); i++) {
-
     std::cout << maps_array[i] << std::endl;
-    std::string map_name = path + maps_array[i];
-    FILE* input = fopen(map_name.c_str(),"r+");
-
+    /// Se guarda en un string el directorio del mapa a evaluar
+    std::string map_dir = path + maps_array[i];
+    /// Se abre el mapa
+    FILE* input = fopen(map_dir.c_str(),"r+");
+    /// Se saca del arreglo la cantidad de noches para el mapa
     this->nights = nights_array[i];
 
     fscanf(input, "%d", &rows);
     fscanf(input, "%d", &cols);
 
-    this->map = new Map(rows, cols);
+    this->map_original = new Map(rows, cols);
 
     fscanf(input, "\n");
 
     bosqueDelMago = new Bosque(rows,cols,nights);
-    map->fillMatrix(input);
-    newForest = new Map(rows, cols);
-    map->copyMatrix(newForest->getMatrix());
+    map_original->fillMatrix(input);
+    map_copy = new Map(rows, cols);
+    map_original->copyMatrix(map_copy->getMatrix());
 
     run_nights(i);
     fclose(input);
@@ -59,17 +67,19 @@ void Mago :: run_nights(int map_index) {
     for (int j = 1; j <= nights; j++) {
       night_number = std::to_string(j);
       forest_name = "output/" + maps_array[map_index] + "-" + night_number;
-      bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
-      newForest->createTextFile(forest_name);
-      newForest->copyMatrix(map->getMatrix());
+      bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
+        , map_original->getMatrix(), map_copy->getMatrix());
+      map_copy->createTextFile(forest_name);
+      map_copy->copyMatrix(map_original->getMatrix());
     }
   } else {
     for (int i = 0; i > nights; i--) {
-      bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
-      newForest->copyMatrix(map->getMatrix());
+      bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
+        , map_original->getMatrix(), map_copy->getMatrix());
+      map_copy->copyMatrix(map_original->getMatrix());
     }
     forest_name = "output/" + maps_array[map_index] + std::to_string(nights);
-    map->createTextFile(forest_name);
+    map_original->createTextFile(forest_name);
   } 
 }
 

@@ -36,6 +36,7 @@ void Map :: fillMatrix(FILE* file) {
     fscanf(file, "\n");
   }
 }
+
 void Map :: copyMatrix(char **newMatrix) {
   for (int i = 0; i < rows; i++)
   {
@@ -45,6 +46,7 @@ void Map :: copyMatrix(char **newMatrix) {
     }
   }
 }
+
 void Map :: printMatrix() {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
@@ -54,8 +56,7 @@ void Map :: printMatrix() {
   }
 }
 
-void Map :: createTextFile(std::string filename)
-{
+void Map :: createTextFile(std::string filename) {
   std::ofstream fw(filename, std::ofstream::out);
    //check if file was successfully opened for writing
     if (fw.is_open()) {
@@ -69,7 +70,6 @@ void Map :: createTextFile(std::string filename)
       fw.close();
     }
     else std::cout << "Problem with opening file";
-
 }
 
 char** Map :: getMatrix() {
@@ -79,6 +79,7 @@ char** Map :: getMatrix() {
 int Map :: getRows() {
   return this->rows;
 }
+
 int Map :: getCols() {
   return this->cols;
 }
