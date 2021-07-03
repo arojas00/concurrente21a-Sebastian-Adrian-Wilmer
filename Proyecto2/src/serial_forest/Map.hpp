@@ -23,6 +23,8 @@ class Map {
     void copyMatrix(char **newMatrix);
     void createTextFile(std::string filename);
     char** getMatrix();
+    int getRows();
+    int getCols();
 };
 
 /*

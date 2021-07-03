@@ -22,14 +22,21 @@ class Mago{
  protected:
   
  private:
+ int nights;
  Bosque* bosqueDelMago;
  Map* map;
+ Map* newForest;
+ std::vector<std::string> maps_array;
+ std::vector<int> nights_array;
+ std::string path;
 
  public:
  Mago();
  ~Mago();
  int start(int argc, char* argv[]);
- void readJob(FILE* job, std::vector<std::string> &maps_array, std::vector<int> &nights_array);
+ void run_job();
+ void run_nights(int map_index);
+ void readJob(FILE* job);
 
 
 };

@@ -75,3 +75,10 @@ void Map :: createTextFile(std::string filename)
 char** Map :: getMatrix() {
   return this->map_matrix;
 }
+
+int Map :: getRows() {
+  return this->rows;
+}
+int Map :: getCols() {
+  return this->cols;
+}
