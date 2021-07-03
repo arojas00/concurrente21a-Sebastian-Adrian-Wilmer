@@ -2,6 +2,7 @@
 /// @author Sebastian-Adrian-Wilmer
 
 #include "Bosque.hpp"
+#include "matrix.hpp"
 
 /*
 /Funciones seriales del bosque:
@@ -14,9 +15,10 @@
 */
 
 Bosque::Bosque(int filas,int columnas,int noches) {
-    this->columnas = columnas;
-    this->filas = filas;
-    this->noches = noches;
+  this->columnas = columnas;
+  this->filas = filas;
+  this->noches = noches;
+  this->matriz_bosque = create_matrix(filas, columnas);
 }
 
 Bosque::~Bosque() {
@@ -114,7 +116,7 @@ bool Bosque::checkReforestation(int fila, int columna, char **matrix, int numero
     return false;
 }
 bool Bosque::checkCell(int fila, int columna, int numero_filas, int numero_columnas) {
-  if (fila < numero_filas && 0 <= fila && columna < numero_columnas && 0 <= columna)
+  if ((unsigned int)fila < (unsigned int)numero_filas && (unsigned int)columna < (unsigned int)numero_columnas)
     return true;
   else
     return false;
