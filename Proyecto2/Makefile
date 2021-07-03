@@ -12,6 +12,7 @@ LINTFILTERS=$\
 BIN_DIR=bin
 OBJ_DIR=build
 SRC_DIR=src
+OUT_DIR=output
 
 DIRS=$(shell find $(SRC_DIR) -type d)
 APPNAME=$(shell basename $(shell pwd))
@@ -19,7 +20,7 @@ HEADERS=$(wildcard $(DIRS:%=%/*.hpp))
 SOURCES=$(wildcard $(DIRS:%=%/*.cpp))
 OBJECTS=$(SOURCES:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 INCLUDE=$(DIRS:%=-I%)
-IGNORES=$(BIN_DIR) $(OBJ_DIR)
+IGNORES=$(BIN_DIR) $(OBJ_DIR) $(OUT_DIR)
 EXEFILE=$(BIN_DIR)/$(APPNAME)
 APPARGS=10 3 100 200 50
 
@@ -49,7 +50,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS) | $$(@D)/.
 
 .PRECIOUS: %/.
 %/.:
-	mkdir -p $(dir $@)
+	mkdir -p $(dir $@) $(OUT_DIR)
 
 all: bin/$(APPNAME) lint memcheck helgrind
 

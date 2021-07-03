@@ -16,7 +16,7 @@ class Bosque{
  int filas,columnas,noches;
 
  public:
- char** matriz_bosque;
+ //char** matriz_bosque;
 
  private:
  bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);

@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <fstream>
 #include <iostream>
 #include "Map.hpp"
@@ -69,4 +70,8 @@ void Map :: createTextFile(std::string filename)
     }
     else std::cout << "Problem with opening file";
 
+}
+
+char** Map :: getMatrix() {
+  return this->map_matrix;
 }

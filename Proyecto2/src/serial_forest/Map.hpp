@@ -22,6 +22,7 @@ class Map {
     void printMatrix();
     void copyMatrix(char **newMatrix);
     void createTextFile(std::string filename);
+    char** getMatrix();
 };
 
 /*
