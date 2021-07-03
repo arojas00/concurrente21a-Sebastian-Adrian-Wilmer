@@ -11,6 +11,7 @@
 #include <vector>
 
 #include "Bosque.hpp"
+#include "Map.hpp"
 
 
 /**
@@ -22,6 +23,7 @@ class Mago{
   
  private:
  Bosque* bosqueDelMago;
+ Map* map;
 
  public:
  Mago();

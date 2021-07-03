@@ -3,7 +3,6 @@
 
 #include <errno.h>
 #include "Mago.hpp"
-#include "matrix.hpp"
 
 /*
 /Funciones seriales del mago:
@@ -66,6 +65,8 @@ int Mago::start(int argc, char* argv[]) {
 
     fscanf(input, "%d", &rows);
     fscanf(input, "%d", &cols);
+
+    this->map = new Map(rows, cols);
 
     fscanf(input, "\n");
 
