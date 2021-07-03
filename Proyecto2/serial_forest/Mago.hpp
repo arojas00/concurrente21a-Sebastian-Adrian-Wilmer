@@ -54,6 +54,14 @@ class Mago{
      * @return 
      */
     int start(int argc, char* argv[]);
+    
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    void read_job(FILE* job);
 
     /**
      * @brief 
@@ -71,12 +79,5 @@ class Mago{
      */
     void run_nights(int map_index);
 
-    /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
-     */
-    void readJob(FILE* job);
 };
 #endif  // MAGO_HPP

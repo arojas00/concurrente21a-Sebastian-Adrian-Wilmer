@@ -20,7 +20,7 @@ int Mago::start(int argc, char* argv[]) {
     this->path = argv[2];
     std::string job_dir = path + job_name;
     FILE* job_file = fopen(job_dir.c_str(),"r+");
-    readJob(job_file);
+    read_job(job_file);
 
   } else {
     error = EXIT_FAILURE;
@@ -28,7 +28,23 @@ int Mago::start(int argc, char* argv[]) {
 
   return error;
 }
+void Mago::read_job(FILE* job) {
 
+  char map[64];
+  int night = 0;
+
+  while ( ! feof (job) ) {
+    fscanf(job, "%s", map);
+    std::string map_str(map);
+    this->maps_array.push_back(map_str);
+    fscanf(job, "%d", &night);
+    this->nights_array.push_back(night);
+    fscanf(job, "\n");
+  }
+  fclose (job);
+
+  run_job();
+}
 void Mago :: run_job() {
   int rows, cols = 0;
 
@@ -81,22 +97,4 @@ void Mago :: run_nights(int map_index) {
     forest_name = "output/" + maps_array[map_index] + std::to_string(nights);
     map_original->createTextFile(forest_name);
   } 
-}
-
-void Mago::readJob(FILE* job) {
-
-  char map[64];
-  int night = 0;
-
-  while ( ! feof (job) ) {
-    fscanf(job, "%s", map);
-    std::string map_str(map);
-    this->maps_array.push_back(map_str);
-    fscanf(job, "%d", &night);
-    this->nights_array.push_back(night);
-    fscanf(job, "\n");
-  }
-  fclose (job);
-
-  run_job();
 }
