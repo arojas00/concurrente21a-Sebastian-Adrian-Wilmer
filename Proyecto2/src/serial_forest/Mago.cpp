@@ -19,18 +19,6 @@
 /Guardar los arboles en memoria compartida
 /Es posible que sea al mago que crea los hilos
 */
-typedef struct
-{
-   size_t thread_count;
-    Bosque bosque_original;
-    Bosque bosque_nuevo;
-} shared_data_t;
-
-typedef struct
-{
-    size_t thread_number;
-    shared_data_t *shared_data;
-} private_data_t;
 
 Mago::Mago() {
   
@@ -70,10 +58,9 @@ int Mago::start(int argc, char* argv[]) {
     fscanf(input, "\n");
 
     bosqueDelMago = new Bosque(rows,cols,nights);
-    char **forest = create_matrix(rows, cols);
-    fillMatrix(input, rows, cols, forest);
+    fillMatrix(input, rows, cols, bosqueDelMago->matriz_bosque);
     char **newForest = create_matrix(rows, cols);
-    copyMatrix(rows, cols, forest, newForest);
+    copyMatrix(rows, cols, bosqueDelMago->matriz_bosque, newForest);
 
     std::string night_number;
     std::string forest_name;
@@ -84,9 +71,9 @@ int Mago::start(int argc, char* argv[]) {
         //printMatrix(rows, cols, forest);
         night_number = std::to_string(j);
         forest_name = "bosques/" + maps_array[i] + "-" + night_number;
-        createTextFile(rows, cols, forest, forest_name);
-        bosqueDelMago->changeForest(rows, cols, forest, newForest);
-        copyMatrix(rows, cols, newForest, forest);
+        createTextFile(rows, cols, bosqueDelMago->matriz_bosque, forest_name);
+        bosqueDelMago->changeForest(rows, cols, bosqueDelMago->matriz_bosque, newForest);
+        copyMatrix(rows, cols, newForest, bosqueDelMago->matriz_bosque);
         //printf("\n");
       }
     } else {
@@ -94,16 +81,16 @@ int Mago::start(int argc, char* argv[]) {
       forest_name = "bosques/" + maps_array[i] + std::to_string(0);
       //printf("%i:\n", num);
       //printMatrix(rows, cols, forest);
-      createTextFile(rows, cols, forest, forest_name);
+      createTextFile(rows, cols, bosqueDelMago->matriz_bosque, forest_name);
       for (int i = 0; i > nights; i--)
       {
-        bosqueDelMago->changeForest(rows, cols, forest, newForest);
-        copyMatrix(rows, cols, newForest, forest);
+        bosqueDelMago->changeForest(rows, cols, bosqueDelMago->matriz_bosque, newForest);
+        copyMatrix(rows, cols, newForest, bosqueDelMago->matriz_bosque);
         num++;
       }
      // printf("\n%i:\n", num);
       forest_name = "bosques/" + maps_array[i] + std::to_string(nights);
-      createTextFile(rows, cols, forest, forest_name);
+      createTextFile(rows, cols, bosqueDelMago->matriz_bosque, forest_name);
     }
     fclose(input);
   }
@@ -118,7 +105,7 @@ void Mago::readJob(FILE* job, std::vector<std::string> &maps_array, std::vector<
   int night = 0;
 
   while ( ! feof (job) ) {
-    fscanf(job, "%s", &map);
+    fscanf(job, "%s", map);
     std::string map_str(map);
     maps_array.push_back(map_str);
     fscanf(job, "%d", &night);

@@ -4,6 +4,9 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
+#include <stdio.h>
+#include <string>
+
 char **create_matrix(int height, int width);
 void fillMatrix(FILE* file, int rows, int cols, char **matrix);
 void printMatrix(int rows, int cols, char **matrix);

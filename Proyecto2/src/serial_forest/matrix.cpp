@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 #include <fstream>
 #include <iostream>
 #include "matrix.hpp"
