@@ -1,6 +1,6 @@
 CXX=g++
 DEFS=-DENCHANTEDFOREST
-FLAGS=$(strip -Wall -Wextra -std=gnu++11 $(DEFS)) -fopenmp
+FLAGS=$(strip -Wall -Wextra -std=gnu++11 -fopenmp $(DEFS))
 LIBS=-pthread
 LINTFILTERS=$\
 	-build/c++11,$\

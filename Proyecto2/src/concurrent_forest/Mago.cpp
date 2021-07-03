@@ -71,6 +71,9 @@ void Mago :: run_job() {
     map_original->copyMatrix(map_copy->getMatrix());
 
     run_nights(i);
+    delete this->map_original;
+    delete bosqueDelMago;
+    delete map_copy;
     fclose(input);
   }
 }
