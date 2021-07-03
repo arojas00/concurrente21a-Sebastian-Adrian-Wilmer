@@ -4,21 +4,6 @@
 #include <errno.h>
 #include "Mago.hpp"
 
-/*
-/Funciones seriales del mago:
-/(Wil)Leer mapa de entrada estandar y guardarlo en el arbol de memoria compartida y en la variable para serial y leer
-/ la cantidad de noches(ciclos) y el tamano desde el txt
-/(Adrian)Hacer funcionar las funciones del bosque con una matriz de ejemplo para generar un nuevo bosque(Mientras se completan las cosas de arriba)
-/(Sebas)Despues de que se completa el nuevo bosque generar un archivo txt con el numero de noche(ciclo) en la carpeta bosques
-
-/Guardar el nuevo bosque donde estaba el primero para recibirlo como parametro en el siguiente ciclo
-/
-/Funciones concurrentes del mago:
-/Leer la cantidad de hilos que se quieren usar o usar la cantidad que tenga la maquina
-/Guardar los arboles en memoria compartida
-/Es posible que sea al mago que crea los hilos
-*/
-
 Mago::Mago() {
   this->nights = 0;
 }
@@ -33,11 +18,7 @@ int Mago::start(int argc, char* argv[]) {
   this->path = argv[2];
   std::string job_dir = path + job_name;
 
-  //FILE* job = stdin;
   FILE* job_file = fopen(job_dir.c_str(),"r+");
-
-  // std::vector<std::string> maps_array;
-  // std::vector<int> nights_array;
 
   readJob(job_file);
   return EXIT_SUCCESS;
@@ -51,7 +32,6 @@ void Mago :: run_job() {
     std::string map_name = path + maps_array[i];
     FILE* input = fopen(map_name.c_str(),"r+");
 
-    //FILE* input = stdin;
     this->nights = nights_array[i];
 
     fscanf(input, "%d", &rows);
@@ -71,40 +51,29 @@ void Mago :: run_job() {
   }
 }
   
-  void Mago :: run_nights(int map_index) {
-    std::string night_number;
-    std::string forest_name;
-    if (nights > 0) {
-      for (int j = 1; j <= nights; j++)
-      {
-        //printf("%i:\n", i);
-        //printMatrix(rows, cols, forest);
-        night_number = std::to_string(j);
-        forest_name = "output/" + maps_array[map_index] + "-" + night_number;
-        bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
-        newForest->createTextFile(forest_name);
-        newForest->copyMatrix(map->getMatrix());
-        //printf("\n");
-      }
-    } else {
-      //forest_name = "bosques/" + maps_array[i] + std::to_string(0);
-      //printf("%i:\n", num);
-      //printMatrix(rows, cols, forest);
-      //newForest->createTextFile(forest_name);
-      for (int i = 0; i > nights; i--) {
-        bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
-        newForest->copyMatrix(map->getMatrix());
-      }
-     // printf("\n%i:\n", num);
-      forest_name = "output/" + maps_array[map_index] + std::to_string(nights);
-      map->createTextFile(forest_name);
+void Mago :: run_nights(int map_index) {
+  std::string night_number;
+  std::string forest_name;
+
+  if (nights > 0) {
+    for (int j = 1; j <= nights; j++) {
+      night_number = std::to_string(j);
+      forest_name = "output/" + maps_array[map_index] + "-" + night_number;
+      bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
+      newForest->createTextFile(forest_name);
+      newForest->copyMatrix(map->getMatrix());
     }
-  
+  } else {
+    for (int i = 0; i > nights; i--) {
+      bosqueDelMago->changeForest(map->getRows(), map->getCols(), map->getMatrix(), newForest->getMatrix());
+      newForest->copyMatrix(map->getMatrix());
+    }
+    forest_name = "output/" + maps_array[map_index] + std::to_string(nights);
+    map->createTextFile(forest_name);
+  } 
 }
 
 void Mago::readJob(FILE* job) {
-
-  //std::string map_str;
 
   char map[64];
   int night = 0;
