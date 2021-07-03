@@ -32,9 +32,11 @@
 *.app
 html
 latex
-Tests/
+tests/
 doc/
 .vscode/
 bin/
 build/
 bosques/
+enchanted_forest_serial_c/
+
