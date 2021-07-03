@@ -1,3 +1,4 @@
+#define _POSIX_C_SOURCE 199309L
 #include <math.h>
 #include <stdio.h>
 #include <string.h>
@@ -5,6 +6,7 @@
 #include <assert.h>
 #include <limits.h>
 #include <stdbool.h>
+#include <time.h>
 
 char **create_matrix(int height, int width);
 void fillMatrix(int rows, int cols, char **matrix);
@@ -20,11 +22,14 @@ bool checkCell(int row, int col, int rows, int cols);
 int main()
 {
   int rows, cols, days, num = 0;
-  scanf("%i %i %i\n", &rows, &cols, &days);
+  scanf("%i %i\n", &rows, &cols);
+  days = -1000000;
   char **forest = create_matrix(rows, cols);
   fillMatrix(rows, cols, forest);
   char **newForest = create_matrix(rows, cols);
   copyMatrix(rows, cols, forest, newForest);
+  struct timespec start_time;
+  clock_gettime(/*clk_id*/CLOCK_MONOTONIC, &start_time);
   if (0 < days)
   {
     for (int i = 0; i <= days; i++)
@@ -50,6 +55,11 @@ int main()
     printf("\n%i:\n", num);
     printMatrix(rows, cols, forest);
   }
+  struct timespec finish_time;
+  clock_gettime(/*clk_id*/CLOCK_MONOTONIC, &finish_time);
+  double elapsed = (finish_time.tv_sec - start_time.tv_sec) +
+    (finish_time.tv_nsec - start_time.tv_nsec) * 1e-9;
+  printf("execution time: %.9lfs\n", elapsed); //for time measuring
   return 0;
 }
 char **create_matrix(int rows, int cols)
@@ -216,7 +226,7 @@ bool checkReforestation(int row, int col, char **matrix, int rows, int cols)
 }
 bool checkCell(int row, int col, int rows, int cols)
 {
-  if (row < rows && 0 <= row && col < cols && 0 <= col)
+  if ((unsigned int)row < (unsigned int)rows && (unsigned int)col < (unsigned int)cols)
     return true;
   else
     return false;

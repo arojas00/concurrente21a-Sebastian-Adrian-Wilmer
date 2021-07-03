@@ -16,10 +16,6 @@
 *.dylib
 *.dll
 
-# Fortran module files
-*.mod
-*.smod
-
 # Compiled Static libraries
 *.lai
 *.la
@@ -30,13 +26,15 @@
 *.exe
 *.out
 *.app
+
 html
 latex
-tests/
+
+# Directories
 doc/
 .vscode/
 bin/
 build/
-bosques/
+output/
 enchanted_forest_serial_c/
 
