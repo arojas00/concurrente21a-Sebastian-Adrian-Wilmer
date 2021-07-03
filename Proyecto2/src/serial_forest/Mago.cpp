@@ -45,7 +45,7 @@ int Mago::start(int argc, char* argv[]) {
   for (long unsigned int i = 0; i < nights_array.size(); i++) {
 
     std::cout << maps_array[i] << std::endl;
-    std::string map_name = "tests/test_set_1/input/" + maps_array[i];
+    std::string map_name = path + maps_array[i];
     FILE* input = fopen(map_name.c_str(),"r+");
 
     //FILE* input = stdin;

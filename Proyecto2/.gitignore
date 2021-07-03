@@ -36,5 +36,6 @@ doc/
 bin/
 build/
 output/
+tests/test_set_2/
 enchanted_forest_serial_c/
 
