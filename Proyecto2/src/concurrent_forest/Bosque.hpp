@@ -10,25 +10,67 @@
  */
 class Bosque{
   
- protected:
+  protected:
   
- private:
- int filas,columnas,noches;
+  private:
+    int filas,columnas,noches;
 
- public:
- //char** matriz_bosque;
+  public:
+    //char** matriz_bosque;
 
- private:
- bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
- bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
- bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
- bool checkReforestation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
- bool checkCell(int fila, int columna, int numero_filas, int numero_columnas);
+  private:
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    bool checkReforestation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    bool checkCell(int fila, int columna, int numero_filas, int numero_columnas);
 
- public:
-  Bosque(int filas,int columnas,int noches);
-  ~Bosque();
- void changeForest(int fila, int columna, char **matriz_bosque, char **new_matriz_bosque);
+  public:
+    /**
+     * @brief
+     */
+    Bosque(int filas,int columnas,int noches);
+    /**
+     * @brief
+     */
+    ~Bosque();
+    /**
+     * @brief 
+     * @details 
+     * @param 
+     * @return 
+     */
+    void changeForest(int fila, int columna, char **matriz_bosque, char **new_matriz_bosque);
 
 };
 
