@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <fstream>
 #include <iostream>
 #include "Map.hpp"
 
@@ -45,22 +44,6 @@ void Map :: copyMatrix(char **newMatrix) {
       newMatrix[i][j] = map_matrix[i][j];
     }
   }
-}
-
-void Map :: createTextFile(std::string filename) {
-  std::ofstream fw(filename, std::ofstream::out);
-   //check if file was successfully opened for writing
-    if (fw.is_open()) {
-      //store array contents to text file
-      for(int x = 0; x < rows; x++) {
-        for (int y = 0; y < cols; y++) {
-        fw << map_matrix[x][y];
-        }
-         fw << "\n";
-      }
-      fw.close();
-    }
-    else std::cout << "Problem with opening file";
 }
 
 char** Map :: getMatrix() {

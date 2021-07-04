@@ -2,6 +2,8 @@
 /// @author Sebastian-Adrian-Wilmer
 
 #include <errno.h>
+#include <fstream>
+
 #include "Mago.hpp"
 
 Mago::Mago() {
@@ -97,7 +99,7 @@ void Mago :: run_nights(int map_index) {
       // Procesar el mapa noche por noche
       bosqueDelMago->changeForest(map_original, map_copy);
       // Crear cada archivo de texto
-      map_copy->createTextFile(forest_name);
+      createTextFile(forest_name, map_copy->getMatrix());
       map_copy->copyMatrix(map_original->getMatrix());
     }
   } else {
@@ -111,6 +113,22 @@ void Mago :: run_nights(int map_index) {
     end = maps_array[map_index].find(".");
     map_name = maps_array[map_index].substr (begin,end);
     forest_name = "output/" + map_name + night_number + std::to_string(nights) + ".txt";
-    map_original->createTextFile(forest_name);
+    createTextFile(forest_name, map_original->getMatrix());
   } 
+}
+
+void Mago :: createTextFile(std::string filename, char** map) {
+  std::ofstream fw(filename, std::ofstream::out);
+   //check if file was successfully opened for writing
+    if (fw.is_open()) {
+      //store array contents to text file
+      for(int x = 0; x < this->map_original->getRows(); x++) {
+        for (int y = 0; y < this->map_original->getCols(); y++) {
+        fw << map[x][y];
+        }
+         fw << "\n";
+      }
+      fw.close();
+    }
+    else std::cout << "Problem with opening file";
 }

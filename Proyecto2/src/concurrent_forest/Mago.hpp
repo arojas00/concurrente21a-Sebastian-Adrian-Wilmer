@@ -94,5 +94,12 @@ class Mago{
      */
     void run_nights(int map_index);
 
+    /**
+     * @brief Se crea un archivo de texto
+     * @details Se crea un archivo el cual contiene el cambio del mapa en cada medianoche
+     * @param filename el nombre del archivo que se va crear
+     */
+    void createTextFile(std::string filename, char** map);
+
 };
 #endif  // MAGO_HPP
