@@ -19,7 +19,7 @@ int Mago::start(int argc, char* argv[]) {
     std::string job_name = argv[1];
     this->path = argv[2];
     std::string job_dir = path + job_name;
-    FILE* job_file = fopen(job_dir.c_str(),"r+");
+    FILE* job_file = fopen(job_dir.c_str(),"r");
     read_job(job_file);
 
   } else {
