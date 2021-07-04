@@ -27,16 +27,14 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
   if (numero_hilos != 0) {
     thread_count = numero_hilos;
   }
-  int block_size = 1;
   char** matrix = map->getMatrix();
   char** newMatrix = new_map->getMatrix();
   int numero_filas = map->getRows();
   int numero_columnas = map->getCols();
   std::vector<int> mapping(numero_filas);
   #pragma omp parallel for num_threads(thread_count) default(none) \
-    shared(numero_filas) shared(mapping) shared(block_size) \
-    shared(numero_columnas) shared(matrix) shared(newMatrix) \
-    schedule(static, block_size)
+    shared(numero_filas) shared(mapping) shared(numero_columnas)\
+    shared(matrix) shared(newMatrix) schedule(runtime)
   for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
       if (matrix[i][j] == 'a') {
@@ -91,7 +89,7 @@ bool Bosque::checkOvercrowding(int fila, int columna, char **matrix, int numero_
       }
     }
   }
-  if (trees - 1 > 4)
+  if (trees > 5)
     return true;
   else
     return false;
