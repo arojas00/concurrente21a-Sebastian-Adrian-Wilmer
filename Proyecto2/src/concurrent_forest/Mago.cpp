@@ -18,12 +18,12 @@ Mago::~Mago() {
 int Mago::start(int argc, char* argv[]) {
   int error = EXIT_SUCCESS;
   // Se leen los argumentos para abrir el archivo job
-  if (argc >= 2) {
+  if (argc >= 3) {
     std::string job_name = argv[1];
     this->path = argv[2];
     std::string job_dir = path + job_name;
     FILE* job_file = fopen(job_dir.c_str(),"r");
-    if (argc >= 3) {
+    if (argc >= 4) {
       thread_count = atoi(argv[3]);
     }
     read_job(job_file);

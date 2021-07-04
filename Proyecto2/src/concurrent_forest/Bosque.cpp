@@ -35,7 +35,8 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
   std::vector<int> mapping(numero_filas);
   #pragma omp parallel for num_threads(thread_count) default(none) \
     shared(numero_filas) shared(mapping) shared(block_size) \
-    shared(numero_columnas) shared(matrix) shared(newMatrix) schedule(static, block_size)
+    shared(numero_columnas) shared(matrix) shared(newMatrix) \
+    schedule(static, block_size)
   for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
       if (matrix[i][j] == 'a') {
