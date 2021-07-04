@@ -54,7 +54,7 @@ void Mago :: run_job() {
     /// Se guarda en un string el directorio del mapa a evaluar
     std::string map_dir = path + maps_array[i];
     /// Se abre el mapa
-    FILE* input = fopen(map_dir.c_str(),"r+");
+    FILE* input = fopen(map_dir.c_str(),"r");
     /// Se saca del arreglo la cantidad de noches para el mapa
     this->nights = nights_array[i];
 
