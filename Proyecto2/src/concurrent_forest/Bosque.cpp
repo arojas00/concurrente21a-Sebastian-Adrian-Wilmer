@@ -32,20 +32,14 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
   int numero_filas = map->getRows();
   int numero_columnas = map->getCols();
   std::vector<int> mapping(numero_filas);
-  
-  for (int i = 0; i < numero_filas; i++) {
-    #pragma omp parallel for num_threads(thread_count) default(none) \
-    shared(i) shared(numero_filas) shared(mapping) shared(numero_columnas)\
+  #pragma omp parallel for num_threads(thread_count) default(none) \
+    shared(numero_filas) shared(mapping) shared(numero_columnas) \
     shared(matrix) shared(newMatrix) schedule(runtime)
+  for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
-      if (matrix[i][j] == 'a') {
-        if (checkInundation(i, j, matrix, numero_filas, numero_columnas) == true) {
-          newMatrix[i][j] = 'l';
-        }
-        else {
-          if (checkOvercrowding(i, j, matrix, numero_filas, numero_columnas) == true) {
-            newMatrix[i][j] = '-';
-          }
+      if (matrix[i][j] == '-') {
+        if (checkReforestation(i, j, matrix, numero_filas, numero_columnas) == true) {
+          newMatrix[i][j] = 'a';
         }
       }
       else {
@@ -55,9 +49,15 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
           }
         }
         else {
-          if (matrix[i][j] == '-') {
-            if (checkReforestation(i, j, matrix, numero_filas, numero_columnas) == true) {
-              newMatrix[i][j] = 'a';
+          if (matrix[i][j] == 'a') {
+            int change = checkTrees(i, j, matrix, numero_filas, numero_columnas);
+            if (change == 1) {
+              newMatrix[i][j] = 'l';
+            }
+            else {
+              if (change == 2) {
+                newMatrix[i][j] = '-';
+              }
             }
           }
         }
@@ -79,6 +79,34 @@ bool Bosque::checkInundation(int fila, int columna, char **matrix, int numero_fi
     return true;
   else
     return false;
+}
+int Bosque::checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+  int lakes = 0;
+  int trees = 0;
+  int change = 0;
+  for (int i = fila - 1; i <= fila + 1; i++) {
+    for (int j = columna - 1; j <= columna + 1; j++) {
+      if (checkCell(i, j, numero_filas, numero_columnas) == true) {
+        if (matrix[i][j] == 'l'){
+          lakes++;
+        }
+        else{
+          if (matrix[i][j] == 'a'){
+            trees++;
+          }
+        }
+      }
+    }
+  }
+  if (lakes >= 4){
+    change = 1;
+  }
+  else{
+    if(trees > 5){
+      change = 2;
+    }
+  }
+  return change;
 }
 bool Bosque::checkOvercrowding(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int trees = 0;

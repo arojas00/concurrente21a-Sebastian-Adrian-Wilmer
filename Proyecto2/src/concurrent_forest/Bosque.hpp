@@ -89,6 +89,7 @@ class Bosque{
      * @param numero_hilos La cantidad de hilos a ser ejecutados
      */
     void changeForest(Map* matrix, Map* newMatrix, int numero_hilos);
+    int checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas);
 
 };
 
