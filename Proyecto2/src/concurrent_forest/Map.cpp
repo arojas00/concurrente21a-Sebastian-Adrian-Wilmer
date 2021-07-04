@@ -47,15 +47,6 @@ void Map :: copyMatrix(char **newMatrix) {
   }
 }
 
-void Map :: printMatrix() {
-  for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      printf("%c", map_matrix[i][j]);
-    }
-    printf("\n");
-  }
-}
-
 void Map :: createTextFile(std::string filename) {
   std::ofstream fw(filename, std::ofstream::out);
    //check if file was successfully opened for writing
