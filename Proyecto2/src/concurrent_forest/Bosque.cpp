@@ -65,21 +65,6 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
     }
   }
 }
-bool Bosque::checkInundation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
-  int lakes = 0;
-  for (int i = fila - 1; i <= fila + 1; i++) {
-    for (int j = columna - 1; j <= columna + 1; j++) {
-      if (checkCell(i, j, numero_filas, numero_columnas) == true) {
-        if (matrix[i][j] == 'l')
-          lakes++;
-      }
-    }
-  }
-  if (lakes >= 4)
-    return true;
-  else
-    return false;
-}
 int Bosque::checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int lakes = 0;
   int trees = 0;
@@ -107,21 +92,6 @@ int Bosque::checkTrees(int fila, int columna, char **matrix, int numero_filas, i
     }
   }
   return change;
-}
-bool Bosque::checkOvercrowding(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
-  int trees = 0;
-  for (int i = fila - 1; i <= fila + 1; i++) {
-    for (int j = columna - 1; j <= columna + 1; j++) {
-      if (checkCell(i, j, numero_filas, numero_columnas) == true) {
-        if (matrix[i][j] == 'a')
-          trees++;
-      }
-    }
-  }
-  if (trees > 5)
-    return true;
-  else
-    return false;
 }
 bool Bosque::checkDrought(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
   int lakes = 0;

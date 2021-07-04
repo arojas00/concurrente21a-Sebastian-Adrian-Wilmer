@@ -13,29 +13,19 @@ class Bosque{
 
   private:
     /**
-     * @brief Revisa las casillas aledañas en busca de una inundacion. 
+     * @brief Revisa las casillas aledañas en busca de inundacion o hacinamiento. 
      * @details Si alrededor de la casilla hay al menos 4 lagos, 
-     * la casilla se vuelve lago.
+     * la casilla se vuelve lago, o si hay al menos 4 arboles, la casilla se
+     * vuelve pradera.
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
      * @param matriz_bosque la matriz con el bosque por revisar.
      * @param numero_filas cantidad de filas en la matriz.
      * @param numero_columnas cantidad de columans en la matriz.
-     * @return retorna true si se debe aplicar el cambio.
+     * @return retorna 1 si hay inundacion, 2 si hay hacinamiento y 
+     * 0 si no se complue ninguna.
      */
-    bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
-    /**
-     * @brief Revisa las casillas aledañas en busca de hacinamiento. 
-     * @details Si alrededor de la casilla hay al menos 4 arboles, 
-     * la casilla se vuelve pradera.
-     * @param fila la fila de la matriz a ser revisada.
-     * @param columna la columna de la matriz a ser revisada.
-     * @param matriz_bosque la matriz con el bosque por revisar.
-     * @param numero_filas cantidad de filas en la matriz.
-     * @param numero_columnas cantidad de columans en la matriz.
-     * @return retorna true si se debe aplicar el cambio.
-     */
-    bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    int checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una sequia. 
      * @details Si alrededor de la casilla hay menos de 3 lagos, 
@@ -89,7 +79,6 @@ class Bosque{
      * @param numero_hilos La cantidad de hilos a ser ejecutados
      */
     void changeForest(Map* matrix, Map* newMatrix, int numero_hilos);
-    int checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas);
 
 };
 
