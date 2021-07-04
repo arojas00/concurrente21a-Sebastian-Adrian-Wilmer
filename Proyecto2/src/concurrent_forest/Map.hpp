@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <string>
 
+/**
+* @brief La clase lee los mapas y los almacena
+*/
 class Map {
 
   private:
@@ -19,76 +22,54 @@ class Map {
 
   public:
     /**
-     * @brief
+     * @brief Constructor
      */
     Map(int rows, int cols);
 
     /**
-     * @brief
+     * @brief Destructor
      */
     ~Map();
 
     /**
-     * @brief 
+     * @brief Inicializa la matriz
      * @details 
-     * @param 
-     * @return 
+     * @return una matriz de caracteres
      */
     char **create_matrix();
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Lee caracteres de un archivo y los guarda en la matriz
+     * @details Se utiliza la funcion fscan para leer los caracteres
+     * @param  FILE el archivo del cual se leen los caracteres 
      */
     void fillMatrix(FILE* file);
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
-     */
-    void printMatrix();
-
-    /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Hace una copia de la matriz
+     * @param newMatrix la matriz en la cual se guarda la copia
      */
     void copyMatrix(char **newMatrix);
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Se crea un archivo de texto
+     * @details Se crea un archivo el cual contiene el cambio del mapa en cada medianoche
+     * @param filename el nombre del archivo que se va crear
      */
     void createTextFile(std::string filename);
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @return Devuelve la matriz de caracteres
      */
     char** getMatrix();
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @return Devuelve la cantidad de filas
      */
     int getRows();
 
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @return Devuelve la cantidad de columnas
      */
     int getCols();
 };
