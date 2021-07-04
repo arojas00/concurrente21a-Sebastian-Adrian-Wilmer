@@ -66,7 +66,7 @@ void Mago :: run_job() {
 
     fscanf(input, "\n");
 
-    bosqueDelMago = new Bosque(rows,cols,nights);
+    bosqueDelMago = new Bosque(rows,cols);
     map_original->fillMatrix(input);
     map_copy = new Map(rows, cols);
     map_original->copyMatrix(map_copy->getMatrix());
@@ -95,8 +95,7 @@ void Mago :: run_nights(int map_index) {
       map_name = maps_array[map_index].substr (begin,end);
       forest_name = "output/" + map_name + "-" + night_number + ".txt";
       // Procesar el mapa noche por noche
-      bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
-        , map_original->getMatrix(), map_copy->getMatrix());
+      bosqueDelMago->changeForest(map_original, map_copy);
       // Crear cada archivo de texto
       map_copy->createTextFile(forest_name);
       map_copy->copyMatrix(map_original->getMatrix());
@@ -104,8 +103,7 @@ void Mago :: run_nights(int map_index) {
   } else {
     for (int i = 0; i > nights; i--) {
       // Procesar el mapa noche por noche
-      bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
-        , map_original->getMatrix(), map_copy->getMatrix());
+      bosqueDelMago->changeForest(map_original, map_copy);
       map_copy->copyMatrix(map_original->getMatrix());
     }
     // Nombrar y crear el archivo de texto

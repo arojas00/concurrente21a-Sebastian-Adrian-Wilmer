@@ -4,73 +4,86 @@
 #ifndef BOSQUE_HPP
 #define BOSQUE_HPP
 
+#include "Map.hpp"
 
 /**
- * @brief 
+ * @brief Aplica los cambios respectivos en el mapa despues de cada noche
  */
 class Bosque{
   
   protected:
   
   private:
-    int filas,columnas,noches;
-
-  public:
-    //char** matriz_bosque;
+    int numero_filas;
+    int numero_columnas;
 
   private:
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa las casillas aledañas en busca de una inundacion. 
+     * @details Si alrededor de la casilla hay al menos 4 lagos, 
+     * la casilla se vuelve lago.
+     * @param fila la fila de la matriz a ser revisada.
+     * @param columna la columna de la matriz a ser revisada.
+     * @param matriz_bosque la matriz con el bosque por revisar.
+     * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkInundation(int fila, int columna, char **matriz_bosque);
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa las casillas aledañas en busca de hacinamiento. 
+     * @details Si alrededor de la casilla hay al menos 4 arboles, 
+     * la casilla se vuelve pradera.
+     * @param fila la fila de la matriz a ser revisada.
+     * @param columna la columna de la matriz a ser revisada.
+     * @param matriz_bosque la matriz con el bosque por revisar
+     * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkOvercrowding(int fila, int columna, char **matriz_bosque);
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa las casillas aledañas en busca de una sequia. 
+     * @details Si alrededor de la casilla hay menos de 3 lagos, 
+     * la casilla se vuelve pradera.
+     * @param fila la fila de la matriz a ser revisada.
+     * @param columna la columna de la matriz a ser revisada.
+     * @param matriz_bosque la matriz con el bosque por revisar.
+     * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkDrought(int fila, int columna, char **matriz_bosque);
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa las casillas aledañas en busca de una reforestacion. 
+     * @details Si alrededor de la casilla hay al menos 3 arboles, 
+     * la casilla se vuelve arbol.
+     * @param fila la fila de la matriz a ser revisada.
+     * @param columna la columna de la matriz a ser revisada.
+     * @param matriz_bosque la matriz con el bosque por revisar.
+     * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkReforestation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkReforestation(int fila, int columna, char **matriz_bosque);
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa si la casilla es valida dentro de la matriz. 
+     * @details Evita salir de los limites de la matriz.
+     * @param fila la fila de la matriz a ser revisada.
+     * @param columna la columna de la matriz a ser revisada.
+     * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkCell(int fila, int columna, int numero_filas, int numero_columnas);
+    bool checkCell(int fila, int columna);
 
   public:
     /**
-     * @brief
+     * @brief Constructor
      */
-    Bosque(int filas,int columnas,int noches);
+    Bosque(int filas,int columnas);
     /**
-     * @brief
+     * @brief Destructor
      */
     ~Bosque();
     /**
-     * @brief 
-     * @details 
-     * @param 
-     * @return 
+     * @brief Revisa las casillas en busca de cambios.
+     * @details Recorre la matriz y revisa si las casillas requieren
+     * cambios, este es el metodo paralelo.
+     * @param matrix objeto Map que contiene la matriz original
+     * @param newMatrix objeto Map que contiene la matriz a actualizar
      */
-    void changeForest(int fila, int columna, char **matriz_bosque, char **new_matriz_bosque);
+    void changeForest(Map* matrix, Map* newMatrix);
 
 };
 
