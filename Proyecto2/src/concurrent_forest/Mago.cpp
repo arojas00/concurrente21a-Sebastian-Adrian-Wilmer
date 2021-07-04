@@ -14,14 +14,13 @@ Mago::~Mago() {
 
 int Mago::start(int argc, char* argv[]) {
   int error = EXIT_SUCCESS;
-
+  // Se leen los argumentos para abrir el archivo job
   if (argc >= 2) {
     std::string job_name = argv[1];
     this->path = argv[2];
     std::string job_dir = path + job_name;
     FILE* job_file = fopen(job_dir.c_str(),"r");
     read_job(job_file);
-
   } else {
     error = EXIT_FAILURE;
   }
@@ -33,6 +32,8 @@ void Mago::read_job(FILE* job) {
   char map[64];
   int night = 0;
 
+  // Se leen los mapas del archivo job y se guardan
+  // en un arreglo para mapas y otro para noches
   while ( ! feof (job) ) {
     fscanf(job, "%s", map);
     std::string map_str(map);
@@ -71,9 +72,11 @@ void Mago :: run_job() {
     map_original->copyMatrix(map_copy->getMatrix());
 
     run_nights(i);
+    // Se libera la memoria
     delete this->map_original;
     delete bosqueDelMago;
     delete map_copy;
+    // Cerrar el mapa con el que se trabajo
     fclose(input);
   }
 }
@@ -81,23 +84,35 @@ void Mago :: run_job() {
 void Mago :: run_nights(int map_index) {
   std::string night_number;
   std::string forest_name;
-
+  std::string map_name;
+  std::size_t begin,end;
   if (nights > 0) {
     for (int j = 1; j <= nights; j++) {
       night_number = std::to_string(j);
-      forest_name = "output/" + maps_array[map_index] + "-" + night_number;
+      // Nombrar el archivo de texto
+      begin = maps_array[map_index].find("map");
+      end = maps_array[map_index].find(".");
+      map_name = maps_array[map_index].substr (begin,end);
+      forest_name = "output/" + map_name + "-" + night_number + ".txt";
+      // Procesar el mapa noche por noche
       bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
         , map_original->getMatrix(), map_copy->getMatrix());
+      // Crear cada archivo de texto
       map_copy->createTextFile(forest_name);
       map_copy->copyMatrix(map_original->getMatrix());
     }
   } else {
     for (int i = 0; i > nights; i--) {
+      // Procesar el mapa noche por noche
       bosqueDelMago->changeForest(map_original->getRows(), map_original->getCols()
         , map_original->getMatrix(), map_copy->getMatrix());
       map_copy->copyMatrix(map_original->getMatrix());
     }
-    forest_name = "output/" + maps_array[map_index] + std::to_string(nights);
+    // Nombrar y crear el archivo de texto
+    begin = maps_array[map_index].find("map");
+    end = maps_array[map_index].find(".");
+    map_name = maps_array[map_index].substr (begin,end);
+    forest_name = "output/" + map_name + night_number + std::to_string(nights) + ".txt";
     map_original->createTextFile(forest_name);
   } 
 }
