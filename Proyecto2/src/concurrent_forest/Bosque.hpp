@@ -10,12 +10,6 @@
  * @brief Aplica los cambios respectivos en el mapa despues de cada noche
  */
 class Bosque{
-  
-  protected:
-  
-  private:
-    int numero_filas;
-    int numero_columnas;
 
   private:
     /**
@@ -25,19 +19,23 @@ class Bosque{
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
      * @param matriz_bosque la matriz con el bosque por revisar.
+     * @param numero_filas cantidad de filas en la matriz.
+     * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkInundation(int fila, int columna, char **matriz_bosque);
+    bool checkInundation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de hacinamiento. 
      * @details Si alrededor de la casilla hay al menos 4 arboles, 
      * la casilla se vuelve pradera.
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
-     * @param matriz_bosque la matriz con el bosque por revisar
+     * @param matriz_bosque la matriz con el bosque por revisar.
+     * @param numero_filas cantidad de filas en la matriz.
+     * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkOvercrowding(int fila, int columna, char **matriz_bosque);
+    bool checkOvercrowding(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una sequia. 
      * @details Si alrededor de la casilla hay menos de 3 lagos, 
@@ -45,9 +43,11 @@ class Bosque{
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
      * @param matriz_bosque la matriz con el bosque por revisar.
+     * @param numero_filas cantidad de filas en la matriz.
+     * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkDrought(int fila, int columna, char **matriz_bosque);
+    bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una reforestacion. 
      * @details Si alrededor de la casilla hay al menos 3 arboles, 
@@ -55,23 +55,27 @@ class Bosque{
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
      * @param matriz_bosque la matriz con el bosque por revisar.
+     * @param numero_filas cantidad de filas en la matriz.
+     * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkReforestation(int fila, int columna, char **matriz_bosque);
+    bool checkReforestation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
     /**
      * @brief Revisa si la casilla es valida dentro de la matriz. 
      * @details Evita salir de los limites de la matriz.
      * @param fila la fila de la matriz a ser revisada.
      * @param columna la columna de la matriz a ser revisada.
+     * @param numero_filas cantidad de filas en la matriz.
+     * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkCell(int fila, int columna);
+    bool checkCell(int fila, int columna, int numero_filas, int numero_columnas);
 
   public:
     /**
      * @brief Constructor
      */
-    Bosque(int filas,int columnas);
+    Bosque();
     /**
      * @brief Destructor
      */

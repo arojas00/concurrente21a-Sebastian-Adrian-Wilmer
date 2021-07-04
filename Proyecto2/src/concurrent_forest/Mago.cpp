@@ -72,7 +72,7 @@ void Mago :: run_job() {
 
     fscanf(input, "\n");
 
-    bosqueDelMago = new Bosque(rows,cols);
+    bosqueDelMago = new Bosque();
     map_original->fillMatrix(input);
     map_copy = new Map(rows, cols);
     map_original->copyMatrix(map_copy->getMatrix());
