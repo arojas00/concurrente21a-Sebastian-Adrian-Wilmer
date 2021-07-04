@@ -82,8 +82,9 @@ class Bosque{
      * cambios, este es el metodo paralelo.
      * @param matrix objeto Map que contiene la matriz original
      * @param newMatrix objeto Map que contiene la matriz a actualizar
+     * @param numero_hilos La cantidad de hilos a ser ejecutados
      */
-    void changeForest(Map* matrix, Map* newMatrix);
+    void changeForest(Map* matrix, Map* newMatrix, int numero_hilos);
 
 };
 

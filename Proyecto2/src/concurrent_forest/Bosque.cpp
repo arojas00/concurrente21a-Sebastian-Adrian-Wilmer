@@ -24,8 +24,11 @@ Bosque::Bosque(int filas, int columnas) {
 Bosque::~Bosque() {
 }
 
-void Bosque::changeForest(Map* map, Map* new_map) {
+void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
   int thread_count = omp_get_max_threads();
+  if (numero_hilos != 0) {
+    thread_count = numero_hilos;
+  }
   int block_size = 1;
   char** matrix = map->getMatrix();
   char** newMatrix = new_map->getMatrix();

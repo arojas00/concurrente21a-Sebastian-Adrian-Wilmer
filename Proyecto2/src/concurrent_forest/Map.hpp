@@ -41,7 +41,7 @@ class Map {
     /**
      * @brief Lee caracteres de un archivo y los guarda en la matriz
      * @details Se utiliza la funcion fscan para leer los caracteres
-     * @param  FILE el archivo del cual se leen los caracteres 
+     * @param  file el archivo del cual se leen los caracteres 
      */
     void fillMatrix(FILE* file);
 

@@ -35,6 +35,8 @@ class Mago{
     std::vector<int> nights_array;
     /// Ruta donde se contiene el job
     std::string path;
+    /// Numero de hilos a ejecutar
+    int thread_count;
 
   public:
 
@@ -51,8 +53,9 @@ class Mago{
     /**
      * @brief Lee el job y el path
      * @details Lee el job y se lo pasa a read_job
-     * @param argc Cantidad de argumentos, argumento 1 es el nombre
+     * @param argv Argumento 1 es el nombre
      * del job y argumento 2 es el path
+     * @param argc Cantidad de argumentos
      * @return Codigo de error
      */
     int start(int argc, char* argv[]);
@@ -74,7 +77,6 @@ class Mago{
      * en el que se guarda el mapa que se leyo del archivo de texto
      * y se llama a run nights para procesar cada mapa la cantidad
      * de noches que se necesita
-     * @param 
      * @return void
      */
     void run_job();
@@ -98,6 +100,7 @@ class Mago{
      * @brief Se crea un archivo de texto
      * @details Se crea un archivo el cual contiene el cambio del mapa en cada medianoche
      * @param filename el nombre del archivo que se va crear
+     * @param map el mapa que se va a escribir en el archivo
      */
     void createTextFile(std::string filename, char** map);
 

@@ -8,6 +8,7 @@
 
 Mago::Mago() {
   this->nights = 0;
+  this->thread_count = 0;
 }
 
 Mago::~Mago() {
@@ -22,6 +23,9 @@ int Mago::start(int argc, char* argv[]) {
     this->path = argv[2];
     std::string job_dir = path + job_name;
     FILE* job_file = fopen(job_dir.c_str(),"r");
+    if (argc >= 3) {
+      thread_count = atoi(argv[3]);
+    }
     read_job(job_file);
   } else {
     error = EXIT_FAILURE;
@@ -97,7 +101,7 @@ void Mago :: run_nights(int map_index) {
       map_name = maps_array[map_index].substr (begin,end);
       forest_name = "output/" + map_name + "-" + night_number + ".txt";
       // Procesar el mapa noche por noche
-      bosqueDelMago->changeForest(map_original, map_copy);
+      bosqueDelMago->changeForest(map_original, map_copy, thread_count);
       // Crear cada archivo de texto
       createTextFile(forest_name, map_copy->getMatrix());
       map_copy->copyMatrix(map_original->getMatrix());
@@ -105,7 +109,7 @@ void Mago :: run_nights(int map_index) {
   } else {
     for (int i = 0; i > nights; i--) {
       // Procesar el mapa noche por noche
-      bosqueDelMago->changeForest(map_original, map_copy);
+      bosqueDelMago->changeForest(map_original, map_copy, thread_count);
       map_copy->copyMatrix(map_original->getMatrix());
     }
     // Nombrar y crear el archivo de texto
