@@ -1,3 +1,18 @@
+# Executables
+*.exe
+*.out
+*.app
+
+# Doxygen
+doc/
+
+# Directories
+.vscode/
+bin/
+build/
+output/
+tests/test_set_2/
+
 # Prerequisites
 *.d
 
@@ -22,18 +37,3 @@
 *.a
 *.lib
 
-# Executables
-*.exe
-*.out
-*.app
-
-html
-latex
-
-# Directories
-doc/
-.vscode/
-bin/
-build/
-output/
-tests/test_set_2/
