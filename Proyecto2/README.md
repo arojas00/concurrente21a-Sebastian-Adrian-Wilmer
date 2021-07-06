@@ -21,24 +21,39 @@ El rey tiene un mapa del bosque como el extracto que puede verse más adelante e
 El objetivo del proyecto es lograr procesar desde un archivo de texto que contiene ubicaciones de mapas en otros archivos de texto el resultado de cambiar la cantidad de noches utilizando reglas para cambiar el bosque encantado noche por noche por cierta cantidad N de noches y guardarlos en archivos de texto con los resultados de cada noche o el resultado final despues de procesar todas las noches
 
 ### Build
+Se debe descargar la carpeta Proyecto2 o clonar el repositorio
+
 Para compilar correr make/make all
+
+Los casos de prueba se encuentran en la carpeta tests/test_set_X/input/
+
 Para correr el programa se debe llamar de esta forma
+
 Ubicacion Nombre del archivo a leer Nombre de la ubicacion del archivo
+
 Ej:
+
 bin/Proyecto2 job001.txt tests/test_set_1/input/
 
 ### Manual de usuario
 Correr el programa de esta manera crea los archivos de salida en la carpeta output
-Para quitar los archivos de la carpeta output es necesario llamar a make clean
+
+Para eliminar los archivos de la carpeta output es necesario llamar a make clean
 
 ### Diseno
 <br/>
 ![design](Proyecto2/design/Design.jpg)
 
 ### Analisis de rendimiento
+
+En la siguiente tabla se muestran los resultados tras ejecutar los diferentes tipos de mapeo en un nodo esclavo del cluster arenal:
+
 <br/>
 ![design](Proyecto2/design/Analisis.jpeg)
+
+Adicionalmente se calcula el speedup y eficiencia de los tipos de mapeo con respecto a la versión serial del programa. Al realizar las optimizaciones se conjeturó sobre el rendimiento de los tipos de mapeos, siendo el mapeo dinámico el del mejor rendimiento esperado. Tras realizar las mediciones, todos los mapeos tuvieron un comportamiento similar, siendo el cíclico el de mejor rendimeinto, con un speedup de 3.57 y eficiencia de 0.45. Una posible causa de este resultado sería el tamaño de las unidades a descomponer, ya que procesaba una fila del arreglo en cada iteración. Ante esto se experimentó reduciendo el tamaño de las unidades a casillas, pero los resultados fueron mas altos que en el mapeo anterior.
+
 <br/>
 ![design](Proyecto2/design/Graph.jpeg)
 
-### Notas Importantes
+En el gráfico anterior se presenta el speedup de cada tipo de mapeo en el eje y izquierdo, asi como la eficioencia de los mismos en el eje y derecho. Gracias a esto se puede apreciar el comportamiento de los diferentes tipos de mapeo, los cuales son muy similares entre sí, con una ligera emjora en el mapeo cíclico.
