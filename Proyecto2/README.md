@@ -56,4 +56,4 @@ Adicionalmente se calcula el speedup y eficiencia de los tipos de mapeo con resp
 <br/>
 ![design](Proyecto2/design/Graph.jpeg)
 
-En el gráfico anterior se presenta el speedup de cada tipo de mapeo en el eje y izquierdo, asi como la eficioencia de los mismos en el eje y derecho. Gracias a esto se puede apreciar el comportamiento de los diferentes tipos de mapeo, los cuales son muy similares entre sí, con una ligera emjora en el mapeo cíclico.
+En el gráfico anterior se presenta el speedup de cada tipo de mapeo en el eje y izquierdo, asi como la eficioencia de los mismos en el eje y derecho. Gracias a esto se puede apreciar el comportamiento de los diferentes tipos de mapeo, los cuales son muy similares entre si, con una ligera mejora en el mapeo cíclico.
