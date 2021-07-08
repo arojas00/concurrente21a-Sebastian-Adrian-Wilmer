@@ -7,7 +7,7 @@
 #include "Log.hpp"
 
 HttpConnectionHandler::HttpConnectionHandler(){
-  //httpServer = thisHttpServer;
+  // webServer = thisHttpServer;
 }
 
 int HttpConnectionHandler::run() {

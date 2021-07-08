@@ -45,7 +45,7 @@ class HttpServer : public TcpServer {
   Queue<Socket>* clientQueue;
   /// Consumers of the simulated network messages
   //HttpConnectionHandler** consumers;
-  HttpConnectionHandler* consumer;
+  HttpConnectionHandler** httpConnectionHandler;
   void startHttpServer();
   void stopHttpServer();
   size_t max_connections;

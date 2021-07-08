@@ -25,11 +25,11 @@ class HttpConnectionHandler : public Consumer<Socket> {
   DISABLE_COPY(HttpConnectionHandler);
   //stopCondition = Socket(NULL);
  private:
-  //WebServer webServer;
+  // WebServer* webServer;
 
  public:
   /// Constructor
-  explicit HttpConnectionHandler();
+  HttpConnectionHandler();
   /// Consume the socket in its own execution thread
   int run() override;
   /// Override this method to process any data extracted from the queue

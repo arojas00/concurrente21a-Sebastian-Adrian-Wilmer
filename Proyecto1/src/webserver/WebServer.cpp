@@ -69,13 +69,12 @@ int WebServer::start(int argc, char* argv[]) {
       // if (sigaction(SIGINT, &sigbreak, NULL) != 0){
       //   std::perror("sigaction");
       // }
-      std::cout << "maxConnections: " << this->max_connections << std::endl;
       this->listenForConnections(this->port);
       const NetworkAddress& address = this->getNetworkAddress();
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
+      startHttpServer();
       this->acceptAllConnections();
-      //startHttpServer();
     }
   } catch (const std::runtime_error& error) {
     std::cerr << "error: " << error.what() << std::endl;
