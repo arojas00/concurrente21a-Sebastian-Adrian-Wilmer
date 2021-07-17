@@ -75,6 +75,7 @@ void Mago :: run_job() {
     bosqueDelMago = new Bosque();
     map_original->fillMatrix(input);
     map_copy = new Map(rows, cols);
+    //map_copy->fillMatrix(input);
     map_original->copyMatrix(map_copy->getMatrix());
 
     run_nights(i);
@@ -104,13 +105,15 @@ void Mago :: run_nights(int map_index) {
       bosqueDelMago->changeForest(map_original, map_copy, thread_count);
       // Crear cada archivo de texto
       createTextFile(forest_name, map_copy->getMatrix());
-      map_copy->copyMatrix(map_original->getMatrix());
+      // La original se actualiza para la siguiente noche
+      std::swap(map_copy, map_original);
     }
   } else {
     for (int i = 0; i > nights; i--) {
       // Procesar el mapa noche por noche
       bosqueDelMago->changeForest(map_original, map_copy, thread_count);
-      map_copy->copyMatrix(map_original->getMatrix());
+      // La original se actualiza para la siguiente noche
+      std::swap(map_copy, map_original);
     }
     // Nombrar y crear el archivo de texto
     begin = maps_array[map_index].find("map");

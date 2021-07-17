@@ -40,12 +40,16 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
       if (matrix[i][j] == '-') {
         if (checkReforestation(i, j, matrix, numero_filas, numero_columnas) == true) {
           newMatrix[i][j] = 'a';
+        } else {
+          newMatrix[i][j] = matrix[i][j];
         }
       }
       else {
         if (matrix[i][j] == 'l') {
           if (checkDrought(i, j, matrix, numero_filas, numero_columnas) == true) {
             newMatrix[i][j] = '-';
+          } else {
+            newMatrix[i][j] = matrix[i][j];
           }
         }
         else {
@@ -57,6 +61,8 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
             else {
               if (change == 2) {
                 newMatrix[i][j] = '-';
+              } else {
+                newMatrix[i][j] = matrix[i][j];
               }
             }
           }
