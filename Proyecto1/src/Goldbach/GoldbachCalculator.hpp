@@ -1,14 +1,37 @@
-// Copyright 2021 Wilmer Araya <wilmer.araya@ucr.ac.cr> CC-BY-4
-#ifndef GOLDBACHCALCULATOR_HPP
-#define GOLDBACHCALCULATOR_HPP
-#include <stdint.h>
-#include <queue>
+/// @copyright 2020 ECCI, Universidad de Costa Rica. All rights reserved
+/// This code is released under the GNU Public License version 3
+/// @author Jeisson Hidalgo-Céspedes <jeisson.hidalgo@ucr.ac.cr>
 
-typedef struct goldbach goldbach_t;
-typedef struct values values_t;
+#ifndef HTTPCONNECTIONHANDLER_HPP
+#define HTTPCONNECTIONHANDLER_HPP
 
-goldbach_t* goldbach_create();
-values_t* goldbach_run(goldbach_t* goldbach, std::queue<int64_t> queue_values);
-void goldbach_destroy(goldbach_t* goldbach);
+#include <cassert>
 
-#endif // GOLDBACHCALCULATOR_HPP
+#include "Queue.hpp"
+#include "Thread.hpp"
+#include "Assembler.hpp"
+
+
+/**
+ * @brief A consumer class to handle http connections
+ */
+//template <typename DataType>
+
+class GoldbachCalculator : public Assembler<int,int> {
+  /// Objects of this class cannot be copied
+  DISABLE_COPY(GoldbachCalculator);
+  //stopCondition = Socket(NULL);
+ private:
+  // WebServer* webServer;
+
+ public:
+  /// Constructor
+  GoldbachCalculator();
+  /// Consume the socket in its own execution thread
+  int run() override;
+  /// Override this method to process any data extracted from the queue
+  void consume(const int& x) override;
+
+};
+
+#endif  // HTTPCONNECTIONHANDLER_HPP
