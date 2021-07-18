@@ -80,7 +80,7 @@ class Mago{
      * de noches que se necesita
      * @return void
      */
-    void run_job(int index);
+    void run_job(int index, int rank);
 
     /**
      * @brief Procesa los mapas las noches necesarias y crea los

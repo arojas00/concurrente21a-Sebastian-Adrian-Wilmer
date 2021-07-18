@@ -70,14 +70,15 @@ void Mago::read_job(FILE* job, int argc, char* argv[]) {
     const int my_process_size = my_process_finish - my_process_start;
 
     for (int index = my_process_start; index <= my_process_finish; index++) {
-      run_job(index);
+      run_job(index, rank);
     }
+    
     MPI_Finalize();
   }
 
 }
 
-void Mago :: run_job(int index) {
+void Mago :: run_job(int index, int rank) {
   int rows, cols = 0;
 
   // Los procesos se dividen los mapas
@@ -111,6 +112,7 @@ void Mago :: run_job(int index) {
     delete map_copy;
     // Cerrar el mapa con el que se trabajo
     fclose(input);
+    printf("Process number: %d\n",rank);
   //}
 }
 
