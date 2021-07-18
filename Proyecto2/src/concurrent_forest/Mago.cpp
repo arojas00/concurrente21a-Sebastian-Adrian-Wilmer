@@ -52,6 +52,7 @@ void Mago::read_job(FILE* job, int argc, char* argv[]) {
   }
   fclose (job);
 
+  std::cout << "size: " << maps_array.size() << std::endl;
 
   if (MPI_Init(&argc, &argv) == MPI_SUCCESS) {
 
@@ -85,7 +86,7 @@ void Mago :: run_job(int index, int rank) {
   // Los procesos se dividen los mapas
   /// Por cada mapa del job
   //for (long unsigned int i = 0; i < nights_array.size(); i++) {
-    std::cout << maps_array[index] << std::endl;
+    std::cout << maps_array[index] << "| Process number:" << rank << std::endl;
     /// Se guarda en un string el directorio del mapa a evaluar
     std::string map_dir = path + maps_array[index];
     /// Se abre el mapa
@@ -113,7 +114,6 @@ void Mago :: run_job(int index, int rank) {
     delete map_copy;
     // Cerrar el mapa con el que se trabajo
     fclose(input);
-    printf("Process number: %d\n",rank);
   //}
 }
 
