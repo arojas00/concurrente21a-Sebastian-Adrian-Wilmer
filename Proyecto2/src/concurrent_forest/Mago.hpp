@@ -60,6 +60,7 @@ class Mago{
      */
     int start(int argc, char* argv[]);
     
+  private:
     /**
      * @brief Llena un arreglo con los mapas del job y otro con la
      * cantidad de noches de cada mapa
@@ -69,7 +70,7 @@ class Mago{
      * noches
      * @return void 
      */
-    void read_job(FILE* job);
+    void read_job(FILE* job, int argc, char* argv[]);
 
     /**
      * @brief Se leen los mapas y se llama a run nights
@@ -79,7 +80,7 @@ class Mago{
      * de noches que se necesita
      * @return void
      */
-    void run_job();
+    void run_job(int index);
 
     /**
      * @brief Procesa los mapas las noches necesarias y crea los
@@ -103,6 +104,10 @@ class Mago{
      * @param map el mapa que se va a escribir en el archivo
      */
     void createTextFile(std::string filename, char** map);
+
+    int calculate_start(int rank, int end, int workers, int begin);
+
+    inline int calculate_finish(int rank, int end, int workers, int begin);
 
 };
 #endif  // MAGO_HPP

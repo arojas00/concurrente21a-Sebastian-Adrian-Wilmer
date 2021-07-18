@@ -3,7 +3,7 @@
 
 #include <errno.h>
 #include <fstream>
-
+#include <mpi.h>
 #include "Mago.hpp"
 
 Mago::Mago() {
@@ -26,14 +26,15 @@ int Mago::start(int argc, char* argv[]) {
     if (argc >= 4) {
       thread_count = atoi(argv[3]);
     }
-    read_job(job_file);
+    read_job(job_file, argc, argv);
   } else {
     error = EXIT_FAILURE;
   }
 
   return error;
 }
-void Mago::read_job(FILE* job) {
+
+void Mago::read_job(FILE* job, int argc, char* argv[]) {
 
   char map[64];
   int night = 0;
@@ -50,20 +51,45 @@ void Mago::read_job(FILE* job) {
   }
   fclose (job);
 
-  run_job();
+
+  if (MPI_Init(&argc, &argv) == MPI_SUCCESS) {
+
+    int rank = -1; // process_number
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+
+    int process_count = -1;
+    MPI_Comm_size(MPI_COMM_WORLD, &process_count);
+
+    int global_start = 0;
+    int global_finish = maps_array.size();
+
+    const int my_process_start
+      = calculate_start(rank, global_finish, process_count, global_start);
+    const int my_process_finish
+      = calculate_finish(rank, global_finish, process_count, global_start);
+    const int my_process_size = my_process_finish - my_process_start;
+
+    for (int index = my_process_start; index <= my_process_finish; index++) {
+      run_job(index);
+    }
+    MPI_Finalize();
+  }
+
 }
-void Mago :: run_job() {
+
+void Mago :: run_job(int index) {
   int rows, cols = 0;
 
+  // Los procesos se dividen los mapas
   /// Por cada mapa del job
-  for (long unsigned int i = 0; i < nights_array.size(); i++) {
-    std::cout << maps_array[i] << std::endl;
+  //for (long unsigned int i = 0; i < nights_array.size(); i++) {
+    std::cout << maps_array[index] << std::endl;
     /// Se guarda en un string el directorio del mapa a evaluar
-    std::string map_dir = path + maps_array[i];
+    std::string map_dir = path + maps_array[index];
     /// Se abre el mapa
     FILE* input = fopen(map_dir.c_str(),"r");
     /// Se saca del arreglo la cantidad de noches para el mapa
-    this->nights = nights_array[i];
+    this->nights = nights_array[index];
 
     fscanf(input, "%d", &rows);
     fscanf(input, "%d", &cols);
@@ -78,16 +104,16 @@ void Mago :: run_job() {
     //map_copy->fillMatrix(input);
     map_original->copyMatrix(map_copy->getMatrix());
 
-    run_nights(i);
+    run_nights(index);
     // Se libera la memoria
     delete this->map_original;
     delete bosqueDelMago;
     delete map_copy;
     // Cerrar el mapa con el que se trabajo
     fclose(input);
-  }
+  //}
 }
-  
+
 void Mago :: run_nights(int map_index) {
   std::string night_number;
   std::string forest_name;
@@ -138,4 +164,13 @@ void Mago :: createTextFile(std::string filename, char** map) {
       fw.close();
     }
     else std::cout << "Problem with opening file";
+}
+
+int Mago :: calculate_start(int rank, int end, int workers, int begin) {
+  const int range = end - begin;
+  return begin + rank * (range / workers) + std::min(rank, range % workers);
+}
+
+inline int Mago :: calculate_finish(int rank, int end, int workers, int begin) {
+  return calculate_start(rank + 1, end, workers, begin);
 }

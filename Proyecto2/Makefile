@@ -1,4 +1,4 @@
-CXX=g++
+CXX=mpic++
 DEFS=-DENCHANTEDFOREST
 FLAGS=$(strip -Wall -Wextra -std=gnu++11 -fopenmp $(DEFS))
 LIBS=-pthread
