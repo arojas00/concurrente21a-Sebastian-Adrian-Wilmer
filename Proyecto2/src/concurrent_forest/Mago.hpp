@@ -4,10 +4,10 @@
 #ifndef MAGO_HPP
 #define MAGO_HPP
 
-#include <iostream>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
+#include <iostream>
 #include <vector>
 
 #include "Bosque.hpp"
@@ -19,9 +19,8 @@
  * leer los mapas, crear los arboles y crear los archivos de salida
  */
 class Mago{
-  
-  private:
-    /// Cantidad de noches
+ private:
+    ///  Cantidad de noches
     int nights;
     /// Objeto Bosque
     Bosque* bosqueDelMago;
@@ -38,8 +37,7 @@ class Mago{
     /// Numero de hilos a ejecutar
     int thread_count;
 
-  public:
-
+ public:
     /**
      * @brief Constructor, inicializa la cantidad de noches en 0
      */
@@ -59,8 +57,8 @@ class Mago{
      * @return Codigo de error
      */
     int start(int argc, char* argv[]);
-    
-  private:
+
+ private:
     /**
      * @brief Llena un arreglo con los mapas del job y otro con la
      * cantidad de noches de cada mapa
@@ -70,7 +68,7 @@ class Mago{
      * noches
      * @return void 
      */
-    void read_job(FILE* job, int argc, char* argv[]);
+    void create_processes(FILE* job, int argc, char* argv[]);
 
     /**
      * @brief Se leen los mapas y se llama a run nights
@@ -105,9 +103,22 @@ class Mago{
      */
     void createTextFile(std::string filename, char** map);
 
+    /**
+     * @brief Calcula en cual mapa empezara cada a proceso a trabajar
+     * @param rank el numero del proceso
+     * @param end el numero total de mapas en el job
+     * @param workers la cantidad de procesos
+     * @param begin el primer mapa
+     */
     int calculate_start(int rank, int end, int workers, int begin);
 
+    /**
+     * @brief Calcula en cual mapa terminara cada proceso de trabajar
+     * @param rank el numero del proceso
+     * @param end el numero total de mapas en el job
+     * @param workers la cantidad de procesos
+     * @param begin el primer mapa
+     */
     inline int calculate_finish(int rank, int end, int workers, int begin);
-
 };
 #endif  // MAGO_HPP

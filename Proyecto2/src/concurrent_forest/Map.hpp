@@ -11,16 +11,15 @@
 * @brief La clase lee los mapas y los almacena
 */
 class Map {
-
-  private:
-    /// Cantidad de filas
+ private:
+    ///  Cantidad de filas
     int rows;
     /// Cantidad de columnas
     int cols;
     /// Matriz para el mapa
     char** map_matrix;
 
-  public:
+ public:
     /**
      * @brief Constructor
      */

@@ -9,9 +9,8 @@
 /**
  * @brief Aplica los cambios respectivos en el mapa despues de cada noche
  */
-class Bosque{
-
-  private:
+class Bosque {
+ private:
     /**
      * @brief Revisa las casillas aledañas en busca de inundacion o hacinamiento. 
      * @details Si alrededor de la casilla hay al menos 4 lagos, 
@@ -25,7 +24,8 @@ class Bosque{
      * @return retorna 1 si hay inundacion, 2 si hay hacinamiento y 
      * 0 si no se complue ninguna.
      */
-    int checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas);
+    int checkTrees(int fila, int columna, char **matrix
+      , int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una sequia. 
      * @details Si alrededor de la casilla hay menos de 3 lagos, 
@@ -37,7 +37,8 @@ class Bosque{
      * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkDrought(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkDrought(int fila, int columna, char **matriz_bosque
+     , int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una reforestacion. 
      * @details Si alrededor de la casilla hay al menos 3 arboles, 
@@ -49,7 +50,8 @@ class Bosque{
      * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkReforestation(int fila, int columna, char **matriz_bosque, int numero_filas, int numero_columnas);
+    bool checkReforestation(int fila, int columna, char **matriz_bosque
+      , int numero_filas, int numero_columnas);
     /**
      * @brief Revisa si la casilla es valida dentro de la matriz. 
      * @details Evita salir de los limites de la matriz.
@@ -59,9 +61,10 @@ class Bosque{
      * @param numero_columnas cantidad de columans en la matriz.
      * @return retorna true si se debe aplicar el cambio.
      */
-    bool checkCell(int fila, int columna, int numero_filas, int numero_columnas);
+    bool checkCell(int fila, int columna
+      , int numero_filas, int numero_columnas);
 
-  public:
+ public:
     /**
      * @brief Constructor
      */
@@ -79,7 +82,6 @@ class Bosque{
      * @param numero_hilos La cantidad de hilos a ser ejecutados
      */
     void changeForest(Map* matrix, Map* newMatrix, int numero_hilos);
-
 };
 
 #endif  // BOSQUE_HPP
