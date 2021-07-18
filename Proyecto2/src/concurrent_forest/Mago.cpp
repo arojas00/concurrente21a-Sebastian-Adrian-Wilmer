@@ -1,6 +1,7 @@
 /// @copyright 2021 ECCI, Universidad de Costa Rica. All rights reserved
 /// @author Sebastian-Adrian-Wilmer
 
+#include <iostream>
 #include <errno.h>
 #include <fstream>
 #include <mpi.h>
@@ -69,10 +70,10 @@ void Mago::read_job(FILE* job, int argc, char* argv[]) {
       = calculate_finish(rank, global_finish, process_count, global_start);
     const int my_process_size = my_process_finish - my_process_start;
 
-    for (int index = my_process_start; index <= my_process_finish; index++) {
+    for (int index = my_process_start; index < my_process_finish; index++) {
       run_job(index, rank);
     }
-    
+    std::cout << "Termino proceso: " << rank << std::endl;
     MPI_Finalize();
   }
 
