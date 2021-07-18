@@ -59,11 +59,11 @@ Adicionalmente se calcula el speedup y eficiencia de los tipos de mapeo con resp
 En el gráfico anterior se presenta el speedup de cada tipo de mapeo en el eje y izquierdo, asi como la eficiencia de los mismos en el eje y derecho. Gracias a esto se puede apreciar el comportamiento de los diferentes tipos de mapeo, los cuales son muy similares entre si, con una ligera mejora en el mapeo cíclico.
 
 <br/>
-![design](Proyecto2/design/Table.jpeg)
+![design](Proyecto2/design/Table.png)
 
 Se realizó una optimización a la hora de copiar los mapas entre cada noche, ya que se podía cumplir este objetivo con un swap de punteros, el cual es menos costoso en términos de tiempo. Esta optimización se incluyó en las mediciones, con lo que se tuvo un speedup de 1.21 segundos con respecto a la versión cíclica anterior. Posteriormente se realizaron las implementaciones de mpi e híbrida entre mpi y openMP. Para el caso de mpi se utilizó el número de procesos como la cantidad de trabajadores, mientras que en la hibrida se utilizaron el número de hilos multiplicado por los tres procesos, dando ambos 24 como resultado. Los procesos generados por mpi se encargan de generar los cambios de un mapa a la vez, por lo que se espera que la versión híbrida sea la de mejor rendimiento, al también realizar la descomposición de mapas por filas.
 
 <br/>
-![design](Proyecto2/design/Graph2.jpeg)
+![design](Proyecto2/design/Graph2.png)
 
 Los resultados mostraron una mejora en la duración de cada implementación, siendo la híbrida la que obtuvo el mayor speedup. Debido al alto número de trabajadores, el gráfico muestra una eficiencia menor a las versiones de openMP, a pesar de que se utilizan todos los recursos del clúster arenal. Los resultados corresponden a los esperados tras realizar la implementación, debido a las mejoras antes mencionadas. La eficiencia del programa se podría mejorar con un mapeo de hilos condicionado a la cantidad de filas y columnas en la matriz, ya que de ser una mayor que la otra, se podría utilizar la unidad de mapeo adecuada para cada situación.
