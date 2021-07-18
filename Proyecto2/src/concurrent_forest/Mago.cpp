@@ -52,8 +52,6 @@ void Mago::read_job(FILE* job, int argc, char* argv[]) {
   }
   fclose (job);
 
-  std::cout << "size: " << maps_array.size() << std::endl;
-
   if (MPI_Init(&argc, &argv) == MPI_SUCCESS) {
 
     int rank = -1; // process_number
@@ -69,12 +67,9 @@ void Mago::read_job(FILE* job, int argc, char* argv[]) {
       = calculate_start(rank, global_finish, process_count, global_start);
     const int my_process_finish
       = calculate_finish(rank, global_finish, process_count, global_start);
-    const int my_process_size = my_process_finish - my_process_start;
-
     for (int index = my_process_start; index < my_process_finish; index++) {
       run_job(index, rank);
     }
-    std::cout << "Termino proceso: " << rank << std::endl;
     MPI_Finalize();
   }
 
@@ -86,7 +81,6 @@ void Mago :: run_job(int index, int rank) {
   // Los procesos se dividen los mapas
   /// Por cada mapa del job
   //for (long unsigned int i = 0; i < nights_array.size(); i++) {
-    std::cout << maps_array[index] << "| Process number:" << rank << std::endl;
     /// Se guarda en un string el directorio del mapa a evaluar
     std::string map_dir = path + maps_array[index];
     /// Se abre el mapa
@@ -108,6 +102,8 @@ void Mago :: run_job(int index, int rank) {
     map_original->copyMatrix(map_copy->getMatrix());
 
     run_nights(index);
+
+    std::cout << maps_array[index] << "| Process number:" << rank << std::endl;
     // Se libera la memoria
     delete this->map_original;
     delete bosqueDelMago;
