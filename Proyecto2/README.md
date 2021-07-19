@@ -61,7 +61,7 @@ Adicionalmente se calcula el speedup y eficiencia de los tipos de mapeo con resp
 `Grafico de duracion:`
 
 <br/>
-![design](Proyecto2/design/Duracion1.jpg)
+![design](Proyecto2/design/Duracion1.jpeg)
 
 En el gráfico anterior se presenta el speedup de cada tipo de mapeo en el eje y izquierdo, asi como la eficiencia de los mismos en el eje y derecho. Gracias a esto se puede apreciar el comportamiento de los diferentes tipos de mapeo, los cuales son muy similares entre si, con una ligera mejora en el mapeo cíclico.
 
@@ -78,6 +78,6 @@ Se realizó una optimización a la hora de copiar los mapas entre cada noche, ya
 `Grafico de duracion:`
 
 <br/>
-![design](Proyecto2/design/Duracion2.jpg)
+![design](Proyecto2/design/Duracion2.jpeg)
 
 Los resultados mostraron una mejora en la duración de cada implementación, siendo la híbrida la que obtuvo el mayor speedup. Debido al alto número de trabajadores, el gráfico muestra una eficiencia menor a las versiones de openMP, a pesar de que se utilizan todos los recursos del clúster arenal. Los resultados corresponden a los esperados tras realizar la implementación, debido a las mejoras antes mencionadas. La eficiencia del programa se podría mejorar con un mapeo de hilos condicionado a la cantidad de filas y columnas en la matriz, ya que de ser una mayor que la otra, se podría utilizar la unidad de mapeo adecuada para cada situación.
