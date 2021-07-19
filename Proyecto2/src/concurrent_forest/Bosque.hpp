@@ -64,6 +64,20 @@ class Bosque {
     bool checkCell(int fila, int columna
       , int numero_filas, int numero_columnas);
 
+    /**
+     * @brief Revisa las casillas en busca de cambios.
+     * @details Revisa si las casilla requiere
+     * cambios.
+     * @param matrix objeto Map que contiene la matriz original
+     * @param newMatrix objeto Map que contiene la matriz a actualizar
+     * @param numero_filas La cantidad de filas del mapa
+     * @param numero_columnas La cantidad de columnas del mapa
+     * @param i Fila en la cual se encuentra la celda
+     * @param j Columna en la cual se encuentra la celda
+     */
+    void changeCell(char** matrix, char** newMatrix
+      , int numero_filas, int numero_columnas, int i, int j);
+
  public:
     /**
      * @brief Constructor
