@@ -7,16 +7,6 @@
 #include "Bosque.hpp"
 #include "Map.hpp"
 
-/*
-/Funciones seriales del bosque:
-/Recibir como parametro al crear un nuevo bosque las filas y columnas para guardar en una matriz
-/Tener un metodo para cada regla que modifique una celda de la matriz leyendo el arbol original y guardando la nueva celda en una nueva matriz
-/Tener un metodo que actualice todo el bosque
-/
-/Funciones concurrentes del bosque:
-/
-*/
-
 Bosque::Bosque() {
 }
 
@@ -38,40 +28,46 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
     shared(matrix) shared(newMatrix) schedule(runtime)
   for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
-      if (matrix[i][j] == '-') {
-        if (checkReforestation(i, j, matrix, numero_filas
-          , numero_columnas) == true) {
-          newMatrix[i][j] = 'a';
-        } else {
-          newMatrix[i][j] = matrix[i][j];
-        }
+      changeCell(matrix, newMatrix, numero_filas, numero_columnas, i, j);
+    }
+  }
+}
+
+void Bosque :: changeCell(char** matrix, char** newMatrix
+  , int numero_filas, int numero_columnas, int i, int j) {
+  if (matrix[i][j] == '-') {
+    if (checkReforestation(i, j, matrix, numero_filas
+      , numero_columnas) == true) {
+      newMatrix[i][j] = 'a';
+    } else {
+      newMatrix[i][j] = matrix[i][j];
+    }
+  } else {
+    if (matrix[i][j] == 'l') {
+      if (checkDrought(i, j, matrix, numero_filas
+        , numero_columnas) == true) {
+        newMatrix[i][j] = '-';
       } else {
-        if (matrix[i][j] == 'l') {
-          if (checkDrought(i, j, matrix, numero_filas
-            , numero_columnas) == true) {
+        newMatrix[i][j] = matrix[i][j];
+      }
+    } else {
+      if (matrix[i][j] == 'a') {
+        int change = checkTrees(i, j, matrix, numero_filas
+          , numero_columnas);
+        if (change == 1) {
+          newMatrix[i][j] = 'l';
+        } else {
+          if (change == 2) {
             newMatrix[i][j] = '-';
           } else {
             newMatrix[i][j] = matrix[i][j];
-          }
-        } else {
-          if (matrix[i][j] == 'a') {
-            int change = checkTrees(i, j, matrix, numero_filas
-              , numero_columnas);
-            if (change == 1) {
-              newMatrix[i][j] = 'l';
-            } else {
-              if (change == 2) {
-                newMatrix[i][j] = '-';
-              } else {
-                newMatrix[i][j] = matrix[i][j];
-              }
-            }
           }
         }
       }
     }
   }
 }
+
 int Bosque::checkTrees(int fila, int columna, char **matrix
   , int numero_filas, int numero_columnas) {
   int lakes = 0;
