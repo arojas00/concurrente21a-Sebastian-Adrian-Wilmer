@@ -23,9 +23,9 @@ El objetivo del proyecto es lograr procesar desde un archivo de texto que contie
 ### Build
 Se debe descargar la carpeta Proyecto2 o clonar el repositorio
 
-Para compilar correr make/make all
+Para compilar correr `make/make all`
 
-Los casos de prueba se encuentran en la carpeta tests/test_set_X/input/
+Los casos de prueba se encuentran en la carpeta `tests/test_set_X/input/`
 
 Para correr el programa se debe llamar de esta forma
 
@@ -33,7 +33,7 @@ Ubicacion Nombre del archivo a leer Nombre de la ubicacion del archivo
 
 Ej:
 
-bin/Proyecto2 job001.txt tests/test_set_1/input/
+`bin/Proyecto2 job001.txt tests/test_set_1/input/`
 
 ### Manual de usuario
 Correr el programa de esta manera crea los archivos de salida en la carpeta output
