@@ -1,10 +1,11 @@
 /// @copyright 2021 ECCI, Universidad de Costa Rica. All rights reserved
 /// @author Sebastian-Adrian-Wilmer
 
-#include "Bosque.hpp"
-#include "Map.hpp"
 #include <omp.h>
 #include <vector>
+
+#include "Bosque.hpp"
+#include "Map.hpp"
 
 /*
 /Funciones seriales del bosque:
@@ -38,27 +39,27 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
   for (int i = 0; i < numero_filas; i++) {
     for (int j = 0; j < numero_columnas; j++) {
       if (matrix[i][j] == '-') {
-        if (checkReforestation(i, j, matrix, numero_filas, numero_columnas) == true) {
+        if (checkReforestation(i, j, matrix, numero_filas
+          , numero_columnas) == true) {
           newMatrix[i][j] = 'a';
         } else {
           newMatrix[i][j] = matrix[i][j];
         }
-      }
-      else {
+      } else {
         if (matrix[i][j] == 'l') {
-          if (checkDrought(i, j, matrix, numero_filas, numero_columnas) == true) {
+          if (checkDrought(i, j, matrix, numero_filas
+            , numero_columnas) == true) {
             newMatrix[i][j] = '-';
           } else {
             newMatrix[i][j] = matrix[i][j];
           }
-        }
-        else {
+        } else {
           if (matrix[i][j] == 'a') {
-            int change = checkTrees(i, j, matrix, numero_filas, numero_columnas);
+            int change = checkTrees(i, j, matrix, numero_filas
+              , numero_columnas);
             if (change == 1) {
               newMatrix[i][j] = 'l';
-            }
-            else {
+            } else {
               if (change == 2) {
                 newMatrix[i][j] = '-';
               } else {
@@ -71,35 +72,35 @@ void Bosque::changeForest(Map* map, Map* new_map, int numero_hilos) {
     }
   }
 }
-int Bosque::checkTrees(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+int Bosque::checkTrees(int fila, int columna, char **matrix
+  , int numero_filas, int numero_columnas) {
   int lakes = 0;
   int trees = 0;
   int change = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
       if (checkCell(i, j, numero_filas, numero_columnas) == true) {
-        if (matrix[i][j] == 'l'){
+        if (matrix[i][j] == 'l') {
           lakes++;
-        }
-        else{
-          if (matrix[i][j] == 'a'){
+        } else {
+          if (matrix[i][j] == 'a') {
             trees++;
           }
         }
       }
     }
   }
-  if (lakes >= 4){
+  if (lakes >= 4) {
     change = 1;
-  }
-  else{
-    if(trees > 5){
+  } else {
+    if (trees > 5) {
       change = 2;
     }
   }
   return change;
 }
-bool Bosque::checkDrought(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkDrought(int fila, int columna, char **matrix
+  , int numero_filas, int numero_columnas) {
   int lakes = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -111,11 +112,12 @@ bool Bosque::checkDrought(int fila, int columna, char **matrix, int numero_filas
   }
   if (lakes <= 3) {
     return true;
-  }
-  else
+  } else {
     return false;
+  }
 }
-bool Bosque::checkReforestation(int fila, int columna, char **matrix, int numero_filas, int numero_columnas) {
+bool Bosque::checkReforestation(int fila, int columna, char **matrix
+  , int numero_filas, int numero_columnas) {
   int trees = 0;
   for (int i = fila - 1; i <= fila + 1; i++) {
     for (int j = columna - 1; j <= columna + 1; j++) {
@@ -130,8 +132,10 @@ bool Bosque::checkReforestation(int fila, int columna, char **matrix, int numero
   else
     return false;
 }
-bool Bosque::checkCell(int fila, int columna, int numero_filas, int numero_columnas) {
-  if ((unsigned int)fila < (unsigned int)numero_filas && (unsigned int)columna < (unsigned int)numero_columnas)
+bool Bosque::checkCell(int fila, int columna, int numero_filas
+  , int numero_columnas) {
+  if ((unsigned int)fila < (unsigned int)numero_filas
+    && (unsigned int)columna < (unsigned int)numero_columnas)
     return true;
   else
     return false;

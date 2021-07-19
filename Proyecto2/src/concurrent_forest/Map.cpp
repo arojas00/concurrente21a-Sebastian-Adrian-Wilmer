@@ -1,3 +1,6 @@
+/// @copyright 2021 ECCI, Universidad de Costa Rica. All rights reserved
+/// @author Sebastian-Adrian-Wilmer
+
 #include <stdlib.h>
 #include <iostream>
 #include "Map.hpp"
@@ -25,10 +28,8 @@ char** Map :: create_matrix() {
 
 void Map :: fillMatrix(FILE* file) {
   char cell;
-  for (int i = 0; i < rows; i++)
-  {
-    for (int j = 0; j < cols; j++)
-    {
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
       fscanf(file, "%c", &cell);
       map_matrix[i][j] = cell;
     }
@@ -37,10 +38,8 @@ void Map :: fillMatrix(FILE* file) {
 }
 
 void Map :: copyMatrix(char **newMatrix) {
-  for (int i = 0; i < rows; i++)
-  {
-    for (int j = 0; j < cols; j++)
-    {
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
       newMatrix[i][j] = map_matrix[i][j];
     }
   }
