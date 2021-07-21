@@ -1,37 +1,72 @@
-/// @copyright 2020 ECCI, Universidad de Costa Rica. All rights reserved
-/// This code is released under the GNU Public License version 3
-/// @author Jeisson Hidalgo-Céspedes <jeisson.hidalgo@ucr.ac.cr>
+// Copyright 2021 Wilmer Araya <wilmer.araya@ucr.ac.cr> CC-BY-4
+#ifndef GOLDBACHCALCULATOR_HPP
+#define GOLDBACHCALCULATOR_HPP
+#include <stdint.h>
+#include <queue>
+#include <string>
 
-#ifndef HTTPCONNECTIONHANDLER_HPP
-#define HTTPCONNECTIONHANDLER_HPP
-
-#include <cassert>
-
-#include "Queue.hpp"
-#include "Thread.hpp"
 #include "Assembler.hpp"
 
 
-/**
- * @brief A consumer class to handle http connections
- */
-//template <typename DataType>
+  class GoldbachCalculator : public Assembler<int64_t[], std::string*> {
 
-class GoldbachCalculator : public Assembler<int,int> {
-  /// Objects of this class cannot be copied
-  DISABLE_COPY(GoldbachCalculator);
-  //stopCondition = Socket(NULL);
- private:
-  // WebServer* webServer;
+    private:
 
- public:
-  /// Constructor
-  GoldbachCalculator();
-  /// Consume the socket in its own execution thread
-  int run() override;
-  /// Override this method to process any data extracted from the queue
-  void consume(const int& x) override;
+      int64_t value;
+      int cant_sumas;
+      std::queue<int> cola_sumas;
 
-};
+    public:
 
-#endif  // HTTPCONNECTIONHANDLER_HPP
+    /// Constructor
+    GoldbachCalculator();
+
+    /// Destructor
+    ~GoldbachCalculator();
+
+    /// Consume the number in its own execution thread
+    int run() override;
+
+    /// Consume el numero al cual le calcula las sumas de goldbach
+    void consume(int64_t numbers[]);
+
+    private:
+
+      /**
+       * @brief Evalua si el numero ingresado es par o no
+       * @details Si el resto de la division del numero entre 2 
+       *          es igual a 0 significa que el numero es par
+       * @param Numero a ser evaluado
+       * @return Retorna true si el numero es par,
+       *         de lo contrario retorna false
+       */
+      bool esPar(int64_t value);
+
+      /**
+       * @brief Evalua si el numero ingresado es primo o no
+       * @details Si la division del numero ingresado da entero
+       *          solo cuando se divide por si mismo y 1 significa que es primo.
+       * @param Numero a ser evaluado
+       * @return Retorna true si el numero es primo,
+       *         de lo contrario retorna false
+       */
+      bool esPrimo(int64_t value);
+
+      /**
+       * @brief Calcula la cantidad de sumas goldbach que tiene cada numero
+       * @details Se evaluan todas las posibles combinaciones de numeros primos
+       *          mediante ciclos for, si el numero es par guarda los dos
+       *          numeros que conforman la suma en el arreglo, si es impar guarda 
+       *          los tres numeros que conforman la suma.
+       * @param Numero a ser evaluado y el arreglo en el cual se guardan los numeros
+       *        que conforman la suma.
+       * @return Retorna la cantidad de sumas de goldbach
+       */
+      int conjetura_debil(int64_t value, bool signo);
+
+      int conjetura_fuerte(int64_t value, bool signo);
+
+      std::string construir_resultado();
+
+  };
+#endif // GOLDBACHCALCULATOR_HPP
