@@ -16,7 +16,8 @@ typedef struct values{
 
 GoldbachWebApp ::GoldbachWebApp() {
   //this->calculator = goldbach_create();
-  URI_queue = new Queue<int>;
+  URI_queue = new Queue<int64_t[]>;
+  result_queue = new Queue<std::string>;
   this->numberCount = 0;
 }
 

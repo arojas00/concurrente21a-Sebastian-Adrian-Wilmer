@@ -18,7 +18,8 @@ class GoldbachWebApp {
     int64_t numberCount;
 
   public:
-    Queue<int>* URI_queue;
+    Queue<int64_t[]>* URI_queue;
+    Queue<std::string> result_queue;
     GoldbachCalculator** goldbachCalculators;
     /// Constructor 
     GoldbachWebApp();
