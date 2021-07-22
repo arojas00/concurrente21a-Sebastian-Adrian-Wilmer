@@ -74,6 +74,8 @@ int WebServer::start(int argc, char* argv[]) {
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
       startHttpServer();
+      webApp = new GoldbachWebApp();
+      webApp->start_Calculators();
       this->acceptAllConnections();
     }
   } catch (const std::runtime_error& error) {
@@ -228,20 +230,21 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   std::string title = "Goldbach sums for " + std::to_string(number);
   // Set HTTP response metadata (headers)
   setHeaders(httpResponse,title);
-  GoldbachWebApp* webApp;
-  webApp = new GoldbachWebApp();
+  //GoldbachWebApp* webApp;
+  //webApp = new GoldbachWebApp();
   values_t* values;
 
   if(inQuery){
     std::string queryNumber = std::to_string(number);
-    values = webApp->calculate_sums("/"+queryNumber);
+    //llamar a process_request
+    webApp->process_Request("/" + queryNumber);
   }
   else{
-    values = webApp->calculate_sums(httpRequest.getURI());
+    webApp->process_Request(httpRequest.getURI());
   }    
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
-  for(int i = 0; i < webApp->getNumberCount(); i++){
+  for(int i = 0; i < 3; i++){
     if(values[i].value>=-5 && values[i].value<=5) {
       httpResponse.body() << "  <h2 class=\"err\">"<< values[i].value <<"</h2>\n"
         << "  <p>"<< values[i].value <<": NA</p>\n";

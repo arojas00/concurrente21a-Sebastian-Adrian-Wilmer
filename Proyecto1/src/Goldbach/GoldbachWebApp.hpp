@@ -8,31 +8,24 @@
 #include <iostream>
 #include <string>
 #include <stdint.h>
+#include "DataValues.hpp"
 using namespace std;
 
 class GoldbachWebApp {
   
-  private:
-    //goldbach_t* calculator;
-    values_t* valores;
-    int64_t numberCount;
-
   public:
-    Queue<int64_t[]>* URI_queue;
-    Queue<std::string> result_queue;
+    Queue<DataValues>* URI_queue;
+    Queue<DataValues*>* results_queue;
     GoldbachCalculator** goldbachCalculators;
     /// Constructor 
     GoldbachWebApp();
     /// Destructor
     ~GoldbachWebApp();
 
-    void GoldbachWebApp::startCalculators();
-    
-    /// Calculates sums
-    values_t* calculate_sums(string texto);
+    void start_Calculators();
 
-    int64_t getNumberCount();
-  
+    void process_Request(std::string uri);
+    
 };
 
 #endif // GOLDBACHCALCULATOR_HPP

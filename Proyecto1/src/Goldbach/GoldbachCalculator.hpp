@@ -4,11 +4,12 @@
 #include <stdint.h>
 #include <queue>
 #include <string>
+#include "DataValues.hpp"
 
 #include "Assembler.hpp"
 
 
-  class GoldbachCalculator : public Assembler<int64_t[], std::string*> {
+  class GoldbachCalculator : public Assembler<DataValues,DataValues*> {
 
     private:
 
@@ -28,7 +29,7 @@
     int run() override;
 
     /// Consume el numero al cual le calcula las sumas de goldbach
-    void consume(int64_t numbers[]);
+    void consume(const DataValues& numbers);
 
     private:
 
