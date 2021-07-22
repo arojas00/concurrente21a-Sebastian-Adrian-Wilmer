@@ -7,23 +7,25 @@
 
 class DataValues {
 
-     public:
+    private:
       int64_t valor;
       int64_t posicion;
       std::string identificador;
       std::string sumas;
    
-
+    public:
     /// Constructor
-    DataValues(int64_t valor, int64_t posicion, std::string identificador);
+    DataValues(int64_t valor = 0, int64_t posicion = -1, std::string identificador = "");
 
     /// Destructor
     ~DataValues();
 
-    std::string get_ID();
-    int64_t get_number();
-    int64_t get_position();
+    std::string get_ID() const;
+    int64_t get_number() const;
+    int64_t get_position() const;
     void set_sumas(std::string sumas);
+    bool operator==(const DataValues& other) const;
+    
 
   };
 #endif // DATAVALUES_HPP

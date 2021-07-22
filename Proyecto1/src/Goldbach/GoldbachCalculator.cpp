@@ -35,7 +35,7 @@ void GoldbachCalculator :: consume(const DataValues& numbers) {
   //Separamos el string en partes
   bool signo;
   //Parte del valor
-  this->value = numbers.valor;
+  this->value = numbers.get_number();
 
   int64_t value_positive = 0;
   if (value >= 0)
@@ -58,7 +58,7 @@ void GoldbachCalculator :: consume(const DataValues& numbers) {
   } else {
     sumas = std::to_string(value) + ": NA";
   }
-  DataValues* resultado = new DataValues(value, numbers.posicion, numbers.identificador);
+  DataValues* resultado = new DataValues(value, numbers.get_position(), numbers.get_ID());
   resultado->set_sumas(sumas);
   this->produce(resultado);
 }

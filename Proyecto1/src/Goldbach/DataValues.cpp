@@ -12,13 +12,13 @@
 
     }
 
-    std::string DataValues::get_ID(){
+    std::string DataValues::get_ID() const{
         return this->identificador;
     }
-    int64_t DataValues::get_number(){
+    int64_t DataValues::get_number() const{
         return this->valor;
     }
-    int64_t DataValues::get_position(){
+    int64_t DataValues::get_position() const{
         return this->posicion;
     }
     void DataValues::set_sumas(std::string sumas){
