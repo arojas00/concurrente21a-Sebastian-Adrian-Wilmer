@@ -18,7 +18,8 @@ GoldbachWebApp ::~GoldbachWebApp() {
 }
 
 void GoldbachWebApp::process_Request(std::string uri){
-
+  // Partir el uri en numeros separados, obtener la posicion en el string y meter el uri entero como ID en un objeto DataValues
+  // Meter el nuevo objeto DataValues en la cola para cada posicion
 }
 
 void GoldbachWebApp::start_Calculators(){

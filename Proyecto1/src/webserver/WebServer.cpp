@@ -23,7 +23,7 @@ const char* const usage =
   "  max_connections  Maximum number of allowed client connections\n";
 
 typedef struct values{
-  int64_t value; // valor
+  int64_t value = 0; // valor
   queue_t* cola_sumas; // cola para guardar las sumas de cada valor
   bool signo; // Para guardar el signo del numero
   int cant_sumas; // La cantidad de sumas
@@ -225,15 +225,13 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
 bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number, bool inQuery) {
   (void)httpRequest;
-
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
   // Set HTTP response metadata (headers)
   setHeaders(httpResponse,title);
   //GoldbachWebApp* webApp;
   //webApp = new GoldbachWebApp();
-  values_t* values;
-
+  values_t* values = {0};
   if(inQuery){
     std::string queryNumber = std::to_string(number);
     //llamar a process_request
@@ -244,6 +242,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   }    
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
+    /*
   for(int i = 0; i < 3; i++){
     if(values[i].value>=-5 && values[i].value<=5) {
       httpResponse.body() << "  <h2 class=\"err\">"<< values[i].value <<"</h2>\n"
@@ -279,7 +278,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
         }
       }
     }
-  }
+  }*/
   httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
 
