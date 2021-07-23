@@ -66,6 +66,8 @@ class Mago{
      * se llama a run_job
      * @param job es el archivo job que continene los mapas y las
      * noches
+     * @param argc numero de argumentos del programa
+     * @param argv valor de los argumentos del programa
      * @return void 
      */
     void create_processes(FILE* job, int argc, char* argv[]);

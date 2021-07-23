@@ -24,7 +24,7 @@ class Bosque {
      * @return retorna 1 si hay inundacion, 2 si hay hacinamiento y 
      * 0 si no se complue ninguna.
      */
-    int checkTrees(int fila, int columna, char **matrix
+    int checkTrees(int fila, int columna, char **matriz_bosque
       , int numero_filas, int numero_columnas);
     /**
      * @brief Revisa las casillas aledañas en busca de una sequia. 
