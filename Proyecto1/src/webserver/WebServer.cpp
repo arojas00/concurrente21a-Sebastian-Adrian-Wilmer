@@ -235,6 +235,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   //GoldbachWebApp* webApp;
   //webApp = new GoldbachWebApp();
   DataValues* responseData = webApp->getResponseData();
+
   if(inQuery){
     std::string queryNumber = std::to_string(number);
     //llamar a process_request
@@ -244,33 +245,25 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     webApp->process_Request(httpRequest.getURI());
   }
     webApp->printProducingQueue();
-    /*
+  
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
-  std::cout << "2" << std::endl;
 
   for(int i = 0; i < webApp->getDataCount(); i++){
-  std::cout << "3" << std::endl;
-
-    if(responseData->getNumber() >=-5 && responseData->getNumber() <= 5) {
-  std::cout << "4" << std::endl;
-
-      httpResponse.body() << "  <h2 class=\"err\">"<< "numero" <<"</h2>\n"
+  std::cout << "dataCount: "<< webApp->getDataCount() << std::endl;
+    if(responseData[i].getNumber() >=-5 && responseData[i].getNumber() <= 5) {
+      httpResponse.body() << "  <h2 class=\"err\">"<< responseData[i].getNumber() <<"</h2>\n"
         << "  <p>"<< "sumas" <<"</p>\n";
-      std::cout << responseData->getSumas() << " " << responseData->getNumber() << std::endl;
+      std::cout << responseData->getSumas() << " " << responseData[i].getNumber() << std::endl;
     }
     else{
-
-      httpResponse.body() << "  <h2>"<< "numero negativo" <<"</h2>\n"
-      << "  <p>"<< "sumas negativas" <<" </p>\n";
-      // std::cout << responseData->getSumas() << " " << responseData->getNumber() << std::endl;
-  std::cout << "5" << std::endl;
-
+      httpResponse.body() << "  <h2>"<< responseData[i].getNumber() <<"</h2>\n"
+      << "  <p>"<< "sumas : sumas..." <<" </p>\n";
+      std::cout << "pagina: " << responseData[i].getNumber() << " " << std::endl;
     }
   }
   httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
-*/
   // Send the response to the client (user agent)
   return httpResponse.send();
 }

@@ -38,7 +38,7 @@ class GoldbachWebApp {
     void sendSignal();
 
   private:
-    DataValues *responseData;
+    DataValues* responseData;
     int64_t dataCount;
     Semaphore* can_access_queue;
 

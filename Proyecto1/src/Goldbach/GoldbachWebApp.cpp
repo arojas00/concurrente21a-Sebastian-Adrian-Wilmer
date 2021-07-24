@@ -56,29 +56,23 @@ void GoldbachWebApp::handleDataValue(DataValues& value) {
 
 void GoldbachWebApp::printProducingQueue(){
   responseData = new DataValues[dataCount];
-    std::cout << " wait "  << std::endl;
-
+  std::cout << " wait "  << std::endl;
   for(int esperarHilos = 0; esperarHilos < 8; esperarHilos++){
     can_access_queue->wait();
   }
-  
-
   std::cout << " signal "<< std::endl;
-
-   while(results_queue->empty() != true){
-   std::cout << " * " << std::endl;
-   DataValues dt = results_queue->pop();
-   std::cout << "  * " << std::endl;
-
-   std::cout << dt.getPosition() << " hgfjhfgghdhgdf " << dt.getSumas() << std::endl;
-   responseData[dt.getPosition()] = dt;
-    
-   std::cout << "   * " <<std::endl;
-   std::cout << "  * " << std::endl;
-   }
+  while(results_queue->empty() != true){
+    DataValues dt = results_queue->pop();
+    responseData[dt.getPosition()] = dt;
+    std::cout << dt.getPosition() << " "
+    << responseData[dt.getPosition()].getNumber() << " " 
+     << responseData[dt.getPosition()].getSumas() << std::endl;
+  }
 }
 
 DataValues* GoldbachWebApp::getResponseData(){
+  // std::cout << this->responseData[0].getNumber() << " " 
+  //   << this->responseData[0].getSumas() << std::endl;
   return responseData;
 }
 

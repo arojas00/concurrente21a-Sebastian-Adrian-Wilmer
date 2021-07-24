@@ -60,6 +60,8 @@ void GoldbachCalculator :: consume(const DataValues& numbers) {
   }
   DataValues resultado = numbers;
   resultado.setSumas(sumas);
+  resultado.setNumber(value);
+  resultado.setPosition(numbers.getPosition());
   this->produce(resultado);
 }
 
