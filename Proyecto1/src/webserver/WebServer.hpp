@@ -4,6 +4,7 @@
 #define WEBSERVER_H
 
 #include "HttpServer.hpp"
+#include "GoldbachWebApp.hpp"
 #include "HttpConnectionHandler.hpp"
 
 #define DEFAULT_PORT "8080"
@@ -14,6 +15,7 @@ class WebServer : public HttpServer {
   DISABLE_COPY(WebServer);
 
  private:
+  GoldbachWebApp* webApp;
   /// TCP port where this web server will listen for connections
   const char* port = DEFAULT_PORT;
   /// Consumers of the simulated network messages

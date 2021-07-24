@@ -3,42 +3,46 @@
 #define GOLDBACHWEBAPP_HPP
 
 #include <stdio.h>
+#include "Queue.hpp"
 #include "GoldbachCalculator.hpp"
 #include <iostream>
 #include <string>
 #include <stdint.h>
+#include "DataValues.hpp"
 using namespace std;
 
 class GoldbachWebApp {
   
-  private:
-    goldbach_t* calculator;
-    values_t* valores;
-    int64_t numberCount;
-
   public:
+    Queue<DataValues>* URI_queue;
+    Queue<DataValues>* results_queue;
+    GoldbachCalculator** goldbachCalculators;
+    DataValues dataValue;
     /// Constructor 
     GoldbachWebApp();
     /// Destructor
     ~GoldbachWebApp();
+
+    void start_Calculators();
+
+    void process_Request(std::string uri);
+
+    void handleDataValue(DataValues& value);
+
+    void printProducingQueue();
+
+    DataValues* getResponseData();
+
+    int64_t getDataCount();
     
-    /// Calculates sums
-    values_t* calculate_sums(string texto);
+    void sendSignal();
 
-    int64_t getNumberCount();
-  
+  private:
+    DataValues* responseData;
+    int64_t dataCount;
+    Semaphore* can_access_queue;
+
+    
 };
-
-/*
-int main() {
-  
-  //nt64_t array[2];
-  //array[0] = -32;
-  //array[1] = 12; 
-  string texto = "/8,5,1,55,6,55,-44";
-  GoldbachWebApp* webApp = new GoldbachWebApp();
-  webApp->calculate_sums(texto);
-}
-*/
 
 #endif // GOLDBACHCALCULATOR_HPP
