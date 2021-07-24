@@ -24,8 +24,12 @@ Integrantes:
 - make all
 - bin/Proyecto1 port max_connections
 
-### Diseno
+### Diseño
+Diagrama de petri:
 <br/>
+Diagrama de clases:
 ![design](Proyecto1/design/Design.jpg)
+<br/>
+![design](Proyecto1/design/UML_class.jpeg)
 
 ### Notas Importantes
