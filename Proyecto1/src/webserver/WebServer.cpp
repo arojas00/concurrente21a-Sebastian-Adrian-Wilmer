@@ -244,6 +244,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     webApp->process_Request(httpRequest.getURI());
   }
     webApp->printProducingQueue();
+    /*
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
   for(int i = 0; i < webApp->getDataCount(); i++){
@@ -258,7 +259,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   }
   httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
-
+*/
   // Send the response to the client (user agent)
   return httpResponse.send();
 }

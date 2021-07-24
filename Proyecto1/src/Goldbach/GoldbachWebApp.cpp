@@ -14,7 +14,7 @@ GoldbachWebApp ::GoldbachWebApp() {
   URI_queue = new Queue<DataValues>;
   results_queue = new Queue<DataValues>;
   dataCount = 0;
-  can_access_queue = new Semaphore(-6);
+  can_access_queue = new Semaphore(0);
 }
 
 GoldbachWebApp ::~GoldbachWebApp() {
@@ -58,20 +58,24 @@ void GoldbachWebApp::printProducingQueue(){
   responseData = new DataValues[dataCount];
     std::cout << " wait "  << std::endl;
 
-  can_access_queue->wait();
+  for(int esperarHilos = 0; esperarHilos < 8; esperarHilos++){
+    can_access_queue->wait();
+  }
+  
+
   std::cout << " signal "<< std::endl;
-    // DataValues dt = results_queue->pop();
-    // std::cout << "  * " << std::endl;
 
-    // std::cout << dt.getPosition() << " hgfjhfgghdhgdf " << dt.getSumas() << std::endl;
-    // responseData[dt.getPosition()] = dt;
-  // while(results_queue->empty() != true){
-  //   std::cout << " * " << std::endl;
+   while(results_queue->empty() != true){
+   std::cout << " * " << std::endl;
+   DataValues dt = results_queue->pop();
+   std::cout << "  * " << std::endl;
 
+   std::cout << dt.getPosition() << " hgfjhfgghdhgdf " << dt.getSumas() << std::endl;
+   responseData[dt.getPosition()] = dt;
     
-  //   std::cout << "   * " <<std::endl;
-  //   std::cout << "  * " << std::endl;
-  // }
+   std::cout << "   * " <<std::endl;
+   std::cout << "  * " << std::endl;
+   }
 }
 
 DataValues* GoldbachWebApp::getResponseData(){
