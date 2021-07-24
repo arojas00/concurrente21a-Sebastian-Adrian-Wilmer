@@ -33,11 +33,11 @@ int GoldbachCalculator :: run() {
 void GoldbachCalculator :: consume(const DataValues& numbers) {
 
   //Separamos el string en partes
-  bool signo;
+  bool signo = true;
   //Parte del valor
   this->value = numbers.getNumber();
 
-  int64_t value_positive = 0;
+  int64_t value_positive = value;
   if (value >= 0)
     signo = true;
   else {
@@ -58,8 +58,8 @@ void GoldbachCalculator :: consume(const DataValues& numbers) {
   } else {
     sumas = std::to_string(value) + ": NA";
   }
-  DataValues* resultado = new DataValues();
-  resultado->setSumas(sumas);
+  DataValues resultado = numbers;
+  resultado.setSumas(sumas);
   this->produce(resultado);
 }
 
@@ -153,8 +153,8 @@ int GoldbachCalculator :: conjetura_fuerte(int64_t value, bool signo) {
 std::string GoldbachCalculator :: construir_resultado() {
   std::string resultado = "";
   if (value < 5) {
-    resultado.append("-" + value);
-    resultado.append(": " + std::to_string(cant_sumas) + "sums: ");
+    resultado.append(std::to_string(value));
+    resultado.append(": " + std::to_string(cant_sumas) + " sums: ");
     std::string num_1, num_2, num_3;
     num_1 = ""; num_2 = ""; num_3 = "";
     for (int i = 0; i < cant_sumas; i++) { // Se recorre el arreglo de sumas para imprimir los numeros

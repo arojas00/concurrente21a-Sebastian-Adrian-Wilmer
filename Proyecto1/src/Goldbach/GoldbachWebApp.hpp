@@ -15,7 +15,7 @@ class GoldbachWebApp {
   
   public:
     Queue<DataValues>* URI_queue;
-    Queue<DataValues*>* results_queue;
+    Queue<DataValues>* results_queue;
     GoldbachCalculator** goldbachCalculators;
     DataValues dataValue;
     /// Constructor 

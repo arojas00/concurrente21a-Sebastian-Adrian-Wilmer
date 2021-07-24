@@ -5,6 +5,7 @@
         this->valor = 0;
         this->posicion = 0;
         this->identificador = "";
+        this->sumas = "";
     }
 
     /// Destructor
@@ -19,6 +20,10 @@
     }
     int64_t DataValues::getPosition() const{
         return this->posicion;
+    }
+
+    std::string DataValues::getSumas() const{
+        return this->sumas;
     }
     void DataValues::setSumas(std::string sumas){
         this->sumas = sumas;

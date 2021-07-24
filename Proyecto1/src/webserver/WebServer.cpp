@@ -242,7 +242,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   else{
     webApp->process_Request(httpRequest.getURI());
   }
-    //webApp->printProducingQueue();    
+    webApp->printProducingQueue();    
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
     /*

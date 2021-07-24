@@ -10,7 +10,7 @@
 GoldbachWebApp ::GoldbachWebApp() {
   //this->calculator = goldbach_create();
   URI_queue = new Queue<DataValues>;
-  results_queue = new Queue<DataValues*>;
+  results_queue = new Queue<DataValues>;
 }
 
 GoldbachWebApp ::~GoldbachWebApp() {
@@ -46,8 +46,14 @@ void GoldbachWebApp::handleDataValue(DataValues& value) {
 }
 
 void GoldbachWebApp::printProducingQueue(){
-  while(!results_queue->empty()){
-    std::cout<<results_queue->pop()<<std::endl;
+  while(true){
+    if(results_queue->empty()!= true){
+    DataValues dt = results_queue->pop();
+    std::cout << std::endl << dt.getSumas() << std::endl;
+    } else {
+      break;
+    }
+    
   }
 }
 

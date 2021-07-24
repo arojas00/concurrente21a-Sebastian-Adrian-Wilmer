@@ -9,7 +9,7 @@
 #include "Assembler.hpp"
 
 
-  class GoldbachCalculator : public Assembler<DataValues,DataValues*> {
+  class GoldbachCalculator : public Assembler<DataValues,DataValues> {
 
     private:
 
