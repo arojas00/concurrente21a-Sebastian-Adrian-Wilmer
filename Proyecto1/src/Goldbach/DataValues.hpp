@@ -15,17 +15,20 @@ class DataValues {
    
     public:
     /// Constructor
-    DataValues(int64_t valor = 0, int64_t posicion = -1, std::string identificador = "");
+    DataValues();
 
     /// Destructor
     ~DataValues();
 
-    std::string get_ID() const;
-    int64_t get_number() const;
-    int64_t get_position() const;
-    void set_sumas(std::string sumas);
+    std::string getID() const;
+    int64_t getNumber() const;
+    int64_t getPosition() const;
+    std::string getSumas() const;
+    void setSumas(std::string sumas);
+    void setID(std::string ID);
+    void setNumber(int64_t number);
+    void setPosition(int64_t position);
+    void setData(int64_t number, int64_t position, std::string ID);
     bool operator==(const DataValues& other) const;
-    
-
   };
 #endif // DATAVALUES_HPP

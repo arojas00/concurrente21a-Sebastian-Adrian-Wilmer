@@ -1,37 +1,44 @@
 #include "DataValues.hpp"
 
     /// Constructor
-    DataValues::DataValues(int64_t valor, int64_t posicion, std::string identificador){
-        this->valor = valor;
-        this->posicion = posicion;
-        this->identificador = identificador;
+    DataValues::DataValues(){
+        this->valor = 0;
+        this->posicion = 0;
+        this->identificador = "";
     }
 
     /// Destructor
     DataValues::~DataValues(){
 
     }
-
-    std::string DataValues::get_ID() const{
+    std::string DataValues::getID() const{
         return this->identificador;
     }
-    int64_t DataValues::get_number() const{
+    int64_t DataValues::getNumber() const{
         return this->valor;
     }
-    int64_t DataValues::get_position() const{
+    int64_t DataValues::getPosition() const{
         return this->posicion;
     }
-    void DataValues::set_sumas(std::string sumas){
+    void DataValues::setSumas(std::string sumas){
         this->sumas = sumas;
     }
+    void DataValues::setID(std::string ID){
+        this->identificador = ID;
+    }
+    void DataValues::setNumber(int64_t number){
+        this->valor = number;
+    }
+    void DataValues::setPosition(int64_t position){
+        this->posicion = position;
+    }
 
+    void DataValues::setData(int64_t number, int64_t position, std::string ID){
+        this->valor = number;
+        this->posicion = position;
+        this->identificador = ID;
+    }
     bool DataValues::operator==(const DataValues& other) const {
     return this->identificador
     == other.identificador;
     }
-    /*
-    bool Socket::operator==(const Socket& other) const {
-    return this->sharedSocket->socketFileDescriptor
-    == other.sharedSocket->socketFileDescriptor;
-    }
-    */

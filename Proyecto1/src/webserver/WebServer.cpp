@@ -74,8 +74,8 @@ int WebServer::start(int argc, char* argv[]) {
       std::cout << "web server listening on " << address.getIP()
         << " port " << address.getPort() << "...\n";
       startHttpServer();
-      webApp = new GoldbachWebApp();
-      webApp->start_Calculators();
+      //webApp = new GoldbachWebApp();
+      //webApp->start_Calculators();
       this->acceptAllConnections();
     }
   } catch (const std::runtime_error& error) {
@@ -224,6 +224,8 @@ bool WebServer::serveNotFound(HttpRequest& httpRequest
 // e.g GoldbachWebApp, and a model class e.g GoldbachCalculator
 bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
     , HttpResponse& httpResponse, int64_t number, bool inQuery) {
+      webApp = new GoldbachWebApp();
+      webApp->start_Calculators();
   (void)httpRequest;
   // Build the body of the response
   std::string title = "Goldbach sums for " + std::to_string(number);
@@ -239,7 +241,8 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   }
   else{
     webApp->process_Request(httpRequest.getURI());
-  }    
+  }
+    //webApp->printProducingQueue();    
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
     /*

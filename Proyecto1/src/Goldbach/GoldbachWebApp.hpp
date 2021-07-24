@@ -17,6 +17,7 @@ class GoldbachWebApp {
     Queue<DataValues>* URI_queue;
     Queue<DataValues*>* results_queue;
     GoldbachCalculator** goldbachCalculators;
+    DataValues dataValue;
     /// Constructor 
     GoldbachWebApp();
     /// Destructor
@@ -25,6 +26,10 @@ class GoldbachWebApp {
     void start_Calculators();
 
     void process_Request(std::string uri);
+
+    void handleDataValue(DataValues& value);
+
+    void printProducingQueue();
     
 };
 
