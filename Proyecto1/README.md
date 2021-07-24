@@ -27,8 +27,8 @@ Integrantes:
 ### Diseño
 Diagrama de petri:
 <br/>
-Diagrama de clases:
 ![design](Proyecto1/design/Design.jpg)
+Diagrama de clases:
 <br/>
 ![design](Proyecto1/design/UML_class.jpeg)
 
