@@ -27,5 +27,7 @@ Integrantes:
 ### Diseno
 <br/>
 ![design](Proyecto1/design/Design.jpg)
+<br/>
+![design](Proyecto1/design/UML_class.jpeg)
 
 ### Notas Importantes
