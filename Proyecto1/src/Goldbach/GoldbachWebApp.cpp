@@ -18,7 +18,10 @@ GoldbachWebApp ::GoldbachWebApp() {
 }
 
 GoldbachWebApp ::~GoldbachWebApp() {
-  //goldbach_destroy(this->calculator);
+  delete URI_queue;
+  delete results_queue;
+  delete can_access_queue;
+  delete goldbachCalculators;
 }
 
 void GoldbachWebApp::process_Request(std::string uri){
@@ -48,25 +51,17 @@ void GoldbachWebApp::handleDataValue(DataValues& value) {
   // TODO(you): Make this method concurrent. Store client connections (sockets)
   // into a collection (e.g thread-safe queue) and stop
   DataValues dataValuesRef = value;
-  // consumer = new HttpConnectionHandler(this);
   URI_queue->push(dataValuesRef);
-  // consumer->setConsumingQueue(clientQueue);
-  // consumer->startThread();
 }
 
 void GoldbachWebApp::printProducingQueue(){
   responseData = new DataValues[dataCount];
-  std::cout << " wait "  << std::endl;
   for(int esperarHilos = 0; esperarHilos < 8; esperarHilos++){
     can_access_queue->wait();
   }
-  std::cout << " signal "<< std::endl;
   while(results_queue->empty() != true){
     DataValues dt = results_queue->pop();
     responseData[dt.getPosition()] = dt;
-    std::cout << dt.getPosition() << " "
-    << responseData[dt.getPosition()].getNumber() << " " 
-     << responseData[dt.getPosition()].getSumas() << std::endl;
   }
 }
 

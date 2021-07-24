@@ -156,10 +156,11 @@ std::string GoldbachCalculator :: construir_resultado() {
   std::string resultado = "";
   if (value < 5) {
     resultado.append(std::to_string(value));
-    resultado.append(": " + std::to_string(cant_sumas) + " sums: ");
+    resultado.append(": " + std::to_string(cant_sumas) + " sums ");
     std::string num_1, num_2, num_3;
     num_1 = ""; num_2 = ""; num_3 = "";
     for (int i = 0; i < cant_sumas; i++) { // Se recorre el arreglo de sumas para imprimir los numeros
+      resultado.append("</br>");
       if (esPar(value)) { // Si es par se imprimen dos numeros
         num_1 = std::to_string(cola_sumas.front());
         cola_sumas.pop();
@@ -175,8 +176,8 @@ std::string GoldbachCalculator :: construir_resultado() {
         cola_sumas.pop();
         resultado.append(num_1 + " + " + num_2 + " + " + num_3);
       }
-      if (i != (cant_sumas-1)) { // Si no es la ultima suma se imprime '\n'
-        resultado.append("\n");
+      if (i == (cant_sumas-1)) { // Si no es la ultima suma se imprime '\n'
+        // resultado.append("</ol>\n");
       }
     }
   } else {
