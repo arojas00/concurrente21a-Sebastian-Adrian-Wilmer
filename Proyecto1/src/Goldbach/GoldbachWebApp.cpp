@@ -2,15 +2,19 @@
 
 #include <stdint.h>
 #include <queue>
-#include "GoldbachWebApp.hpp"
-#include "QueueSums.hpp"
 #include <sstream>
 #include <string>
+
+#include "GoldbachWebApp.hpp"
+#include "QueueSums.hpp"
+#include "Semaphore.hpp"
 
 GoldbachWebApp ::GoldbachWebApp() {
   //this->calculator = goldbach_create();
   URI_queue = new Queue<DataValues>;
   results_queue = new Queue<DataValues>;
+  dataCount = 0;
+  can_access_queue = new Semaphore(-6);
 }
 
 GoldbachWebApp ::~GoldbachWebApp() {
@@ -31,7 +35,12 @@ void GoldbachWebApp::process_Request(std::string uri){
     num = std::stol(valor, &sz);
     dataValue.setData(num, posicion, uri);
     handleDataValue(dataValue);
+    dataCount++;
     posicion++;
+  }
+  for(int i = 0; i < 8; i++){
+    dataValue.setData(0, 0, "");
+    handleDataValue(dataValue);
   }
 }
 
@@ -46,15 +55,31 @@ void GoldbachWebApp::handleDataValue(DataValues& value) {
 }
 
 void GoldbachWebApp::printProducingQueue(){
-  while(true){
-    if(results_queue->empty()!= true){
-    DataValues dt = results_queue->pop();
-    std::cout << std::endl << dt.getSumas() << std::endl;
-    } else {
-      break;
-    }
+  responseData = new DataValues[dataCount];
+    std::cout << " wait "  << std::endl;
+
+  can_access_queue->wait();
+  std::cout << " signal "<< std::endl;
+    // DataValues dt = results_queue->pop();
+    // std::cout << "  * " << std::endl;
+
+    // std::cout << dt.getPosition() << " hgfjhfgghdhgdf " << dt.getSumas() << std::endl;
+    // responseData[dt.getPosition()] = dt;
+  // while(results_queue->empty() != true){
+  //   std::cout << " * " << std::endl;
+
     
-  }
+  //   std::cout << "   * " <<std::endl;
+  //   std::cout << "  * " << std::endl;
+  // }
+}
+
+DataValues* GoldbachWebApp::getResponseData(){
+  return responseData;
+}
+
+int64_t GoldbachWebApp::getDataCount(){
+  return dataCount;
 }
 
 void GoldbachWebApp::start_Calculators(){
@@ -65,6 +90,7 @@ void GoldbachWebApp::start_Calculators(){
     goldbachCalculators[i] = new GoldbachCalculator();
     goldbachCalculators[i]->setConsumingQueue(URI_queue);
     goldbachCalculators[i]->setProducingQueue(results_queue);
+    goldbachCalculators[i]->setSemaphore(can_access_queue);
     goldbachCalculators[i]->startThread();
   }
 }

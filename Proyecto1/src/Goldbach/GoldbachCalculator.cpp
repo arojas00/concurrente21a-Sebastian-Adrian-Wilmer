@@ -24,7 +24,7 @@ GoldbachCalculator :: ~GoldbachCalculator() {}
 int GoldbachCalculator :: run() {
   // Start the forever loop to consume all the Sockets that arrive
   this->consumeForever();
-
+  canAccessQueue->signal();
   // If the forever loop finished, no more sockets will arrive
   Log::append(Log::INFO, "Consumer", "ended");
   return EXIT_SUCCESS;
@@ -173,8 +173,8 @@ std::string GoldbachCalculator :: construir_resultado() {
         cola_sumas.pop();
         resultado.append(num_1 + " + " + num_2 + " + " + num_3);
       }
-      if (i != (cant_sumas-1)) { // Si no es la ultima suma se imprime ','
-        resultado.append(", ");
+      if (i != (cant_sumas-1)) { // Si no es la ultima suma se imprime '\n'
+        resultado.append("\n");
       }
     }
   } else {
@@ -183,4 +183,6 @@ std::string GoldbachCalculator :: construir_resultado() {
   return resultado;
 }
 
-
+void GoldbachCalculator::setSemaphore(Semaphore* semaphore){
+  this->canAccessQueue = semaphore;
+}

@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <queue>
 #include <string>
+#include "Semaphore.hpp"
 #include "DataValues.hpp"
 
 #include "Assembler.hpp"
@@ -16,6 +17,7 @@
       int64_t value;
       int cant_sumas;
       std::queue<int> cola_sumas;
+      Semaphore* canAccessQueue;
 
     public:
 
@@ -30,6 +32,8 @@
 
     /// Consume el numero al cual le calcula las sumas de goldbach
     void consume(const DataValues& numbers);
+
+    void setSemaphore(Semaphore* semaphore);
 
     private:
 

@@ -30,6 +30,18 @@ class GoldbachWebApp {
     void handleDataValue(DataValues& value);
 
     void printProducingQueue();
+
+    DataValues* getResponseData();
+
+    int64_t getDataCount();
+    
+    void sendSignal();
+
+  private:
+    DataValues *responseData;
+    int64_t dataCount;
+    Semaphore* can_access_queue;
+
     
 };
 
