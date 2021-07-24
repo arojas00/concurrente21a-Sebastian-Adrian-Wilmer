@@ -243,8 +243,8 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   else{
     webApp->process_Request(httpRequest.getURI());
   }
-  webApp->printProducingQueue();
-  std::cout << "1" << std::endl;
+    webApp->printProducingQueue();
+    /*
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"
     << "  <h1>" << title << "</h1>\n";
   std::cout << "2" << std::endl;
@@ -270,7 +270,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   }
   httpResponse.body() << "  <hr><p><a href=\"/\">Back</a></p>\n"
     << "</html>\n";
-
+*/
   // Send the response to the client (user agent)
   return httpResponse.send();
 }
