@@ -5,76 +5,25 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
   <net type="http://www.informatik.hu-berlin.de/top/pntd/ptNetb" id="noID">
     <place id="p1">
       <name>
-        <text>End user</text>
+        <text>p1</text>
         <graphics>
-          <offset x="30" y="290"/>
+          <offset x="300" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="29" y="246"/>
+        <position x="306" y="341"/>
         <dimension x="40" y="40"/>
       </graphics>
-      <initialMarking>
-        <text>1</text>
-      </initialMarking>
     </place>
     <place id="p2">
       <name>
         <text>Clients queue</text>
         <graphics>
-          <offset x="340" y="290"/>
+          <offset x="550" y="390"/>
         </graphics>
       </name>
       <graphics>
-        <position x="340" y="243"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p4">
-      <name>
-        <text>Sockets queue</text>
-        <graphics>
-          <offset x="520" y="290"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="528" y="245"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p9">
-      <name>
-        <text>End user</text>
-        <graphics>
-          <offset x="1090" y="590"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1098" y="541"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p30">
-      <name>
-        <text>p30</text>
-        <graphics>
-          <offset x="1140" y="300"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1137" y="260"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p31">
-      <name>
-        <text>p31</text>
-        <graphics>
-          <offset x="1130" y="400"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1130" y="360"/>
+        <position x="557" y="341"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -82,23 +31,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>p12</text>
         <graphics>
-          <offset x="750" y="300"/>
+          <offset x="770" y="390"/>
         </graphics>
       </name>
       <graphics>
-        <position x="748" y="256"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p34">
-      <name>
-        <text>p34</text>
-        <graphics>
-          <offset x="1390" y="190"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1390" y="151"/>
+        <position x="770" y="343"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -106,23 +43,11 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>p11</text>
         <graphics>
-          <offset x="750" y="190"/>
+          <offset x="770" y="280"/>
         </graphics>
       </name>
       <graphics>
-        <position x="750" y="150"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p36">
-      <name>
-        <text>p36</text>
-        <graphics>
-          <offset x="1290" y="400"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1290" y="360"/>
+        <position x="772" y="237"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
@@ -130,124 +55,131 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>p13</text>
         <graphics>
-          <offset x="750" y="410"/>
+          <offset x="770" y="500"/>
         </graphics>
       </name>
       <graphics>
-        <position x="748" y="363"/>
+        <position x="770" y="450"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
-    <place id="p35">
+    <place id="p21">
       <name>
-        <text>p35</text>
+        <text>ProducingQueue</text>
         <graphics>
-          <offset x="1350" y="310"/>
+          <offset x="1290" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1354" y="270"/>
+        <position x="1289" y="340"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+    </place>
+    <place id="p20">
+      <name>
+        <text>ProducingQueue</text>
+        <graphics>
+          <offset x="1290" y="200"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1289" y="159"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+    </place>
+    <place id="p23">
+      <name>
+        <text>p23</text>
+        <graphics>
+          <offset x="120" y="380"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="120" y="340"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+    </place>
+    <place id="p22">
+      <name>
+        <text>ProducingQueue</text>
+        <graphics>
+          <offset x="1280" y="570"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1279" y="529"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+    </place>
+    <place id="p24">
+      <name>
+        <text>p24</text>
+        <graphics>
+          <offset x="1460" y="370"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1460" y="329"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
     <place id="p27">
       <name>
-        <text>p27</text>
+        <text>URIQueue</text>
         <graphics>
-          <offset x="950" y="300"/>
+          <offset x="990" y="390"/>
         </graphics>
       </name>
       <graphics>
-        <position x="947" y="260"/>
+        <position x="989" y="347"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
     <place id="p26">
       <name>
-        <text>p26</text>
+        <text>URIQueue</text>
         <graphics>
-          <offset x="950" y="190"/>
+          <offset x="980" y="220"/>
         </graphics>
       </name>
       <graphics>
-        <position x="948" y="150"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-    </place>
-    <place id="p29">
-      <name>
-        <text>p29</text>
-        <graphics>
-          <offset x="1130" y="190"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1130" y="150"/>
+        <position x="981" y="179"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
     <place id="p28">
       <name>
-        <text>p28</text>
+        <text>URIQueue</text>
         <graphics>
-          <offset x="950" y="400"/>
+          <offset x="990" y="580"/>
         </graphics>
       </name>
       <graphics>
-        <position x="948" y="361"/>
+        <position x="989" y="528"/>
         <dimension x="40" y="40"/>
       </graphics>
     </place>
-    <transition id="t4">
-      <name>
-        <text>Webserver</text>
-        <graphics>
-          <offset x="440" y="290"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="440" y="245"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="450" y="225"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="HttpServer" roleName="Producer">
-          <graphics>
-            <position x="450" y="198"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
     <transition id="t5">
       <name>
         <text>t5</text>
         <graphics>
-          <offset x="650" y="190"/>
+          <offset x="420" y="480"/>
         </graphics>
       </name>
       <graphics>
-        <position x="653" y="150"/>
+        <position x="427" y="441"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="663" y="130"/>
+            <position x="437" y="420"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="HttpReqHandler" roleName="Consumer">
+        <transitionResource organizationalUnitName="Request" roleName="Client">
           <graphics>
-            <position x="663" y="102"/>
+            <position x="437" y="393"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -260,52 +192,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t6</text>
         <graphics>
-          <offset x="660" y="290"/>
+          <offset x="670" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="653" y="251"/>
+        <position x="664" y="338"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="663" y="231"/>
+            <position x="674" y="318"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="HttpReqHandler" roleName="Consumer">
+        <transitionResource organizationalUnitName="HttpConnectionHandler" roleName="Consumer">
           <graphics>
-            <position x="663" y="204"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
-    <transition id="t7">
-      <name>
-        <text>t7</text>
-        <graphics>
-          <offset x="650" y="400"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="653" y="358"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="663" y="337"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="HttpReqHandler" roleName="Consumer">
-          <graphics>
-            <position x="663" y="310"/>
+            <position x="674" y="291"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -318,23 +221,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t8</text>
         <graphics>
-          <offset x="1040" y="100"/>
+          <offset x="20" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1041" y="62"/>
+        <position x="19" y="340"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="1051" y="41"/>
+            <position x="29" y="320"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Consumer">
+        <transitionResource organizationalUnitName="Main" roleName="Object">
           <graphics>
-            <position x="1051" y="14"/>
+            <position x="29" y="293"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -347,23 +250,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t9</text>
         <graphics>
-          <offset x="1040" y="200"/>
+          <offset x="1130" y="150"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1038" y="165"/>
+        <position x="1129" y="108"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="1048" y="144"/>
+            <position x="1139" y="88"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Consumer">
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
           <graphics>
-            <position x="1048" y="117"/>
+            <position x="1139" y="61"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -376,23 +279,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t10</text>
         <graphics>
-          <offset x="1040" y="310"/>
+          <offset x="1120" y="230"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1034" y="273"/>
+        <position x="1125" y="195"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="1044" y="252"/>
+            <position x="1135" y="175"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Consumer">
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
           <graphics>
-            <position x="1044" y="225"/>
+            <position x="1135" y="148"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -405,23 +308,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t11</text>
         <graphics>
-          <offset x="1310" y="520"/>
+          <offset x="1130" y="330"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1293" y="483"/>
+        <position x="1123" y="287"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="1302" y="463"/>
+            <position x="1133" y="267"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="HttpResponse" roleName="Queue">
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
           <graphics>
-            <position x="1302" y="436"/>
+            <position x="1133" y="240"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -434,23 +337,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t14</text>
         <graphics>
-          <offset x="860" y="300"/>
+          <offset x="1380" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="856" y="256"/>
+        <position x="1380" y="340"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="865" y="236"/>
+            <position x="1390" y="320"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
+        <transitionResource organizationalUnitName="HttpResponse" roleName="Object">
           <graphics>
-            <position x="865" y="209"/>
+            <position x="1390" y="293"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -463,23 +366,52 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t13</text>
         <graphics>
-          <offset x="860" y="190"/>
+          <offset x="1380" y="200"/>
         </graphics>
       </name>
       <graphics>
-        <position x="860" y="148"/>
+        <position x="1380" y="160"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="869" y="128"/>
+            <position x="1389" y="140"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
+        <transitionResource organizationalUnitName="HttpResponse" roleName="Object">
           <graphics>
-            <position x="869" y="101"/>
+            <position x="1389" y="113"/>
+            <dimension x="60" y="22"/>
+          </graphics>
+        </transitionResource>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t16">
+      <name>
+        <text>t16</text>
+        <graphics>
+          <offset x="1120" y="450"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1117" y="405"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <trigger id="" type="200">
+          <graphics>
+            <position x="1127" y="385"/>
+            <dimension x="24" y="22"/>
+          </graphics>
+        </trigger>
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
+          <graphics>
+            <position x="1127" y="358"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -492,23 +424,156 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t15</text>
         <graphics>
-          <offset x="860" y="400"/>
+          <offset x="1380" y="570"/>
         </graphics>
       </name>
       <graphics>
-        <position x="861" y="362"/>
+        <position x="1380" y="530"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="870" y="341"/>
+            <position x="1390" y="510"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
+        <transitionResource organizationalUnitName="HttpResponse" roleName="Object">
           <graphics>
-            <position x="870" y="314"/>
+            <position x="1390" y="483"/>
+            <dimension x="60" y="22"/>
+          </graphics>
+        </transitionResource>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t18">
+      <name>
+        <text>t18</text>
+        <graphics>
+          <offset x="1130" y="530"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1130" y="494"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <trigger id="" type="200">
+          <graphics>
+            <position x="1140" y="474"/>
+            <dimension x="24" y="22"/>
+          </graphics>
+        </trigger>
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
+          <graphics>
+            <position x="1140" y="447"/>
+            <dimension x="60" y="22"/>
+          </graphics>
+        </transitionResource>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t17">
+      <name>
+        <text>End user</text>
+        <graphics>
+          <offset x="1530" y="370"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1529" y="330"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t21">
+      <name>
+        <text>t21</text>
+        <graphics>
+          <offset x="860" y="230"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="860" y="192"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <trigger id="" type="200">
+          <graphics>
+            <position x="870" y="172"/>
+            <dimension x="24" y="22"/>
+          </graphics>
+        </trigger>
+        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Object">
+          <graphics>
+            <position x="870" y="145"/>
+            <dimension x="60" y="22"/>
+          </graphics>
+        </transitionResource>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t20">
+      <name>
+        <text>t20</text>
+        <graphics>
+          <offset x="1130" y="650"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="1132" y="604"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <trigger id="" type="200">
+          <graphics>
+            <position x="1142" y="584"/>
+            <dimension x="24" y="22"/>
+          </graphics>
+        </trigger>
+        <transitionResource organizationalUnitName="GoldbachCalculator" roleName="Assembler">
+          <graphics>
+            <position x="1142" y="557"/>
+            <dimension x="60" y="22"/>
+          </graphics>
+        </transitionResource>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
+        <orientation>1</orientation>
+      </toolspecific>
+    </transition>
+    <transition id="t23">
+      <name>
+        <text>t23</text>
+        <graphics>
+          <offset x="860" y="500"/>
+        </graphics>
+      </name>
+      <graphics>
+        <position x="861" y="460"/>
+        <dimension x="40" y="40"/>
+      </graphics>
+      <toolspecific tool="WoPeD" version="1.0">
+        <trigger id="" type="200">
+          <graphics>
+            <position x="871" y="440"/>
+            <dimension x="24" y="22"/>
+          </graphics>
+        </trigger>
+        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Object">
+          <graphics>
+            <position x="871" y="413"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -521,139 +586,23 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t22</text>
         <graphics>
-          <offset x="1210" y="300"/>
+          <offset x="860" y="380"/>
         </graphics>
       </name>
       <graphics>
-        <position x="1210" y="264"/>
+        <position x="861" y="340"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="1220" y="244"/>
+            <position x="871" y="320"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
+        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Object">
           <graphics>
-            <position x="1220" y="217"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
-    <transition id="t25">
-      <name>
-        <text>t25</text>
-        <graphics>
-          <offset x="1210" y="390"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1216" y="360"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="1221" y="336"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
-          <graphics>
-            <position x="1226" y="313"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
-    <transition id="t24">
-      <name>
-        <text>t24</text>
-        <graphics>
-          <offset x="1220" y="190"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1210" y="152"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="1219" y="130"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="GoldBWebApp" roleName="Dispatcher">
-          <graphics>
-            <position x="1220" y="105"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
-    <transition id="t27">
-      <name>
-        <text>t27</text>
-        <graphics>
-          <offset x="1390" y="650"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1393" y="606"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="1403" y="586"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="HttpResponse" roleName="Queue">
-          <graphics>
-            <position x="1403" y="559"/>
-            <dimension x="60" y="22"/>
-          </graphics>
-        </transitionResource>
-        <time>0</time>
-        <timeUnit>1</timeUnit>
-        <orientation>1</orientation>
-      </toolspecific>
-    </transition>
-    <transition id="t26">
-      <name>
-        <text>t26</text>
-        <graphics>
-          <offset x="1340" y="590"/>
-        </graphics>
-      </name>
-      <graphics>
-        <position x="1352" y="542"/>
-        <dimension x="40" y="40"/>
-      </graphics>
-      <toolspecific tool="WoPeD" version="1.0">
-        <trigger id="" type="200">
-          <graphics>
-            <position x="1362" y="522"/>
-            <dimension x="24" y="22"/>
-          </graphics>
-        </trigger>
-        <transitionResource organizationalUnitName="HttpResponse" roleName="Queue">
-          <graphics>
-            <position x="1362" y="495"/>
+            <position x="871" y="293"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
@@ -664,30 +613,30 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
     </transition>
     <transition id="t1">
       <name>
-        <text>t1</text>
+        <text>Webserver</text>
         <graphics>
-          <offset x="190" y="180"/>
+          <offset x="220" y="390"/>
         </graphics>
       </name>
       <graphics>
-        <position x="190" y="143"/>
+        <position x="229" y="339"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="200" y="123"/>
+            <position x="241" y="321"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
-        <transitionResource organizationalUnitName="Request" roleName="Client">
+        <transitionResource organizationalUnitName="HttpServer" roleName="Producer">
           <graphics>
-            <position x="200" y="96"/>
+            <position x="239" y="292"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
-        <time>1</time>
-        <timeUnit>0</timeUnit>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
         <orientation>1</orientation>
       </toolspecific>
     </transition>
@@ -695,28 +644,28 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t2</text>
         <graphics>
-          <offset x="190" y="280"/>
+          <offset x="420" y="300"/>
         </graphics>
       </name>
       <graphics>
-        <position x="190" y="243"/>
+        <position x="426" y="261"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="200" y="223"/>
+            <position x="436" y="241"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
         <transitionResource organizationalUnitName="Request" roleName="Client">
           <graphics>
-            <position x="200" y="196"/>
+            <position x="436" y="214"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
-        <time>2</time>
-        <timeUnit>0</timeUnit>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
         <orientation>1</orientation>
       </toolspecific>
     </transition>
@@ -724,73 +673,31 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
       <name>
         <text>t3</text>
         <graphics>
-          <offset x="190" y="400"/>
+          <offset x="420" y="390"/>
         </graphics>
       </name>
       <graphics>
-        <position x="190" y="355"/>
+        <position x="426" y="351"/>
         <dimension x="40" y="40"/>
       </graphics>
       <toolspecific tool="WoPeD" version="1.0">
         <trigger id="" type="200">
           <graphics>
-            <position x="200" y="335"/>
+            <position x="436" y="331"/>
             <dimension x="24" y="22"/>
           </graphics>
         </trigger>
         <transitionResource organizationalUnitName="Request" roleName="Client">
           <graphics>
-            <position x="200" y="308"/>
+            <position x="436" y="304"/>
             <dimension x="60" y="22"/>
           </graphics>
         </transitionResource>
-        <time>6</time>
-        <timeUnit>0</timeUnit>
+        <time>0</time>
+        <timeUnit>1</timeUnit>
         <orientation>1</orientation>
       </toolspecific>
     </transition>
-    <arc id="a11" source="t2" target="p2">
-      <inscription>
-        <text>1</text>
-        <graphics>
-          <offset x="500.0" y="-12.0"/>
-        </graphics>
-      </inscription>
-      <graphics/>
-      <toolspecific tool="WoPeD" version="1.0">
-        <probability>1.0</probability>
-        <displayProbabilityOn>false</displayProbabilityOn>
-        <displayProbabilityPosition x="500.0" y="12.0"/>
-      </toolspecific>
-    </arc>
-    <arc id="a33" source="t7" target="p13">
-      <inscription>
-        <text>1</text>
-        <graphics>
-          <offset x="500.0" y="-12.0"/>
-        </graphics>
-      </inscription>
-      <graphics/>
-      <toolspecific tool="WoPeD" version="1.0">
-        <probability>1.0</probability>
-        <displayProbabilityOn>false</displayProbabilityOn>
-        <displayProbabilityPosition x="500.0" y="12.0"/>
-      </toolspecific>
-    </arc>
-    <arc id="a10" source="t1" target="p2">
-      <inscription>
-        <text>1</text>
-        <graphics>
-          <offset x="500.0" y="-12.0"/>
-        </graphics>
-      </inscription>
-      <graphics/>
-      <toolspecific tool="WoPeD" version="1.0">
-        <probability>1.0</probability>
-        <displayProbabilityOn>false</displayProbabilityOn>
-        <displayProbabilityPosition x="500.0" y="12.0"/>
-      </toolspecific>
-    </arc>
     <arc id="a32" source="t6" target="p12">
       <inscription>
         <text>1</text>
@@ -805,7 +712,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a13" source="p2" target="t4">
+    <arc id="a10" source="p2" target="t6">
       <inscription>
         <text>1</text>
         <graphics>
@@ -819,7 +726,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a35" source="p12" target="t14">
+    <arc id="a54" source="p24" target="t17">
       <inscription>
         <text>1</text>
         <graphics>
@@ -833,7 +740,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a12" source="t3" target="p2">
+    <arc id="a12" source="t21" target="p26">
       <inscription>
         <text>1</text>
         <graphics>
@@ -847,7 +754,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a34" source="p11" target="t13">
+    <arc id="a34" source="t9" target="p20">
       <inscription>
         <text>1</text>
         <graphics>
@@ -861,7 +768,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a15" source="p4" target="t5">
+    <arc id="a15" source="t22" target="p27">
       <inscription>
         <text>1</text>
         <graphics>
@@ -875,7 +782,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a14" source="t4" target="p4">
+    <arc id="a37" source="t11" target="p21">
       <inscription>
         <text>1</text>
         <graphics>
@@ -889,7 +796,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a36" source="p13" target="t15">
+    <arc id="a36" source="t10" target="p20">
       <inscription>
         <text>1</text>
         <graphics>
@@ -903,7 +810,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a17" source="p4" target="t7">
+    <arc id="a39" source="p12" target="t22">
       <inscription>
         <text>1</text>
         <graphics>
@@ -917,7 +824,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a18" source="p4" target="t6">
+    <arc id="a38" source="p11" target="t21">
       <inscription>
         <text>1</text>
         <graphics>
@@ -931,7 +838,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a109" source="t27" target="p9">
+    <arc id="a19" source="t23" target="p28">
       <inscription>
         <text>1</text>
         <graphics>
@@ -945,7 +852,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a80" source="t13" target="p26">
+    <arc id="a40" source="p13" target="t23">
       <inscription>
         <text>1</text>
         <graphics>
@@ -959,7 +866,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a104" source="t22" target="p35">
+    <arc id="a20" source="p28" target="t18">
       <inscription>
         <text>1</text>
         <graphics>
@@ -973,7 +880,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a105" source="p35" target="t26">
+    <arc id="a42" source="t16" target="p21">
       <inscription>
         <text>1</text>
         <graphics>
@@ -987,7 +894,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a82" source="t14" target="p27">
+    <arc id="a22" source="p26" target="t9">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1001,7 +908,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a106" source="t25" target="p36">
+    <arc id="a21" source="p28" target="t20">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1015,7 +922,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a81" source="p26" target="t8">
+    <arc id="a43" source="t18" target="p22">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1029,7 +936,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a107" source="p36" target="t11">
+    <arc id="a24" source="p27" target="t16">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1043,7 +950,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a84" source="t15" target="p28">
+    <arc id="a46" source="t8" target="p23">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1057,7 +964,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a83" source="p27" target="t9">
+    <arc id="a23" source="p27" target="t11">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1071,7 +978,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a86" source="t8" target="p29">
+    <arc id="a45" source="t20" target="p22">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1085,7 +992,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a102" source="t24" target="p34">
+    <arc id="a26" source="t6" target="p11">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1099,7 +1006,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a85" source="p28" target="t10">
+    <arc id="a48" source="p20" target="t13">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1113,7 +1020,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a103" source="p34" target="t27">
+    <arc id="a47" source="p23" target="t1">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1127,7 +1034,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a88" source="t9" target="p30">
+    <arc id="a27" source="t6" target="p13">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1141,7 +1048,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a87" source="p29" target="t24">
+    <arc id="a49" source="p21" target="t14">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1155,7 +1062,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a89" source="p30" target="t22">
+    <arc id="a1" source="t1" target="p1">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1169,7 +1076,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a110" source="t26" target="p9">
+    <arc id="a2" source="p1" target="t2">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1183,7 +1090,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a3" source="p1" target="t1">
+    <arc id="a3" source="p1" target="t3">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1197,7 +1104,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a4" source="t1" target="p1">
+    <arc id="a4" source="p1" target="t5">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1211,7 +1118,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a5" source="p1" target="t2">
+    <arc id="a5" source="t2" target="p2">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1225,7 +1132,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a6" source="t2" target="p1">
+    <arc id="a7" source="t5" target="p2">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1239,7 +1146,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a7" source="p1" target="t3">
+    <arc id="a8" source="t3" target="p2">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1253,7 +1160,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a8" source="t3" target="p1">
+    <arc id="a51" source="t13" target="p24">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1267,7 +1174,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a91" source="p31" target="t25">
+    <arc id="a50" source="p22" target="t15">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1281,7 +1188,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a90" source="t10" target="p31">
+    <arc id="a31" source="p26" target="t10">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1295,7 +1202,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a111" source="t11" target="p9">
+    <arc id="a53" source="t15" target="p24">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1309,7 +1216,7 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <displayProbabilityPosition x="500.0" y="12.0"/>
       </toolspecific>
     </arc>
-    <arc id="a31" source="t5" target="p11">
+    <arc id="a52" source="t14" target="p24">
       <inscription>
         <text>1</text>
         <graphics>
@@ -1326,12 +1233,12 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
     <toolspecific tool="WoPeD" version="1.0">
       <bounds>
         <position x="2" y="24"/>
-        <dimension x="1838" y="667"/>
+        <dimension x="1867" y="788"/>
       </bounds>
       <scale>102</scale>
-      <treeWidthRight>1635</treeWidthRight>
+      <treeWidthRight>1656</treeWidthRight>
       <overviewPanelVisible>true</overviewPanelVisible>
-      <treeHeightOverview>50</treeHeightOverview>
+      <treeHeightOverview>100</treeHeightOverview>
       <treePanelVisible>true</treePanelVisible>
       <verticalLayout>false</verticalLayout>
       <resources>
@@ -1345,12 +1252,15 @@ Created with Workflow PetriNet Designer Version 3.2.0 (woped.org)-->
         <role Name="Queue"/>
         <role Name="Dispatcher"/>
         <role Name="GBC"/>
+        <role Name="Object"/>
+        <role Name="Assembler"/>
         <organizationUnit Name="Request"/>
-        <organizationUnit Name="HttpReqHandler"/>
+        <organizationUnit Name="HttpConnectionHandler"/>
         <organizationUnit Name="GoldbachCalculator"/>
         <organizationUnit Name="HttpServer"/>
         <organizationUnit Name="GoldBWebApp"/>
         <organizationUnit Name="HttpResponse"/>
+        <organizationUnit Name="Main"/>
       </resources>
       <simulations/>
       <partnerLinks/>
