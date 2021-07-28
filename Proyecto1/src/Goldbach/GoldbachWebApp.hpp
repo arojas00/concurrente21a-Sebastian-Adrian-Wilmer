@@ -18,21 +18,50 @@ class GoldbachWebApp {
     Queue<DataValues>* results_queue;
     GoldbachCalculator** goldbachCalculators;
     DataValues dataValue;
-    /// Constructor 
+
+    /**
+   * @brief Constructor
+   */ 
     GoldbachWebApp();
-    /// Destructor
+    /**
+   * @brief Destructor
+   */
     ~GoldbachWebApp();
 
+    /**
+   * @brief Inicia las calculadoras
+   */
     void start_Calculators();
 
+    /**
+   * @brief Procesa el request del cliente
+   * @param uri El Uri que contiene los numeros a trabajar
+   */
     void process_Request(std::string uri);
 
+    /**
+   * @brief Recibe e inserta el valor a la cola de consumir de la calculadora
+   * @param value El objeto DataValues donde se almacena el numero
+   */
     void handleDataValue(DataValues& value);
 
-    void printProducingQueue();
+    /**
+   * @brief Ensambla los resultados
+   * @details Saca los objetos de la cola de resultados y segun el 
+   * identificador de cada objeto DataValues los ensambla en orden en un
+   * arreglo.
+   * @param value El objeto DataValues donde se almacena el numero
+   */
+    void assembleResponse();
 
+    /**
+   * @return Retorna el resultado de las sumas de cada request
+   */
     DataValues* getResponseData();
 
+    /**
+   * @return Retorna la cantidad de datos de cada request
+   */
     int64_t getDataCount();
     
     void sendSignal();
@@ -41,8 +70,6 @@ class GoldbachWebApp {
     DataValues* responseData;
     int64_t dataCount;
     Semaphore* can_access_queue;
-
-    
 };
 
 #endif // GOLDBACHCALCULATOR_HPP

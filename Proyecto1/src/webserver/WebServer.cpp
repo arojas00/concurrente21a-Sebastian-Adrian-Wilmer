@@ -233,7 +233,7 @@ bool WebServer::serveGoldbachSums(HttpRequest& httpRequest
   else{
     webApp->process_Request(httpRequest.getURI());
   }
-  webApp->printProducingQueue();
+  webApp->assembleResponse();
   DataValues* responseData = webApp->getResponseData();
   
   httpResponse.body() << "  <style>body {font-family: monospace} .err {color: red}</style>\n"

@@ -48,13 +48,11 @@ void GoldbachWebApp::process_Request(std::string uri){
 }
 
 void GoldbachWebApp::handleDataValue(DataValues& value) {
-  // TODO(you): Make this method concurrent. Store client connections (sockets)
-  // into a collection (e.g thread-safe queue) and stop
   DataValues dataValuesRef = value;
   URI_queue->push(dataValuesRef);
 }
 
-void GoldbachWebApp::printProducingQueue(){
+void GoldbachWebApp::assembleResponse(){
   responseData = new DataValues[dataCount];
   for(int esperarHilos = 0; esperarHilos < 8; esperarHilos++){
     can_access_queue->wait();
