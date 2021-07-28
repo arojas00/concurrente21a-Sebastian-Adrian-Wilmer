@@ -30,7 +30,7 @@ Ej:
 `bin/Proyecto1 8080 8`
 
 ### Manual de usuario
-Una vez compilado, se puede generar un cliente ingresando a http://localhost:XXXX/ , donde XXXX es el numero de puerto asignado. En el ejemplo anterior se utilizaba el puerto 8080, por lo que el URL sería http://localhost:8080/ . Al haber generado el cliente, se pueden realizar solicitudes por medio tanto de la caja de consulta ubicada en la página principal, como por el URI. Para realizar una consulta de múltiples numeros se deben escribir en el URI separados por comas. (ej: http://localhost:8080/5,-67,9,-7)
+Una vez ejecutado, se puede generar un cliente ingresando a http://localhost:XXXX/ , donde XXXX es el numero de puerto asignado. En el ejemplo anterior se utilizaba el puerto 8080, por lo que el URL sería http://localhost:8080/ . Al haber generado el cliente, se pueden realizar solicitudes por medio tanto de la caja de consulta ubicada en la página principal, como por el URI. Para realizar una consulta de múltiples numeros se deben escribir en el URI separados por comas. (ej: http://localhost:8080/5,-67,9,-7)
 
 ### Diseño
 Diagrama de petri:
