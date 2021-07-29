@@ -14,7 +14,7 @@ La función **min** devuelve el número menor entre dos números, **i** es el n�
  
 #### 2. Tipo de descomposición y mapeo utilizado en la parte concurrente OpenMP
 
-Para la parte concurrente utilizamos como unidad de descomposición las filas de cada mapa y utilizando un mapeo cíclico para tener el mayor incremento de velocidad posible, basándonos en los resultados de la etapa anterior.
+Para la parte concurrente utilizamos como **unidad de descomposición las filas** de cada mapa y utilizando un **mapeo cíclico** para tener el mayor incremento de velocidad posible, basándonos en los resultados de la etapa anterior.
 Este mapeo cíciclo consiste en asignar a cada hilo ***i*** (índice del hilo) todas las filas con índice ***{i, i + w, i + 2w}*** y así consecutivamente, donde ***w*** es la cantidad total de hilos. 
 
 ---
