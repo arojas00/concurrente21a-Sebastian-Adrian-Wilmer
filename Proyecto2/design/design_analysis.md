@@ -24,7 +24,7 @@ Este mapeo cíciclo consiste en asignar a cada hilo ***i*** (índice del hilo) t
 
 ##### a) Ventaja del mapeo por bloque utilizado en la parte distribuida:
 
-- Es el mapeo que potencialmente puede disminuir la cantidad de fallos de caché o false sharing si se trabaja con memoria continua. Debido a esto en algunos casos específicos el mapeo por bloque podría ser el más eficiente, por ejemplo el caso en que todos los mapas sean del mismo tamaño y a todos los procesos se les asigne la misma cantidad de mapas.
+- Es el mapeo que potencialmente puede disminuir más fallos de caché o false sharing si se trabaja con memoria continua. Debido a esto en algunos casos específicos el mapeo por bloque podría ser el más eficiente, por ejemplo el caso en que todos los mapas sean del mismo tamaño y a todos los procesos se les asigne la misma cantidad de mapas.
 
 ##### b) Desventaja del mapeo por bloque utilizado en la parte distribuida:
 
