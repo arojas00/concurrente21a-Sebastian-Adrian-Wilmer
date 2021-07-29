@@ -36,7 +36,7 @@ Este mapeo cíciclo consiste en asignar a cada hilo ***i*** (índice del hilo) t
 
 ##### d) Desventaja del mapeo cíclico utilizado en la parte concurrente:
 
-- Al igual que su ventaja, su desventaja también depende del patrón ya que si las unidades de trabajo en este caso las filas fueran unas mas grandes que otras y siguieran un determinado patron en el cual a un solo hilo se le asignan las más grandes, este mapeo no sería el más adecuado.
+- Al igual que su ventaja, su desventaja también depende del patrón ya que si las unidades de trabajo en este caso las filas fueran unas más grandes que otras y siguieran un determinado patrón en el cual a un solo hilo se le asignan las más grandes, este mapeo no sería el más adecuado.
 
 ---
 
