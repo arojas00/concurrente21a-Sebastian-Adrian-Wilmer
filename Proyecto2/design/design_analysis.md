@@ -30,11 +30,11 @@ Este mapeo cíciclo consiste en asignar a cada hilo ***i*** (índice del hilo) t
 
 - Si a un solo proceso le tocan datos a procesar muy grandes en comparación con otros procesos este proceso va a tardar mucho más tiempo en terminar, mientras los otros estarán sin realizar trabajo.
 
-##### c) Ventaja del mapeo ciclico utilizado en la parte concurrente:
+##### c) Ventaja del mapeo cíclico utilizado en la parte concurrente:
 
 - Este mapeo es apto para cuando los datos tienen un patrón predecible, como es el caso de las filas del mapa, por esta razón en las mediciones que se realizaron en la etapa anterior este mapeo fue el más eficiente.
 
-##### d) Desventaja del mapeo ciclico utilizado en la parte concurrente:
+##### d) Desventaja del mapeo cíclico utilizado en la parte concurrente:
 
 - Al igual que su ventaja, su desventaja también depende del patrón ya que si las unidades de trabajo en este caso las filas fueran unas mas grandes que otras y siguieran un determinado patron en el cual a un solo hilo se le asignan las más grandes, este mapeo no sería el más adecuado.
 
