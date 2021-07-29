@@ -40,7 +40,7 @@ Este mapeo cíciclo consiste en asignar a cada hilo ***i*** (índice del hilo) t
 
 ---
 
-#### 4. Separacion de asuntos
+#### 4. Separación de asuntos
 
 Este programa no utiliza separación de asuntos ya que todos los procesos tienen la misma función.
 
