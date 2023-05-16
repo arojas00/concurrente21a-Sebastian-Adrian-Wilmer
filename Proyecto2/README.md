@@ -42,7 +42,7 @@ Para eliminar los archivos de la carpeta output es necesario llamar a make clean
 
 ### Diseño
 <br/>
-![design](design/Design.jpg)
+![design](serial_forest/Design.jpg)
 
 ### Analisis de rendimiento
 
