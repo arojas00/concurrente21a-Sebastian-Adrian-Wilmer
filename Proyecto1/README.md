@@ -35,15 +35,15 @@ Una vez ejecutado, se puede generar un cliente ingresando a http://localhost:XXX
 ### Diseño
 Diagrama de petri:
 <br/>
-![design](Proyecto1/design/Design.jpg)
+![design](design/Design.jpg)
 Diagrama de clases:
 <br/>
-![design](Proyecto1/design/UML_class.jpeg)
+![design](design/UML_class.jpeg)
 
 ### Ejecución
 Consulta de un solo número:
 <br/>
-![design](Proyecto1/design/Request.png)
+![design](design/Request.png)
 Consulta de múltiples números por medio del URI:
 <br/>
-![design](Proyecto1/design/Request_URI.png)
+![design](design/Request_URI.png)
